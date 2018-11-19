@@ -1,0 +1,25 @@
+<view>
+  <scroll-view scroll-y class='scroll-view'>
+    <view class="touch-item {{item.isTouchMove ? 'touch-move-active' : ''}}" data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove" wx:for="{{items}}" wx:key="{{index}}">
+      <view class="content">
+        <view class='goods-detail-shop'>
+          <image class='goods-detail-logo' src='https://user-gold-cdn.xitu.io/2018/10/14/16672d0647d5fcee?imageView2/1/w/1304/h/734/q/85/format/webp/interlace/1'></image>
+          <view class='goods-detail-shopname'>
+            <text>{{index}}沙县旗舰店（拱墅城西银泰店）</text>
+            <start-cmp start="{{start}}">
+              <view class='start-comment'>345条评论</view>
+            </start-cmp>
+          </view>
+        </view>
+        <view class='goods-detail-address'>
+          <view>
+            <image src='/assets/images/goods-detail/coordinates_fill.png' class='goods-detail-addressicon'></image>
+            <text>杭州市拱墅区丰潭路交叉口西南100米</text>
+          </view>
+          <image src='/assets/images/goods-detail/mobilephone_fill.png' class='goods-detail-phone'></image>
+        </view>
+      </view>
+      <view class="del" catchtap="del" data-index="{{index}}">删除</view>
+    </view>
+  </scroll-view>
+</view>

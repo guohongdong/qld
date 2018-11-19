@@ -1,0 +1,22 @@
+<!--pages/mine/report/report.wxml-->
+<view class='report'>
+  <view class='report-cell'>
+    <text class='report-cell-title'>商家名称: </text>
+    <input class='report-cell-input' placeholder='请输入名称' bindinput="bindKeyInput" data-key='shop_name' />
+  </view>
+  <view class='report-cell'>
+    <text class='report-cell-title'>商家地址: </text>
+    <input class='report-cell-input' placeholder='请输入地址' bindinput="bindKeyInput" data-key='shop_address' />
+  </view>
+  <view class='report-cell'>
+    <text class='report-cell-title'>你的电话: </text>
+    <input class='report-cell-input' placeholder='请输入电话' bindinput="bindKeyInput" data-key='phone' />
+  </view>
+  <view class='report-cell'>
+    <text class='report-cell-title'>你的姓名: </text>
+    <input class='report-cell-input' placeholder='请输入姓名' bindinput="bindKeyInput" data-key='name' />
+  </view>
+  <button class='submit' bindtap='setrePort'>提交</button>
+  <button class='submit' open-type="share">分享</button>
+  <van-toast id="van-toast" />
+</view>

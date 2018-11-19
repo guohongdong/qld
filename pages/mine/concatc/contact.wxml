@@ -1,0 +1,15 @@
+<view class='contact-container'>
+  <block wx:for="{{list}}" wx:key="{{index}}">
+    <contact-cmp nikename="{{item.name}}" content="{{category=='message'?'申请成为抢乐多会员':''}}" img="{{item.img}}">
+      <block wx:if="{{category=='message'}}">
+        <block wx:if="{{item.isDispose}}">
+          <text class='contact-agree'>{{item.isAgree?"已同意":"已拒绝"}}</text>
+        </block>
+        <block wx:else>
+          <van-button type="primary" size="small" class='contact-btn'>同意</van-button>
+          <van-button type="danger" size="small">拒绝</van-button>
+        </block>
+      </block>
+    </contact-cmp>
+  </block>
+</view>

@@ -1,0 +1,128 @@
+/* components/goods/goods.wxss */
+
+.goods-cmp {
+  display: flex;
+  padding: 30rpx;
+  box-sizing: border-box;
+  background: #fff;
+}
+
+.border-bottom {
+  position: relative;
+}
+
+.border-bottom::after {
+  content: "";
+  width: 100%;
+  height: 1px;
+  background: #e4e4e4;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.goods-img {
+  width: 250rpx;
+  height: 250rpx;
+  margin-right: 30rpx;
+  vertical-align: middle;
+}
+
+.goods-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+  color: #9b9b9b;
+  overflow: hidden;
+}
+
+.goods-detail {
+  /* width: 100%; */
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.goods-title {
+  font-size: 14px;
+  font-weight: 700;
+  height: 34rpx;
+  line-height: 34rpx;
+  margin-bottom: 18rpx;
+  color: #4c4c4c;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.goods-location {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  margin-bottom: 20px;
+}
+
+.goods-address {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.goods-distance {
+  width: 180rpx;
+  text-align: right;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.goods-look {
+  display: flex;
+  font-size: 10px;
+}
+
+.goods-look-icon {
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 5rpx;
+  vertical-align: middle;
+}
+
+.goods-look-item {
+  margin-right: 30rpx;
+}
+
+.goods-price {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.goods-price-current {
+  color: #f44;
+  font-size: 14px;
+  font-weight: 700;
+  margin-right: 10rpx;
+  line-height: 26rpx;
+}
+
+.goods-price-history {
+  font-size: 12px;
+  line-height: 18rpx;
+  text-decoration: line-through;
+}
+
+.goods-price-btn {
+  display: inline-block;
+  width: 120rpx;
+  height: 60rpx;
+  color: #fff;
+  background: #f44;
+  text-align: center;
+  font-size: 14px;
+  line-height: 60rpx;
+  border-radius: 30rpx;
+  background: linear-gradient(90deg, #f44, #ff5d5d);
+}

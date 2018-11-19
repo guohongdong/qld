@@ -1,0 +1,42 @@
+<view class='comment'>
+  <view class='report-cell'>
+    <text class='report-cell-title'>商家名称: </text>
+    <text class='report-cell-input'>百家味大饭堂</text>
+  </view>
+  <view class='report-cell'>
+    <text class='report-cell-title'>商家地址: </text>
+    <text class='report-cell-input'>杭州西溪湿地</text>
+  </view>
+  <view class='report-cell'>
+    <text class='report-cell-title'>服务评分: </text>
+    <view class='report-cell-input'>
+      <block wx:for="{{stars}}" wx:key=''>
+        <image class="star-image" style="left: {{item*80}}rpx" src="{{scores[idx] > item ?(scores[idx]-item == 0.5?halfSrc:selectedSrc) : normalSrc}}">
+          <view class="item" style="left:0rpx" data-score="{{item + 0.5}}" data-idx='{{idx}}' bindtap="selectLeft"></view>
+          <view class="item" style="left:20rpx" data-score="{{item + 1}}" data-idx='{{idx}}' bindtap="selectRight"></view>
+        </image>
+      </block>
+    </view>
+  </view>
+  <view class='report-cell-textarea'>
+    <text class='report-cell-title-textarea'>文字评价: </text>
+    <textarea placeholder="请输入评价"></textarea>
+  </view>
+  <view class='evaluate_contant'>
+    <!--外层循环控制有几个评价条目  -->
+    <!-- <block wx:for='{{evaluate_contant}}' wx:key='' wx:for-index='idx'>
+      <view class='evaluate_item'>
+        <view class='evaluate_title'>{{item}}</view>      
+        <view class='evaluate_box'>
+          <block wx:for="{{stars}}" wx:key=''>
+            <image class="star-image" style="left: {{item*80}}rpx" src="{{scores[idx] > item ?(scores[idx]-item == 0.5?halfSrc:selectedSrc) : normalSrc}}">
+              <view class="item" style="left:0rpx" data-score="{{item + 0.5}}" data-idx='{{idx}}' bindtap="selectLeft"></view>
+              <view class="item" style="left:20rpx" data-score="{{item + 1}}" data-idx='{{idx}}' bindtap="selectRight"></view>
+            </image>
+          </block>
+        </view> 
+  </view>-->
+
+    <button class='submit' bindtap='submit_evaluate'>提交</button>
+  </view>
+</view>

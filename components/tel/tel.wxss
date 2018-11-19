@@ -1,0 +1,4 @@
+/* components/tel/tel.wxss */
+.tel-cmp{
+  color: blue;
+}

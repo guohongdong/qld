@@ -1,0 +1,75 @@
+<!--pages/goods-detail/goods-detail.wxml-->
+<view class='goods-detail'>
+  <swiper indicator-dots="{{indicatorDots}}" autoplay interval="3000" duration="500" indicator-dots indicator-color="#ddd" indicator-active-color="#f44" circular style="border-top:1px solid #eee;">
+    <block wx:for="{{imgUrls}}" wx:key="{{index}}">
+      <swiper-item>
+        <image src="{{item}}" class="slide-image" />
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class='goods-purchasing'>
+    84人正在抢购，只剩1个了
+  </view>
+  <view class='goods-detail-info'>
+    <text class='goods-detail-name'>酱烤秘制田螺串酱烤秘制螺串{10串}撸不停，原价33元，现价33元。</text>
+    <view class='goods-detail-price'>
+      <text class='goods-detail-current'>80</text>
+      <text class='goods-detail-history'>¥30</text>
+    </view>
+  </view>
+  <view class='goods-detail-shop'>
+    <image class='goods-detail-logo' src='https://user-gold-cdn.xitu.io/2018/10/14/16672d0647d5fcee?imageView2/1/w/1304/h/734/q/85/format/webp/interlace/1'></image>
+    <view class='goods-detail-shopname'>
+      <text>沙县旗舰店（拱墅城西银泰店）</text>
+      <start-cmp start="{{start}}">
+        <view class='start-comment'>345条评论</view>
+      </start-cmp>
+    </view>
+  </view>
+  <view class='goods-detail-address'>
+    <view>
+      <image src='/assets/images/goods-detail/coordinates_fill.png' class='goods-detail-addressicon'></image>
+      <text>杭州市拱墅区丰潭路交叉口西南100米</text>
+    </view>
+    <image src='/assets/images/goods-detail/mobilephone_fill.png' class='goods-detail-phone'></image>
+  </view>
+  <view class='goods-detail-tag'>
+    <text>有效期7天</text>
+    <text>无需预约</text>
+    <text>不支持退订</text>
+  </view>
+  <view class='goods-detail-tips'>
+    <view class='goods-detail-time'>
+      <text>兑换时间：9:00-21:00</text>
+      <text>每人每七天每店铺兑换1次</text>
+    </view>
+    <view class='goods-detail-tip'>
+      <text>温馨提示：因为该商品是活动产品，故不支持退换</text>
+      <text>1、因为该商品是活动产品，故不支持退换</text>
+      <text>1、因为该商品是活动产品，故不支持退换</text>
+      <text>1、因为该商品是活动产品，故不支持退换</text>
+      <text>1、因为该商品是活动产品，故不支持退换</text>
+    </view>
+  </view>
+  <view class='goods-detail-comment'>
+    <text>用户评论</text>
+    <comment-cmp info="{{commentInfo}}"></comment-cmp>
+    <comment-cmp info="{{commentInfo}}"></comment-cmp>
+    <comment-cmp info="{{commentInfo}}"></comment-cmp>
+    <navigator url='' class='goods-detail-allcomment'>查看全部评论</navigator>
+  </view>
+  <view class='goods-detail-submit'>
+    <navigator class='goods-detail-submit-item' open-type="switchTab" url='/pages/index/index'>
+      <image src='/assets/images/homepage.png'></image>
+      <text>首页</text>
+    </navigator>
+    <view bindtap='onCollect' class='goods-detail-submit-item'>
+      <image src='{{collect?collected:notCollect}}'></image>
+      <text class="{{collect?'active':''}}">收藏</text>
+    </view>
+    <view class='goods-detail-btn' bindtap='showModal'>
+      <text>立即抢购</text>
+    </view>
+  </view>
+  <!-- <van-submit-bar price="{{ 3050 }}" button-text="提交订单" bind:submit="onSubmit" /> -->
+</view>

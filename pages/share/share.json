@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "start-cmp": "/components/start/start",
+    "comment-cmp": "/components/comment/comment",
+    "goods-cmp": "/components/goods/goods"
+  }
+}

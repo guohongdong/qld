@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "tel-cmp": "/components/tel/tel",
+    "start-cmp": "/components/start/start"
+  }
+}

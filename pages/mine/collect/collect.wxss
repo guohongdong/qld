@@ -1,0 +1,117 @@
+/* pages/mine/collect/collect.wxss */
+
+.goods-detail-shop {
+  display: flex;
+  background: #fff;
+  align-items: center;
+  padding: 20rpx 30rpx;
+}
+
+.goods-detail-logo {
+  width: 70rpx;
+  height: 70rpx;
+  vertical-align: middle;
+  border-radius: 50%;
+}
+
+.goods-detail-shopname {
+  font-size: 28rpx;
+  font-weight: 700;
+  margin-left: 20rpx;
+}
+
+.goods-detail-name text {
+  margin-bottom: 10rpx;
+}
+
+.goods-detail-address {
+  display: flex;
+  background: #fff;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  padding: 20rpx 30rpx;
+  font-size: 26rpx;
+  color: #656565;
+}
+
+.goods-detail-address view {
+  display: flex;
+  align-items: center;
+}
+
+.goods-detail-address::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 30rpx;
+  right: 30rpx;
+  height: 1px;
+  background: rgb(245, 245, 245);
+}
+
+.goods-detail-address::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 30rpx;
+  right: 30rpx;
+  height: 1px;
+  background: #e4e4e4;
+}
+
+.goods-detail-addressicon {
+  width: 38rpx;
+  height: 38rpx;
+  margin-right: 10rpx;
+}
+
+.goods-detail-phone {
+  width: 38rpx;
+  height: 38rpx;
+}
+
+.container .evaluate_contant .submit_button {
+  height: 60rpx;
+  font-size: 30rpx;
+  line-height: 60rpx;
+  margin: 20rpx;
+}
+
+.touch-item {
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  overflow: hidden;
+}
+
+.content {
+  width: 100%;
+  margin-right: 0;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+  -webkit-transform: translateX(90px);
+  transform: translateX(90px);
+  margin-left: -90px;
+}
+
+.del {
+  background-color: orangered;
+  width: 90px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  -webkit-transform: translateX(90px);
+  transform: translateX(90px);
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.touch-move-active .content, .touch-move-active .del {
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+}
+

@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "pay-cmp": "/components/password/password"
+  }
+}

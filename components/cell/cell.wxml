@@ -1,0 +1,6 @@
+<navigator url="{{url}}" class='cell-cpm'>
+  <image class='cell-cpm-icon'></image>
+  <text class='cell-label'>{{label}}</text>
+  <text wx:if="{{icon}}" class="cell-content icon">{{content}}</text>
+  <text wx:else class="cell-content">{{content}}</text>
+</navigator>

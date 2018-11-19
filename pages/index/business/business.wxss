@@ -1,0 +1,24 @@
+/* pages/index/business/business.wxss */
+
+.bus-container {
+}
+
+.bus-curr {
+  background: #fff;
+  padding: 20rpx 30rpx;
+  margin: 30rpx 0;
+  font-size: 28rpx;
+  color: #333;
+}
+
+.bus-select text {
+  display: inline-block;
+  width: 230rpx;
+  background: #fff;
+  text-align: center;
+  padding: 5px 0;
+  margin-left: 15rpx;
+  margin-top: 15rpx;
+  font-size: 32rpx;
+  color: #333;
+}

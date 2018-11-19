@@ -1,0 +1,63 @@
+/* components/order-item/order-item.wxss */
+
+.order-item {
+  display: flex;
+  flex-direction: row;
+  background-color: #fff;
+  padding: 20rpx;
+  border-bottom: 1px solid #eee;
+}
+
+.order-item-img {
+  width: 160rpx;
+  height: 160rpx;
+  vertical-align: middle;
+}
+
+.order-item-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 550rpx;
+  padding-left: 20rpx;
+}
+
+.order-item-title {
+  display: flex;
+  flex-direction: column;
+}
+
+.order-item-name {
+  font-size: 32rpx;
+  color: #333;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.order-item-address {
+  font-size: 28rpx;
+  color: #666;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.order-item-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.order-item-tiem {
+  font-size: 28rpx;
+  color: #666;
+}
+
+.order-item-btn {
+  /* width: 120rpx;
+  height: 50rpx */
+  font-size: 32rpx;
+  color: #f44;
+}

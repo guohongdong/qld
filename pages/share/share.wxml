@@ -1,0 +1,75 @@
+<!--pages/share/share.wxml-->
+<!--components/goods/goods.wxml-->
+<view>
+  <view class='border-bottom goods-cmp' bindtap='onTap'>
+    <image src='https://user-gold-cdn.xitu.io/1541402686436d5bd390d5f1bf1d61317a069f409eea5.jpg?imageView2/1/q/85/format/webp/interlace/1' class='goods-img'></image>
+    <view class='goods-info'>
+      <view class='goods-detail'>
+        <text class='goods-title'>[译文]过犹不及，别再在编程中高射炮打蚊子</text>
+        <view class='goods-location'>
+          <text class='goods-address'>地址定位地址定位地址定位地址定位地址定位地址定位</text>
+          <text class='goods-distance'>1000米</text>
+        </view>
+        <view class='goods-look'>
+          <view class='goods-look-item'>
+            <image src='./images/browse.png' class='goods-look-icon'></image>
+            <text>10000</text>
+          </view>
+          <view class='goods-look-item'>
+            <image src='./images/createtask.png' class='goods-look-icon'></image>
+            <text>99999</text>
+          </view>
+        </view>
+      </view>
+      <view class='goods-price'>
+        <view>
+          <text class='goods-price-current'>¥ 9999</text>
+          <text class='goods-price-history'>¥ 999999</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='goods-detail-shop'>
+    <image class='goods-detail-logo' src='https://user-gold-cdn.xitu.io/2018/10/14/16672d0647d5fcee?imageView2/1/w/1304/h/734/q/85/format/webp/interlace/1'></image>
+    <view class='goods-detail-shopname'>
+      <text>沙县旗舰店（拱墅城西银泰店）</text>
+      <start-cmp start="{{start}}">
+        <view class='start-comment'>345条评论</view>
+      </start-cmp>
+    </view>
+  </view>
+  <view class='goods-detail-address'>
+    <view>
+      <image src='/assets/images/goods-detail/coordinates_fill.png' class='goods-detail-addressicon'></image>
+      <text>杭州市拱墅区丰潭路交叉口西南100米</text>
+    </view>
+    <image src='/assets/images/goods-detail/mobilephone_fill.png' class='goods-detail-phone'></image>
+  </view>
+  <view class='share-btn'>
+    <button>帮朋友砍价</button>
+    <text class='goto'>去抢购 ></text>
+  </view>
+  <view class='share-user-content'>
+    <text class='share-user-title'>今天传播我的(90人)</text>
+    <view class='share-user-head'>
+      <image src='https://leancloud-gold-cdn.xitu.io/5892a09a831412581dc2.jpg?imageView2/1/w/100/h/100/q/85/format/webp/interlace/1'></image>
+      <image src='https://user-gold-cdn.xitu.io/2018/11/6/166e86bef47561bd?imageView2/1/w/100/h/100/q/85/format/webp/interlace/1'></image>
+      <image src='https://leancloud-gold-cdn.xitu.io/5892a09a831412581dc2.jpg?imageView2/1/w/100/h/100/q/85/format/webp/interlace/1'></image>
+      <image src='https://leancloud-gold-cdn.xitu.io/5892a09a831412581dc2.jpg?imageView2/1/w/100/h/100/q/85/format/webp/interlace/1'></image>
+      <image src='https://user-gold-cdn.xitu.io/2018/11/6/166e86bef47561bd?imageView2/1/w/100/h/100/q/85/format/webp/interlace/1'></image>
+      <image src='https://leancloud-gold-cdn.xitu.io/5892a09a831412581dc2.jpg?imageView2/1/w/100/h/100/q/85/format/webp/interlace/1'></image>
+      <image src='https://user-gold-cdn.xitu.io/2018/11/6/166e86bef47561bd?imageView2/1/w/100/h/100/q/85/format/webp/interlace/1'></image>
+      <image src='https://leancloud-gold-cdn.xitu.io/5892a09a831412581dc2.jpg?imageView2/1/w/100/h/100/q/85/format/webp/interlace/1'></image>
+      <image src='https://leancloud-gold-cdn.xitu.io/5892a09a831412581dc2.jpg?imageView2/1/w/100/h/100/q/85/format/webp/interlace/1'></image>
+      <image src='https://user-gold-cdn.xitu.io/2018/11/6/166e86bef47561bd?imageView2/1/w/100/h/100/q/85/format/webp/interlace/1'></image>
+    </view>
+  </view>
+  <view class='share-user-content'>
+    <text class='share-user-title'>推荐商品</text>
+    <view>
+      <block wx:for="{{goodsList}}" wx:key="{{item.id}}">
+        <goods-cmp goods="{{item}}" borderBottom="{{(goodsList.length-1)==index?'':'true'}}"></goods-cmp>
+      </block>
+    </view>
+  </view>
+</view>

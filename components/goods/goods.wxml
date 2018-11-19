@@ -1,0 +1,33 @@
+<!--components/goods/goods.wxml-->
+<view class='{{borderBottom?"border-bottom goods-cmp":"goods-cmp"}}' bindtap='onTap'>
+  <image src='{{goods.img}}' class='goods-img'></image>
+  <view class='goods-info'>
+    <view class='goods-detail'>
+      <text class='goods-title'>{{goods.name}}</text>
+      <view class='goods-location'>
+        <text class='goods-address'>{{goods.address}}</text>
+        <text class='goods-distance'>{{goods.meter}}米</text>
+      </view>
+      <view class='goods-look'>
+        <view class='goods-look-item'>
+          <image src='./images/browse.png' class='goods-look-icon'></image>
+          <text>{{goods.viewed}}</text>
+        </view>
+        <view class='goods-look-item'>
+          <image src='./images/createtask.png' class='goods-look-icon'></image>
+          <text>{{goods.order}}</text>
+        </view>
+      </view>
+    </view>
+    <view class='goods-price'>
+      <view>
+        <text class='goods-price-current' animation="{{animation}}">¥{{goods.last_price}}</text>
+        <text class='goods-price-history'>¥{{goods.market_price}}</text>
+      </view>
+      <view>
+        <text wx:if="{{type=='collect'}}" class='goods-price-btn'>已收藏</text>
+        <text wx:else class='goods-price-btn' catchtap='bargain'>砍价</text>
+      </view>
+    </view>
+  </view>
+</view>

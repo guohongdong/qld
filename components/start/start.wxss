@@ -1,0 +1,45 @@
+/* components/start/start.wxss */
+
+.start-cmp {
+  display: flex;
+  align-items: center;
+  color: #666;
+}
+
+.start-cmp image {
+  width: 28rpx;
+  height: 28rpx;
+}
+
+.start-contain {
+  display: flex;
+  margin-right: 15rpx;
+}
+
+
+
+.start-comment::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: -30rpx;
+  width: 0;
+  height: 0;
+  border: 10rpx solid;
+  margin-top: -8rpx;
+  border-color: transparent transparent transparent #8e8e8e;
+}
+
+.start-comment::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: -28rpx;
+  width: 0;
+  height: 0;
+  border: 10rpx solid;
+  margin-top: -8rpx;
+  border-color: transparent transparent transparent #fff;
+}

@@ -1,0 +1,8 @@
+<!--pages/order-unclaimed/order-unclaimed.wxml-->
+<view class='order-container'>
+ <order-item-cpm type="consume"></order-item-cpm>
+ <order-item-cpm type="consume"></order-item-cpm>
+ <order-item-cpm type="consume"></order-item-cpm>
+ <order-item-cpm type="consume"></order-item-cpm>
+  <!-- <nodata-cpm></nodata-cpm> -->
+</view>

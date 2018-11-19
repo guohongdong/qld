@@ -1,0 +1,40 @@
+<view class='mine-contain'>
+  <block wx:if="{{!isLogin}}">
+    <van-cell-group>
+      <van-cell title="登录/注册" is-link url="/pages/login/login" />
+    </van-cell-group>
+  </block>
+  <block wx:else>
+    <view class='mine-contain-user'>
+      <image class="userAvatarUrl" src='{{userInfo.avatar_url}}'></image>
+      <text>{{userInfo.nickname}}</text>
+      <image class="userScan" src='/assets/images/scan.png' bindtap='sCan'></image>
+    </view>
+  </block>
+  <view class='mine-order'>
+    <navigator class='mine-order-item' url="/pages/order-unclaimed/order-unclaimed">
+      <image src='/assets/images/time.png'>
+      </image>
+      <text>未领取</text>
+    </navigator>
+    <navigator class='mine-order-item' url="/pages/order/order">
+      <image src='/assets/images/brush.png'></image>
+      <text>待评论</text>
+    </navigator>
+    <navigator url="/pages/order/order" class='mine-order-item'>
+      <image src='/assets/images/document.png'></image>
+      <text>全部订单</text>
+    </navigator>
+  </view>
+  <van-cell-group>
+    <van-cell title="我的收藏" icon="like-o" is-link url="/pages/mine/collect/collect" />
+    <van-cell title="消息通知" icon="chat" is-link arrow-direction="down" url="/pages/mine/concatc/contact?category=message" />
+    <van-cell title="我的朋友" icon="contact" is-link arrow-direction="down" url="/pages/mine/concatc/contact?category=friend" />
+    <van-cell title="我的二维码" icon="qr" is-link url="{{isLogin?'/pages/mine/qrcode/qrcode':'/pages/login/login'}}" />
+  </van-cell-group>
+  <van-cell-group style="margin-top:40rpx;">
+    <van-cell title="用户须知" is-link url="/pages/agreement/agreement" />
+    <van-cell title="举报中心" is-link url="/pages/mine/report/report" />
+  </van-cell-group>
+
+</view>

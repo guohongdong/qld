@@ -1,0 +1,31 @@
+/* pages/agreement/agreement.wxss */
+
+page {
+  background: #fff;
+}
+
+.agreement-contain {
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 20rpx 30rpx;
+  font-size: 24rpx;
+  color: #666;
+}
+
+.agreement-head {
+  font-size: 40rpx;
+  text-align: center;
+  margin-bottom: 20rpx;
+  font-weight: 700;
+}
+
+.agreement-section {
+  font-size: 30rpx;
+  text-indent: 2em;
+}
+
+.agreement-title {
+  font-size: 36rpx;
+  margin-bottom: 20rpx;
+}

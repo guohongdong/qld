@@ -1,0 +1,2 @@
+<!--components/tel/tel.wxml-->
+<text bindtap='callPhone' class='tel-cmp' data-tel='{{tel}}'>{{tel}}</text>

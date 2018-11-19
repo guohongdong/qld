@@ -1,0 +1,9 @@
+/* pages/mine/concatc/contact.wxss */
+
+.contact-agree {
+  font-size: 28rpx;
+  color: #666;
+}
+.contact-btn {
+  margin-right: 20rpx;
+}

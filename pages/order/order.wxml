@@ -1,0 +1,9 @@
+<!--pages/order/order.wxml-->
+<view class='order-container'>
+  <order-item-cpm type="comment"></order-item-cpm>
+  <order-item-cpm type="comment"></order-item-cpm>
+  <order-item-cpm type="comment"></order-item-cpm>
+  <order-item-cpm type="comment"></order-item-cpm>
+ 
+  <!-- <nodata-cpm></nodata-cpm> -->
+</view>

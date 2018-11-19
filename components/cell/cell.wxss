@@ -1,0 +1,56 @@
+/* components/cell/cell.wxss */
+
+.cell-cpm {
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center;
+  padding: 20rpx;
+  background: #fff;
+  font-size: 28rpx;
+  color: #333;
+}
+
+.cell-label {
+  /* font-weight: 700; */
+}
+
+.cell-content {
+  padding-right: 30rpx;
+  color: #9b9b9b;
+}
+
+.icon {
+  position: relative;
+}
+
+.icon::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 0;
+  height: 0;
+  border: 10rpx solid;
+  margin-top: -8rpx;
+  border-color: transparent transparent transparent #8e8e8e;
+}
+
+.icon::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 2rpx;
+  width: 0;
+  height: 0;
+  border: 10rpx solid;
+  margin-top: -8rpx;
+  border-color: transparent transparent transparent #fff;
+}
+
+.cell-cpm-icon {
+  width: 46rpx;
+  height: 46rpx;
+
+}

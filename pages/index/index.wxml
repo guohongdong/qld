@@ -1,0 +1,34 @@
+<!--index.wxml-->
+<view class="container">
+  <view class='loc'>
+    <image class='refresh' src='/assets/images/refresh.png' bindtap='refreshLocation'></image>
+    <navigator url='/pages/index/business/business'>当前位置: {{currentLocation}}</navigator>
+  </view>
+  <van-tabs active="{{ active }}" bindtap="onChange">
+    <van-tab wx:for="{{shopTypeList}}" title="{{item.name}}" id='' wx:key="index">
+      <block wx:if="{{index==0}}">
+        <van-search placeholder="请输入搜索关键词" use-action-slot bind:search="onSearch">
+          <view slot="action" bind:tap="onSearch">搜索</view>
+        </van-search>
+        <view class='swiper'>
+          <swiper duration="200" autoplay interval="4000" circular previous-margin="15px" next-margin="15px" bindchange="currentChange">
+            <swiper-item>
+              <goods-cmp goods="{{goodsList[0]}}"></goods-cmp>
+            </swiper-item>
+            <swiper-item>
+              <goods-cmp goods="{{goodsList[1]}}"></goods-cmp>
+            </swiper-item>
+            <swiper-item>
+              <goods-cmp goods="{{goodsList[2]}}"></goods-cmp>
+            </swiper-item>
+          </swiper>
+          <view class='index-index'>{{current+1}}/10</view>
+        </view>
+      </block>
+    </van-tab>
+  </van-tabs>
+  <view style='margin-top:20rpx;'>
+    <text class='recommend'>——  热门推荐  ——</text>
+    <goods-cmp wx:for="{{goodsList}}" wx:key="{{item.id}}" goods="{{item}}" borderBottom="{{(goodsList.length-1)==index?'':'true'}}"></goods-cmp>
+  </view>
+</view>

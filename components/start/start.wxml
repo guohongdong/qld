@@ -1,0 +1,10 @@
+<!--components/start/start.wxml-->
+<view class='start-cmp'>
+  <view class='start-contain'>
+    <block wx:for="{{start}}" wx:for-item="i" wx:key="{{i}}">
+      <image wx:if="{{i}}" src='./images/start-fill.png'></image>
+      <image wx:else src='./images/start.png'></image>
+    </block>
+  </view>
+  <slot></slot>
+</view>

@@ -1,0 +1,78 @@
+/* pages/qrcode/qrcode.wxss */
+
+.qrcode-container {
+  background: #f44;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+}
+
+.qrcode-header {
+  color: #fff;
+  text-align: center;
+  padding: 40rpx;
+  display: flex;
+  flex-direction: column;
+  font-size: 28rpx;
+}
+
+.qrcode-header .h1 {
+  font-size: 65rpx;
+  font-weight: 700;
+}
+
+.qrcode-main {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin: 0 60rpx;
+  border-radius: 10rpx;
+  background: #fff;
+  padding: 40rpx;
+  align-items: center;
+}
+
+.qrcode-main .userAvatarUrl {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  margin-bottom: 20rpx;
+  overflow: hidden;
+  margin-top: 30rpx;
+}
+
+.qrcode-img {
+  width: 360rpx;
+  height: 360rpx;
+  margin-top: 30rpx;
+  margin-bottom: 30rpx;
+}
+
+.inviter-tips {
+  font-size: 36rpx;
+  color: #666;
+}
+
+.inviter-content {
+  font-size: 34rpx;
+  color: #666;
+  text-align: center;
+}
+
+.qrcode-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40rpx;
+  color: #fff;
+}
+
+.qrcode-footer text:first-child {
+  font-size: 36rpx;
+}
+
+.qrcode-footer text:last-child {
+  font-size: 28rpx;
+  padding: 10rpx 0 30rpx 0;
+}

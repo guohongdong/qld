@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "start-cmp":"/components/start/start"
+  }
+}

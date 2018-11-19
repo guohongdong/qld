@@ -1,0 +1,48 @@
+/* pages/goods-pay/goods-pay.wxss */
+
+page {
+  background: #fff;
+}
+
+.pay {
+  flex-direction: column;
+}
+
+.pay-cmp-input {
+  margin-top: 80rpx;
+  display: flex;
+  flex-direction: column;
+  padding: 0 30rpx;
+  text-align: center;
+}
+
+.pay-cmp-tip {
+  margin-bottom: 50rpx;
+  text-align: center;
+}
+
+.input-con {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 0 80rpx;
+  margin-top: 30rpx;
+  margin-bottom: 30rpx;
+}
+
+.input {
+  display: inline-block;
+  width: 60rpx;
+  height: 60rpx;
+  border: 1rpx #999 solid;
+}
+
+.pay-info {
+  font-size: 36rpx;
+  color: #666;
+}
+
+.pay-tips {
+  color: #666;
+  font-size: 32rpx;
+}

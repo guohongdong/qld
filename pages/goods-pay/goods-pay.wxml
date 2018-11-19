@@ -1,0 +1,13 @@
+<!--pages/goods-pay/goods-pay.wxml-->
+<view class='pay'>
+  <view class='pay-cmp-input'>
+    <view class='pay-cmp-tip'>请输入验证码</view>
+    <pay-cmp bindvalueSix="valueSix" input_value="{{inputData.input_value}}" value_length="{{inputData.value_length}}" isNext="{{inputData.isNext}}" get_focus="{{inputData.get_focus}}" focus_class="{{inputData.focus_class}}" value_num="{{inputData.value_num}}"
+      height="{{inputData.height}}" width="{{inputData.width}}" see="{{inputData.see}}" interval="{{inputData.interval}}">
+    </pay-cmp>
+  </view>
+  <view class='pay-cmp-input'>
+    <text class='pay-info'>出示给相关工作人员进行验证</text>
+    <text class='pay-tips'>注意：验证完即证明该券已使用</text>
+  </view>
+</view>

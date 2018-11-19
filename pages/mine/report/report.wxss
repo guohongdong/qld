@@ -1,0 +1,37 @@
+/* pages/mine/report/report.wxss */
+
+page {
+  background-color: #fff;
+}
+
+.report {
+  padding: 20rpx 30rpx;
+}
+
+.report-cell {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  height: 100rpx;
+}
+
+.report-cell-title {
+  font-size: 32rpx;
+  color: #333;
+  margin-right: 20rpx;
+}
+
+.report-cell-input {
+  font-size: 30rpx;
+  color: #333;
+  flex: 1;
+}
+
+.submit {
+  background: #f44;
+  color: #fff;
+  height: 80rpx;
+  line-height: 80rpx;
+  margin-top: 40rpx;
+}

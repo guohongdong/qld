@@ -1,0 +1,45 @@
+{
+  "pages": [
+    "pages/mine/report/report",
+    "pages/index/index",
+    "pages/index/business/business",
+    "pages/mine/mine",
+    "pages/login/login",
+    "pages/share/share",
+    "pages/goods-pay/goods-pay",
+    "pages/comment/comment",
+    "pages/order/order",
+    "pages/mine/collect/collect",
+    "pages/goods-detail/goods-detail",
+    "pages/agreement/agreement",
+    "pages/mine/qrcode/qrcode",
+    "pages/mine/concatc/contact",
+    "pages/order-unclaimed/order-unclaimed"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "抢乐多",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "borderStyle": "black",
+    "selectedColor": "#F44",
+    "backgroundColor": "#ffffff",
+    "color": "#c7c7c7",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "selectedIconPath": "/assets/images/navBars/order_fill.png",
+        "iconPath": "/assets/images/navBars/order.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "selectedIconPath": "/assets/images/navBars/people_fill.png",
+        "iconPath": "/assets/images/navBars/people.png",
+        "text": "我的"
+      }
+    ]
+  }
+}

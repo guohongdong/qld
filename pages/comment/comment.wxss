@@ -1,0 +1,102 @@
+page {
+  background-color: #fff;
+}
+
+.comment {
+  padding: 20rpx 30rpx;
+}
+
+.report-cell {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: 1px solid rgb(245, 245, 245);
+  height: 100rpx;
+}
+
+.report-cell-textarea {
+  display: flex;
+  flex-direction: column;
+}
+
+.report-cell-title-textarea {
+  padding: 25rpx 0;
+  font-size: 32rpx;
+  color: #333;
+}
+
+.report-cell-textarea textarea {
+  border: 1px solid rgb(245, 245, 245);
+  width: 100%;
+  padding: 15rpx;
+  font-size: 32rpx;
+  box-sizing: border-box;
+}
+
+.report-cell-title {
+  font-size: 32rpx;
+  color: #333;
+  margin-right: 20rpx;
+}
+
+.report-cell-input {
+  font-size: 30rpx;
+  color: #333;
+  flex: 1;
+}
+
+.report-cell-input image {
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.container .evaluate_contant .evaluate_item {
+  font-size: 30rpx;
+  color: gray;
+  margin-left: 20rpx;
+  margin-top: 30rpx;
+}
+
+/*评价标题  */
+
+.container .evaluate_contant .evaluate_item .evaluate_title {
+  display: inline-block;
+}
+
+/*评价盒子  */
+
+.container .evaluate_contant .evaluate_item .evaluate_box {
+  position: absolute;
+  left: 220rpx;
+  width: 100%;
+  display: inline-block;
+}
+
+/*星星评价的每个图片  */
+
+.container .evaluate_contant .evaluate_item .evaluate_box .star-image {
+  position: absolute;
+  width: 40rpx;
+  height: 40rpx;
+  src: "../../images/no-star.png";
+}
+
+/*星星的左边和右边区域<点击左边半个星星，点击右边整个星星>  */
+
+.container .evaluate_contant .evaluate_item .evaluate_box .star-image .item {
+  position: absolute;
+  top: 0rpx;
+  width: 20rpx;
+  height: 40rpx;
+}
+
+.submit {
+  background: #f44;
+  color: #fff;
+  height: 80rpx;
+  font-size: 36rpx;
+  line-height: 80rpx;
+  margin-top: 40rpx;
+  border: none;
+  margin-top: 40rpx;
+}

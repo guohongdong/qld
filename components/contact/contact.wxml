@@ -1,0 +1,8 @@
+<view class='contact-cmp'>
+  <image src='{{img}}' class='contact-img'></image>
+  <view class='contact-content'>
+    <text class='contact-name'>{{nikename}}</text>
+    <text class='contact-info' wx:if="{{content}}">{{content}}</text>
+  </view>
+  <slot></slot>
+</view>

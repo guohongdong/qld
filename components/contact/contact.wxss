@@ -1,0 +1,44 @@
+/* components/contact/contact.wxss */
+
+.contact-cmp {
+  background: #fff;
+  display: flex;
+  padding: 20rpx 30rpx;
+  align-items: center;
+  position: relative;
+}
+
+.contact-img {
+  width: 100rpx;
+  height: 100rpx;
+  vertical-align: middle;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 20rpx;
+}
+
+.contact-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.contact-name {
+  font-size: 32rpx;
+  color: #333;
+}
+
+.contact-info {
+  color: #666;
+  font-size: 24rpx;
+}
+
+.contact-cmp::after {
+  content: "";
+  background: #eee;
+  height: 1px;
+  position: absolute;
+  bottom: 0;
+  left: 30rpx;
+  right: 0;
+}
