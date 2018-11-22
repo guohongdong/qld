@@ -7,6 +7,16 @@ class GoodsModel extends Http {
     super()
   }
   /* 
+   获取商家信息
+  */
+  getShop(id, success) {
+    let params = {
+      url: '/api/shops/' + id,
+      success: success
+    }
+    this.request(params)
+  };
+  /* 
    获取商家类型列表
   */
   getShopType(success) {
@@ -37,6 +47,90 @@ class GoodsModel extends Http {
         'token': token
       },
       data: data,
+      success: success,
+
+    }
+    this.request(params)
+  }
+  /* 
+    获取商品详情
+   */
+  getProductDetail(id, success) {
+
+    let params = {
+      url: '/api/products/' + id,
+      success: success,
+
+    }
+    this.request(params)
+  }
+  /* 
+    砍价
+   */
+  bargain(token, id, success) {
+    console.log(token)
+    let params = {
+      url: '/api/products/' + id + '/bargain',
+      method: 'PUT',
+      header: {
+        token: token
+      },
+      success: success,
+
+    }
+    this.request(params)
+  }
+  /* 
+    更新浏览量
+   */
+  pageView(id, success) {
+    let params = {
+      url: '/api/products/' + id + '/page_view',
+      method: 'PUT',
+      success: success,
+
+    }
+    this.request(params)
+  }
+  /* 
+  收藏商家
+ */
+  setCollections(token, id, success) {
+    let params = {
+      url: '/api/shops/' + id + '/collections',
+      method: 'POST',
+      header: {
+        token: token
+      },
+      success: success,
+
+    }
+    this.request(params)
+  }
+  /* 
+   取消收藏商家
+  */
+  delCollections(token, id, success) {
+    let params = {
+      url: '/api/shops/' + id + '/collections',
+      method: 'DELETE',
+      header: {
+        token: token
+      },
+      success: success,
+
+    }
+    this.request(params)
+  }
+  /* 
+   检测收藏
+  */
+  hasCollections(token, id, success) {
+    let params = {
+      url: '/api/shops/' + id + '/collected',
+      header: {
+        token: token
+      },
       success: success,
 
     }

@@ -126,3 +126,11 @@
   border-radius: 30rpx;
   background: linear-gradient(90deg, #f44, #ff5d5d);
 }
+
+.goods-price-again {
+  background: linear-gradient(90deg, #00b233, rgb(0, 197, 56));
+}
+
+.goods-price-no {
+  background: linear-gradient(90deg, #979797, rgb(180, 180, 180));
+}

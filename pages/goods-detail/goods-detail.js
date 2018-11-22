@@ -1,10 +1,41 @@
 // pages/goods-detail/goods-detail.js
+import {
+  GoodsModel
+} from "../../models/goods.js"
+let goodsModel = new GoodsModel();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    id: '',
+    shopId: '',
+    token: 'lceJTfLtYqTrcAbMoQhMMHA2c6jlI5RLx9UXNyqmzsXITkWzgI682dLnrtzF3W6ZCXq8zMCpMqNSxD59q7oQHexK1NdPrLqY96HDcJa8CUiSoYqLM5vOyqNBvWKLPRUnCQoPnhZGUyV336SQUxk5O1OIDYFvwrQW7dHshEzS',
+    product_info: {
+      name: '',
+      image: [],
+      market_price: '',
+      last_price: '',
+      bargain_num: '',
+      desc: "",
+      is_appointing: '',
+      is_unsubscribe: '',
+      shop_id: ''
+    },
+    shop_info: {
+      id: '',
+      shop_name: "",
+      avatar: "",
+      address: "",
+      mobile: "",
+      exchange_time: "",
+      exchange_span: 1
+    },
+    statistics: {
+      comment_num: 0,
+      star_level: 0
+    },
     imgUrls: [
       'https://image.kuaiqiangche.com/data/attachment/2017-12-28/1514436238英朗.jpg?imageView2/2/w/526/interlace/1',
       'https://image.kuaiqiangche.com/data/attachment/2018-07-25/5b57deefea32d.jpg?imageView2/2/w/526/interlace/1',
@@ -33,7 +64,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    console.log(options.gid)
+    console.log(options.id)
+    this.setData({
+      id: options.id,
+      shopId: options.shopId
+    })
   },
 
   /**
@@ -47,6 +82,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
+    this._getProductDetail();
+    this._getShop()
+    this._hasCollections()
+    this._pageView()
 
   },
 
@@ -100,9 +139,74 @@ Page({
       }
     })
   },
-  onCollect(){
+  onCollect() {
     this.setData({
-      collect:!this.data.collect
+      collect: !this.data.collect
+    })
+  },
+  // 获取商品详情
+  _getProductDetail() {
+    goodsModel.getProductDetail(this.data.id, res => {
+      this.setData({
+        product_info: res.data.product_info
+      })
+    })
+  },
+  // 获取店铺详情
+  _getShop() {
+    goodsModel.getShop(this.data.shopId, res => {
+      console.log(res, '商家信息')
+      this.setData({
+        shop_info: res.data.shop_info,
+        statistics: res.data.statistics
+      })
+    })
+  },
+  // 更新浏览量
+  _pageView() {
+    goodsModel.pageView(this.data.id, res => {
+      console.log(res)
+    })
+  },
+  // 检测收藏
+  _hasCollections() {
+    goodsModel.hasCollections(this.data.token, this.data.shopId, res => {
+      console.log(res)
+      this.setData({
+        collect: res.data.if_collected
+      })
+    })
+  },
+  // 取消收藏
+  _delCollections() {
+    goodsModel.delCollections(this.data.token, this.data.shopId, res => {
+      console.log(res)
+      if (res.message == 'ok') {
+        wx.showToast({
+          title: '取消收藏',
+          icon: 'success',
+          duration: 2000
+        })
+        this.setData({
+          collect: false
+        })
+      }
+    })
+  },
+  // 收藏
+  _setCollections() {
+    goodsModel.setCollections(this.data.token, this.data.shopId, res => {
+      console.log(res)
+      if (res.message == 'ok') {
+        wx.showToast({
+          title: '收藏成功',
+          icon: 'success',
+          duration: 2000
+        })
+        this.setData({
+          collect: true
+        })
+      }
     })
   }
 })

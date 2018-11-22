@@ -1,25 +1,25 @@
 {
   "pages": [
-    "pages/mine/report/report",
     "pages/index/index",
-    "pages/index/business/business",
+    "pages/mine/collect/collect",
     "pages/mine/mine",
+    "pages/mine/concatc/contact",
+    "pages/goods-detail/goods-detail",
+    "pages/mine/report/report",
+    "pages/index/business/business",
     "pages/login/login",
     "pages/share/share",
     "pages/goods-pay/goods-pay",
     "pages/comment/comment",
     "pages/order/order",
-    "pages/mine/collect/collect",
-    "pages/goods-detail/goods-detail",
     "pages/agreement/agreement",
     "pages/mine/qrcode/qrcode",
-    "pages/mine/concatc/contact",
     "pages/order-unclaimed/order-unclaimed"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "抢乐多",
+    "navigationBarTitleText": "",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {

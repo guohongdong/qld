@@ -19,10 +19,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    let token = app.globalData.token
-    this.setData({
-      token: token
-    })
+
 
   },
 
@@ -35,14 +32,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    if (app.globalData.token) {
+    let token = app.globalData.token;
+    let userInfo = app.globalData.userInfo;
+    if (token) {
       this.setData({
-        isLogin: true
-      })
-    }
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo
+        isLogin: true,
+        token: token,
+        userInfo: userInfo
       })
     }
   },

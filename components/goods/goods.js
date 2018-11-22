@@ -23,21 +23,17 @@ Component({
    */
   methods: {
     bargain: function(event) {
-      // this.animation.rotate(360).step()
-      // this.setData({
-      //   animation: this.animation.export()
-      // })
-      wx.navigateTo({
-        url: "/pages/share/share"
-      })
-    },
-    onTap: function(event) {
-      this.triggerEvent('goodstap', {
-        gid: this.properties.goods.id
+      this.triggerEvent('onBargain', {
+        id: this.properties.goods.id
       }, {})
-      wx.navigateTo({
-        url: "/pages/goods-detail/goods-detail?gid=" + this.properties.goods.id
-      })
-    }
+    },
+    onTapItem: function(event) {
+      this.triggerEvent('onTapItem', {
+        id: this.properties.goods.id,
+        shopId: this.properties.goods.shop_id
+      }, {})
+    },
+    share() {},
+    nodata(){}
   }
 })

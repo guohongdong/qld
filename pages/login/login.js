@@ -76,15 +76,17 @@ Page({
     // 获取 token
     loginModel.getToken((res) => {
       // 全局设置token
+      console.log(res,'getToken')
       let locToken = res.data.token
       app.globalData.token = locToken
       // 登录
       loginModel.login(locToken, res => {
-        if (res.message == "OK") {
+        console.log(res, 'login')
+        if (res.message == "ok") {
           // 获取用户信息
           loginModel.getUsers(locToken, function(res) {
-            console.log(res)
-            if (res.code == 200) {
+            console.log(res,'getUsers')
+            if (res.message == 'ok') {
               app.globalData.userInfo = res.data
               wx.showToast({
                 title: '成功',

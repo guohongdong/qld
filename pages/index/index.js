@@ -1,11 +1,13 @@
-let goodsData = require('../../data/data.js')
 var wxDraw = require("../../utils/wxdraw.min.js").wxDraw;
 var Shape = require("../../utils/wxdraw.min.js").Shape;
 import {
   GoodsModel
 } from "../../models/goods.js"
-
-let goodsModel = new GoodsModel()
+import {
+  MineModel
+} from "../../models/mine.js"
+let goodsModel = new GoodsModel();
+let mineModel = new MineModel();
 var QQMapWX = require('../../utils/qqmap-wx-jssdk.min.js');
 var qqmapsdk;
 let app = getApp();
@@ -15,8 +17,10 @@ Page({
    * 页面的初始数据
    */
   data: {
+    token: 'lceJTfLtYqTrcAbMoQhMMHA2c6jlI5RLx9UXNyqmzsXITkWzgI682dLnrtzF3W6ZCXq8zMCpMqNSxD59q7oQHexK1NdPrLqY96HDcJa8CUiSoYqLM5vOyqNBvWKLPRUnCQoPnhZGUyV336SQUxk5O1OIDYFvwrQW7dHshEzS',
+    shareId: '',
     current: 0,
-    goodsList: goodsData.goodsList[0],
+    goodsList: [],
     currentLocation: '浙江省杭州市',
     wxCanvas: null,
     shopTypeList: [],
@@ -29,6 +33,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    const scene = decodeURIComponent(options.scene)
+    console.log(scene)
+    if (scene != 'undefined') {
+      mineModel.inviting(this.data.token, scene, res => {
+        console.log(res, '邀请')
+      })
+    }
     goodsModel.getShopType(res => {
       console.log(res)
       this.setData({
@@ -120,13 +131,22 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function(res) {
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      console.log(res.target)
+      return {
+        title: res.target.dataset.name,
+        path: '/pages/share/share?id=' + res.target.dataset.id,
+        imageUrl: res.target.dataset.imageurl
+      }
+    }
 
   },
   onChange(event) {
     console.log(event)
     this.setData({
-      goodsList: goodsData.goodsList[event.detail.index]
+      // goodsList: goodsData.goodsList[event.detail.index]
     })
   },
   currentChange(e) {
@@ -150,11 +170,27 @@ Page({
       //    page
     }
     console.log(app.globalData.currentLocation.longitude)
-    goodsModel.getProducts(this.token, params, res => {
+    goodsModel.getProducts(this.data.token, params, res => {
       console.log(res)
       this.setData({
         goodsList: res.data.data
       })
+    })
+  },
+  // 砍价按钮
+  onBargain(event) {
+    console.log(event)
+    let token = this.data.token;
+    let id = event.detail.id;
+    goodsModel.bargain(token, id, res => {
+      console.log(res, '-----')
+    })
+  },
+  // 点击跳转
+  onTapItem(event) {
+    console.log(event, 'onTapItem')
+    wx.navigateTo({
+      url: "/pages/goods-detail/goods-detail?id=" + event.detail.id + "&shopId=" + event.detail.shopId
     })
   }
 })

@@ -57,7 +57,6 @@ swiper-item {
 .recommend {
   display: block;
   padding: 20rpx;
-  width: 100%;
   font-size: 32rpx;
   background-color: #fff;
   color: #666;

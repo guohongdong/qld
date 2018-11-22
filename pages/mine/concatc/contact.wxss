@@ -1,9 +1,21 @@
 /* pages/mine/concatc/contact.wxss */
 
+page {
+  background-color: #fff;
+}
+
 .contact-agree {
   font-size: 28rpx;
   color: #666;
 }
+
 .contact-btn {
   margin-right: 20rpx;
+}
+
+.no-message {
+  text-align: center;
+  font-size: 32rpx;
+  color: #666;
+  padding: 20rpx 0;
 }

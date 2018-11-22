@@ -22,13 +22,13 @@
               <goods-cmp goods="{{goodsList[2]}}"></goods-cmp>
             </swiper-item>
           </swiper>
-          <view class='index-index'>{{current+1}}/10</view>
+          <view class='index-index'>{{current+1}}/{{goodsList.length}}</view>
         </view>
       </block>
     </van-tab>
   </van-tabs>
   <view style='margin-top:20rpx;'>
     <text class='recommend'>——  热门推荐  ——</text>
-    <goods-cmp wx:for="{{goodsList}}" wx:key="{{item.id}}" goods="{{item}}" borderBottom="{{(goodsList.length-1)==index?'':'true'}}"></goods-cmp>
+    <goods-cmp wx:for="{{goodsList}}" wx:key="{{item.id}}" bind:onTapItem="onTapItem" bind:onBargain="onBargain" goods="{{item}}" borderBottom="{{(goodsList.length-1)==index?'':'true'}}"></goods-cmp>
   </view>
 </view>

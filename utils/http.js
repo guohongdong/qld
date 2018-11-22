@@ -18,7 +18,9 @@ class Http {
       url: url,
       data: params.data,
       header: {
-        'content-type': params.header ? params.header['content-type'] : 'application/json'
+        'content-type': params.header ? params.header['content-type'] ? params.header['content-type'] : 'application/json' : 'application/json',
+        'token': params.header ? params.header['token'] ? params.header['token'] : '' : '',
+
       },
       method: params.method,
       success: function(res) {

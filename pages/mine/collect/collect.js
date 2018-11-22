@@ -1,11 +1,20 @@
 // pages/mine/collect/collect.js
 let goodsData = require('../../../data/data.js')
+import {
+  MineModel
+} from '../../../models/mine.js'
+
+let mineModel = new MineModel();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    token: 'lceJTfLtYqTrcAbMoQhMMHA2c6jlI5RLx9UXNyqmzsXITkWzgI682dLnrtzF3W6ZCXq8zMCpMqNSxD59q7oQHexK1NdPrLqY96HDcJa8CUiSoYqLM5vOyqNBvWKLPRUnCQoPnhZGUyV336SQUxk5O1OIDYFvwrQW7dHshEzS',
+    userInfo: {
+      id: 1
+    },
     goodsList: goodsData.goodsList[0],
     start: [1, 1, 1, 1, 0],
     items: [],
@@ -53,7 +62,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    console.log('收藏', 'onShow')
+    this._getCollections()
   },
 
   /**
@@ -137,6 +146,13 @@ Page({
     this.data.items.splice(e.currentTarget.dataset.index, 1)
     this.setData({
       items: this.data.items
+    })
+  },
+  _getCollections() {
+    let token = this.data.token;
+    let userId = this.data.userInfo.id;
+    mineModel.getCollections(token, userId, res => {
+      console.log(res, "收藏")
     })
   }
 })

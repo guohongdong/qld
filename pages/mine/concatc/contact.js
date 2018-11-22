@@ -1,5 +1,9 @@
 // pages/mine/concatc/contact.js
-let dataList = require('../../../data/message.js')
+import {
+  MineModel
+} from '../../../models/mine.js';
+let app = getApp();
+let mineModel = new MineModel();
 Page({
 
   /**
@@ -15,20 +19,19 @@ Page({
    */
   onLoad: function(options) {
     console.log(options.category)
+    let token = app.globalData.token;
+    if (token) {
+      this.setData({
+        token: token,
+      })
+    }
     this.setData({
       category: options.category
     })
     if (options.category == "friend") {
-
-      console.log(dataList.friendList)
-      this.setData({
-        list: dataList.friendList
-      })
+      this._getFriends()
     } else {
-      console.log(dataList.messageList)
-      this.setData({
-        list: dataList.messageList
-      })
+      this._getMessages()
     }
   },
 
@@ -79,5 +82,21 @@ Page({
    */
   onShareAppMessage: function() {
 
+  },
+  _getFriends() {
+    mineModel.getFriends(this.data.token, res => {
+      console.log(res.data.friends.data)
+      this.setData({
+        list: res.data.friends.data
+      })
+    })
+  },
+  _getMessages() {
+    mineModel.getMessages(this.data.token, res => {
+      console.log(res)
+      this.setData({
+        list: res.data.messages.data
+      })
+    })
   }
 })

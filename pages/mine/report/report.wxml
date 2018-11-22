@@ -19,4 +19,6 @@
   <button class='submit' bindtap='setrePort'>提交</button>
   <button class='submit' open-type="share">分享</button>
   <van-toast id="van-toast" />
+  <button class='submit'>开始动画</button>
+
 </view>
