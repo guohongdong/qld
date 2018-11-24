@@ -1,34 +1,30 @@
 <!--index.wxml-->
 <view class="container">
-  <view class='loc'>
-    <image class='refresh' src='/assets/images/refresh.png' bindtap='refreshLocation'></image>
-    <navigator url='/pages/index/business/business'>当前位置: {{currentLocation}}</navigator>
-  </view>
-  <van-tabs active="{{ active }}" bindtap="onChange">
-    <van-tab wx:for="{{shopTypeList}}" title="{{item.name}}" id='' wx:key="index">
-      <block wx:if="{{index==0}}">
-        <van-search placeholder="请输入搜索关键词" use-action-slot bind:search="onSearch">
-          <view slot="action" bind:tap="onSearch">搜索</view>
-        </van-search>
-        <view class='swiper'>
-          <swiper duration="200" autoplay interval="4000" circular previous-margin="15px" next-margin="15px" bindchange="currentChange">
-            <swiper-item>
-              <goods-cmp goods="{{goodsList[0]}}"></goods-cmp>
-            </swiper-item>
-            <swiper-item>
-              <goods-cmp goods="{{goodsList[1]}}"></goods-cmp>
-            </swiper-item>
-            <swiper-item>
-              <goods-cmp goods="{{goodsList[2]}}"></goods-cmp>
-            </swiper-item>
-          </swiper>
-          <view class='index-index'>{{current+1}}/{{goodsList.length}}</view>
-        </view>
-      </block>
-    </van-tab>
-  </van-tabs>
-  <view style='margin-top:20rpx;'>
-    <text class='recommend'>——  热门推荐  ——</text>
-    <goods-cmp wx:for="{{goodsList}}" wx:key="{{item.id}}" bind:onTapItem="onTapItem" bind:onBargain="onBargain" goods="{{item}}" borderBottom="{{(goodsList.length-1)==index?'':'true'}}"></goods-cmp>
-  </view>
+  <scroll-view scroll-y bindscrolltolower="lower" style="height: 1120rpx;" lower-threshold="50">
+    <view class='loc'>
+      <image class='refresh' src='/assets/images/refresh.png' bindtap='refreshLocation'></image>
+      <navigator url='/pages/index/business/business'>当前位置: {{currentCity}}</navigator>
+    </view>
+    <van-tabs active="{{ active }}" bind:change="onChangeTab">
+      <van-tab wx:for="{{shopTypeList}}" title="{{item.name}}" id='' wx:key="index">
+      </van-tab>
+    </van-tabs>
+    <block wx:if="{{index==0}}">
+      <van-search value="{{ value }}" show-action placeholder="请输入搜索关键词" bind:cancel="onCancel" bind:clear="onClear" bind:change="onChange" bind:search="onSearch">
+      </van-search>
+      <view class='swiper'>
+        <swiper duration="200" autoplay interval="4000" circular previous-margin="15px" next-margin="15px" bindchange="currentChange">
+          <swiper-item wx:for="{{swiperList}}" wx:key="{{item.id}}">
+            <goods-cmp data-index="{{index}}" bind:onTapItem="onTapItem" bind:onBargain="onBargain" goods="{{item}}"></goods-cmp>
+          </swiper-item>
+        </swiper>
+        <view class='index-index'>{{current+1}}/{{swiperList.length}}</view>
+      </view>
+    </block>
+    <view style='margin-top:20rpx;'>
+      <text class='recommend'>——  热门推荐  ——</text>
+      <goods-cmp wx:for="{{goodsList}}" wx:key="{{item.id}}" data-index="{{index}}" bind:onTapItem="onTapItem" bind:onBargain="onBargain" goods="{{item}}" borderBottom="{{(goodsList.length-1)==index?'':'true'}}"></goods-cmp>
+    </view>
+    <view class='no-more' wx:if="{{isShowNoMore}}">—— 没有更多 ——</view>
+  </scroll-view>
 </view>

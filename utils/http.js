@@ -28,6 +28,10 @@ class Http {
         let startChar = code.charAt(0);
         if (startChar == '2') {
           params.success && params.success(res.data)
+        } else if (res.statusCode == 401) {
+          wx.navigateTo({
+            url: "/pages/login/login"
+          })
         } else {
           params.error && params.error(res)
         }

@@ -63,3 +63,12 @@ swiper-item {
   text-align: center;
   border-bottom: 1px solid #eee;
 }
+
+.no-more {
+  border-top: 1px solid #eee;
+  text-align: center;
+  font-size: 36rpx;
+  color: #666;
+  line-height: 80rpx;
+  background-color: #fff;
+}

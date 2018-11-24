@@ -2,7 +2,6 @@
 import {
   MineModel
 } from '../../../models/mine.js';
-let app = getApp();
 let mineModel = new MineModel();
 Page({
 
@@ -19,7 +18,7 @@ Page({
    */
   onLoad: function(options) {
     console.log(options.category)
-    let token = app.globalData.token;
+    let token = wx.getStorageSync('token');
     if (token) {
       this.setData({
         token: token,

@@ -13,16 +13,24 @@ Component({
    * 组件的初始数据
    */
   data: {
-
+    status: Number
   },
-  onReady: function() {
-    this.animation = wx.createAnimation()
+  attached: function() {
+    // 在组件实例进入页面节点树时执行
+    let status = this.properties.goods.status
+    this.setData({
+      status: status
+    })
   },
+  onReady: function() {},
   /**
    * 组件的方法列表
    */
   methods: {
     bargain: function(event) {
+      this.setData({
+        status: 6
+      })
       this.triggerEvent('onBargain', {
         id: this.properties.goods.id
       }, {})
@@ -34,6 +42,6 @@ Component({
       }, {})
     },
     share() {},
-    nodata(){}
+    nodata() {}
   }
 })

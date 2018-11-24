@@ -11,11 +11,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-    token: 'lceJTfLtYqTrcAbMoQhMMHA2c6jlI5RLx9UXNyqmzsXITkWzgI682dLnrtzF3W6ZCXq8zMCpMqNSxD59q7oQHexK1NdPrLqY96HDcJa8CUiSoYqLM5vOyqNBvWKLPRUnCQoPnhZGUyV336SQUxk5O1OIDYFvwrQW7dHshEzS',
+    token: '',
     userInfo: {
       id: 1
     },
-    goodsList: goodsData.goodsList[0],
+    collectList: [],
     start: [1, 1, 1, 1, 0],
     items: [],
     startX: 0, //开始坐标
@@ -26,10 +26,18 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    console.log('收藏', 'onLoad')
+    let token = wx.getStorageSync('token')
+    let userInfo = wx.getStorageSync('userInfo')
+    if (token) {
+      this.setData({
+        token: token,
+        userInfo: userInfo
+      })
+      this._getCollections()
+    }
     for (var i = 0; i < 10; i++) {
       this.data.items.push({
-        content: i + " 向左滑动删除哦,向左滑动删除哦,向左滑动删除哦,向左滑动删除哦,向左滑动删除哦",
+        content: i + " 向左滑动,向左滑动删除哦,向左滑动删除哦",
         isTouchMove: false //默认全隐藏删除
       })
     }
@@ -40,14 +48,14 @@ Page({
   //手指触摸动作开始 记录起点X坐标
   touchstart: function(e) {
     //开始触摸时 重置所有删除
-    this.data.items.forEach(function(v, i) {
+    this.data.collectList.forEach(function(v, i) {
       if (v.isTouchMove) //只操作为true的
         v.isTouchMove = false;
     })
     this.setData({
       startX: e.changedTouches[0].clientX,
       startY: e.changedTouches[0].clientY,
-      items: this.data.items
+      collectList: this.data.collectList
     })
   },
 
@@ -55,21 +63,21 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-    console.log('收藏', 'onReady')
+  
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    this._getCollections()
+
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function() {
-    console.log('收藏', 'onHide')
+   
   },
 
   /**
@@ -114,7 +122,7 @@ Page({
         X: touchMoveX,
         Y: touchMoveY
       });
-    that.data.items.forEach(function(v, i) {
+    that.data.collectList.forEach(function(v, i) {
       v.isTouchMove = false
       //滑动超过30度角 return
       if (Math.abs(angle) > 30) return;
@@ -127,7 +135,7 @@ Page({
     })
     //更新数据
     that.setData({
-      items: that.data.items
+      collectList: that.data.collectList
     })
   },
   /**
@@ -143,16 +151,18 @@ Page({
   },
   //删除事件
   del: function(e) {
-    this.data.items.splice(e.currentTarget.dataset.index, 1)
+    this.data.collectList.splice(e.currentTarget.dataset.index, 1)
     this.setData({
-      items: this.data.items
+      collectList: this.data.collectList
     })
   },
   _getCollections() {
     let token = this.data.token;
     let userId = this.data.userInfo.id;
     mineModel.getCollections(token, userId, res => {
-      console.log(res, "收藏")
+      this.setData({
+        collectList: res.data.shop_collection.data
+      })
     })
   }
 })

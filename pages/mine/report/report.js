@@ -20,9 +20,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
-
-  },
+  onLoad: function(options) {},
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -35,22 +33,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    // wx.hideShareMenu({
-    //   success:res=>{
-    //     console.log(res)
-    //   }
-    // })
-    wx.getShareInfo({
 
-    })
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
-
-  },
+  onHide: function() {},
 
   /**
    * 生命周期函数--监听页面卸载
@@ -84,13 +73,13 @@ Page({
     //   return;
     // }
     let params = {
-      shop_name: '11',
-      shop_address: '22',
-      phone: '33',
-      name: '44'
+      shop_name: this.data.shop_name,
+      shop_address: this.data.shop_address,
+      phone: this.data.phone,
+      name: this.data.name
     }
     mineModel.report(params, data => {
-      console.log(data)
+    //  if(){}
     })
   },
   bindKeyInput: function(e) {

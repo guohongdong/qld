@@ -6,7 +6,6 @@ var QQMapWX = require('../../../utils/qqmap-wx-jssdk.min.js');
 
 var qqmapsdk;
 let goodsModel = new GoodsModel();
-console.log(goodsModel)
 let app = getApp();
 Page({
 
@@ -38,8 +37,7 @@ Page({
    */
   onShow: function() {
     goodsModel.getShopAreas(res => {
-      if (res.code == 200) {
-        console.log(res)
+      if (res.message == 'ok') {
         this.setData({
           cityList: res.data.shop_area_list
         })
@@ -117,8 +115,16 @@ Page({
     this.setData({
       currentLocation: e.target.dataset.name
     })
-    app.globalData.currentLocation.name = e.target.dataset.name
-    app.globalData.currentLocation.latitude = e.target.dataset.latitude
-    app.globalData.currentLocation.longitude = e.target.dataset.longitude
+    wx.setStorage({
+      key: 'location',
+      data: {
+        latitude: e.target.dataset.latitude,
+        longitude: e.target.dataset.longitude
+      }
+    })
+    wx.setStorage({
+      key: 'currentCity',
+      data: e.target.dataset.name
+    })
   }
 })

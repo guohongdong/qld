@@ -11,14 +11,23 @@ Page({
    */
   data: {
     token: '',
-    userInfo: {}
+    userInfo: {},
+    qrcode: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    let token = wx.getStorageSync('token')
+    let userInfo = wx.getStorageSync('userInfo');
+    if (token) {
+      this.setData({
+        token: token,
+        userInfo: userInfo
+      })
+    }
+    this._getAccessToken(this.getWXACodeUnlimit);
   },
 
   /**
@@ -32,15 +41,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    let token = app.globalData.token;
-    let userInfo = app.globalData.userInfo;
-    if (token) {
-      this.setData({
-        token: token,
-        userInfo: userInfo
-      })
-    }
-    this._getAccessToken(this.getWXACodeUnlimit);
+
   },
 
   /**
@@ -79,26 +80,27 @@ Page({
   },
   _getAccessToken(callback) {
     mineModel.getAccessToken(res => {
-      console.log(res)
       let access_token = res.data.access_token;
-      let scene = this.data.userInfo.invite_id
+      let scene = this.data.userInfo.id
       callback(access_token, scene)
     })
   },
   getWXACodeUnlimit(access_token, scene) {
+    let that = this;
     wx.request({
-      url: 'https://api.weixin.qq.com/wxa/getwxacodeunlimit?access_token=ACCESS_TOKEN',
+      url: 'https://api.weixin.qq.com/wxa/getwxacodeunlimit?access_token=' + access_token,
       data: {
-        access_token: access_token,
         scene: scene
       },
-      dataType: 'json',
       method: 'POST',
+      responseType: 'arraybuffer',
       header: {
-        'content-type': 'application/json'
+        'content-type': 'application/json;charset=utf-8'
       },
       success: function(res) {
-        console.log(res, 'getWXACodeUnlimit')
+        that.setData({
+          qrcode: wx.arrayBufferToBase64(res.data)
+        })
       },
       fail: function(res) {},
       complete: function(res) {},

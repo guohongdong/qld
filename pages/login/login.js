@@ -76,8 +76,16 @@ Page({
     // 获取 token
     loginModel.getToken((res) => {
       // 全局设置token
-      console.log(res,'getToken')
+      console.log(res, 'getToken')
       let locToken = res.data.token
+      wx.setStorage({
+        key: 'token',
+        data: res.data.token,
+        success: function(res) {
+          console.log(res)
+        },
+
+      })
       app.globalData.token = locToken
       // 登录
       loginModel.login(locToken, res => {
@@ -85,9 +93,17 @@ Page({
         if (res.message == "ok") {
           // 获取用户信息
           loginModel.getUsers(locToken, function(res) {
-            console.log(res,'getUsers')
+            console.log(res, 'getUsers')
             if (res.message == 'ok') {
               app.globalData.userInfo = res.data
+              wx.setStorage({
+                key: 'userInfo',
+                data: res.data,
+                success: function(res) {
+                  console.log(res)
+                },
+
+              })
               wx.showToast({
                 title: '成功',
                 icon: 'success',

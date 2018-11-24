@@ -53,6 +53,18 @@ class GoodsModel extends Http {
     this.request(params)
   }
   /* 
+    获取轮播图
+   */
+  getProductSwiper(data, success) {
+
+    let params = {
+      url: '/api/products',
+      data: data,
+      success: success,
+    }
+    this.request(params)
+  }
+  /* 
     获取商品详情
    */
   getProductDetail(id, success) {

@@ -3,9 +3,9 @@
     <text class='h1'>我的会员二维码</text>
   </view>
   <view class='qrcode-main'>
-    <image class="userAvatarUrl" src="{{userInfo.avatarUrl}}"></image>
-    <text>{{userInfo.nickName}}</text>
-    <image class='qrcode-img' src='/assets/images/qrcode1.png'></image>
+    <image class="userAvatarUrl" src="{{userInfo.avatar_url}}"></image>
+    <text>{{userInfo.nickname}}</text>
+    <image class='qrcode-img' src='{{"data:image/png;base64,"+qrcode}}'></image>
     <text class='inviter-content'>扫码验证通过后成为我的好友</text>
   </view>
   <view class='qrcode-footer'>

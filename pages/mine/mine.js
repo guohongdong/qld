@@ -20,41 +20,51 @@ Page({
    */
   onLoad: function(options) {
 
-
+    console.log('onLoad')
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {},
+  onReady: function() {
+    console.log('onReady')
+  },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    let token = app.globalData.token;
-    let userInfo = app.globalData.userInfo;
-    if (token) {
-      this.setData({
-        isLogin: true,
-        token: token,
-        userInfo: userInfo
-      })
+
+    try {
+      let token = wx.getStorageSync('token')
+      let userInfo = wx.getStorageSync('userInfo')
+      if (token) {
+        console.log(token)
+        console.log(userInfo)
+        this.setData({
+          isLogin: true,
+          token: token,
+          userInfo: userInfo
+        })
+      }
+    } catch (e) {
+      console.log(e)
     }
+
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function() {
-
+    console.log('onHide')
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function() {
-
+    console.log('onUnload')
   },
 
   /**

@@ -21,13 +21,13 @@
     </view>
     <view class='goods-price'>
       <view>
-        <text class='goods-price-current' animation="{{animation}}">¥{{goods.last_price}}</text>
+        <text class='goods-price-current'>{{goods.loading?'优惠'+goods.bargain_price:'¥'+goods.last_price}}</text>
         <text class='goods-price-history'>¥{{goods.market_price}}</text>
       </view>
       <view>
-        <button wx:if="{{goods.status==1}}"  class='goods-price-btn' catchtap='bargain'>砍价</button>
-        <text wx:if="{{goods.status==0}}" catchtap="nodata" class='goods-price-btn goods-price-no'>卖光了</text>
-        <button wx:if="{{goods.status==6}}" open-type="share" catchtap="share" data-imageUrl="{{goods.image[0]}}" data-id="{{goods.id}}" data-name="{{goods.name}}" class='goods-price-btn goods-price-again'>再砍</button>
+        <button wx:if="{{status==1}}" class='goods-price-btn' catchtap='bargain'>砍价</button>
+        <text wx:if="{{status==0}}" catchtap="nodata" class='goods-price-btn goods-price-no'>卖光了</text>
+        <button wx:if="{{status==6}}" open-type="share" catchtap="share" data-imageUrl="{{goods.image[0]}}" data-id="{{goods.id}}" data-name="{{goods.name}}" class='goods-price-btn goods-price-again'>再砍</button>
       </view>
     </view>
   </view>
