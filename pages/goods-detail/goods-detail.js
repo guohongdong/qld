@@ -11,7 +11,7 @@ Page({
   data: {
     id: '',
     shopId: '',
-    token: 'lceJTfLtYqTrcAbMoQhMMHA2c6jlI5RLx9UXNyqmzsXITkWzgI682dLnrtzF3W6ZCXq8zMCpMqNSxD59q7oQHexK1NdPrLqY96HDcJa8CUiSoYqLM5vOyqNBvWKLPRUnCQoPnhZGUyV336SQUxk5O1OIDYFvwrQW7dHshEzS',
+    token: '',
     product_info: {
       name: '',
       image: [],
@@ -69,6 +69,12 @@ Page({
       id: options.id,
       shopId: options.shopId
     })
+    let token = wx.getStorageSync('token')
+    if (token) {
+      this.setData({
+        token: token
+      })
+    }
   },
 
   /**
@@ -83,9 +89,10 @@ Page({
    */
   onShow: function() {
     this._getProductDetail();
-    this._getShop()
-    this._hasCollections()
-    this._pageView()
+    this._getShop();
+    this._hasCollections();
+    this._pageView();
+    this._commentList();
 
   },
 
@@ -124,15 +131,12 @@ Page({
 
   },
   showModal() {
+    let that = this
     wx.showModal({
       title: "确认下单吗？",
       success: function(res) {
         if (res.confirm) {
-          wx.showToast({
-            title: '抢购完成！',
-            icon: 'success',
-            duration: 2000
-          })
+          that._createOrder()
         } else if (res.cancel) {
           console.log('用户点击取消')
         }
@@ -207,6 +211,20 @@ Page({
           collect: true
         })
       }
+    })
+  },
+  _createOrder() {
+    goodsModel.createOrder(this.data.token, this.data.id, res => {
+      wx.showToast({
+        title: '抢购完成！',
+        icon: 'success',
+        duration: 2000
+      })
+    })
+  },
+  _commentList() {
+    goodsModel.commentList(this.data.token, this.data.id, res => {
+      console.log(res)
     })
   }
 })

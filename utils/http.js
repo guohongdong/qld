@@ -33,6 +33,10 @@ class Http {
             url: "/pages/login/login"
           })
         } else {
+          wx.showToast({ 
+            title: res.data.message,
+            icon: 'none'
+          })
           params.error && params.error(res)
         }
       },

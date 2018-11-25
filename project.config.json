@@ -42,8 +42,14 @@
 					"id": 0,
 					"name": "获取邀请码",
 					"pathName": "pages/index/index",
-					"query": "scene=2",
+					"query": "scene=1",
 					"scene": "1047"
+				},
+				{
+					"id": 1,
+					"name": "分享页面",
+					"pathName": "pages/share/share",
+					"query": "id=37&shopId=41"
 				}
 			]
 		}

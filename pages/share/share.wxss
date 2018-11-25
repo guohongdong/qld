@@ -207,7 +207,9 @@
   line-height: 80rpx;
   margin-bottom: 20rpx;
 }
-
+.share-btn .share{
+   background: linear-gradient(90deg, #00b233, rgb(0, 197, 56));
+}
 .share-btn .goto {
   text-align: center;
   font-size: 32rpx;

@@ -1,16 +1,15 @@
 <view class='order-item'>
-  <image class='order-item-img' src='https://user-gold-cdn.xitu.io/1541402686436d5bd390d5f1bf1d61317a069f409eea5.jpg?imageView2/1/q/85/format/webp/interlace/1'>
+  <image class='order-item-img' src='{{order.product_image}}'>
   </image>
   <view class='order-item-main'>
     <view class='order-item-title'>
-      <text class='order-item-name'>商品名商品名商品名商品名商品名商品名商品名</text>
-      <text class='order-item-address'>地址地址地址地址地址地址地址</text>
+      <text class='order-item-name'>{{order.product_name}}</text>
+      <text class='order-item-address'>{{order.shop_address}}</text>
     </view>
     <view class='order-item-footer'>
-      <text class='order-item-tiem'>2018-11-10</text>
-      <text wx:if="{{type=='consume'}}" class='order-item-btn' bindtap='gotoconsume'>去领取</text>
-      <text wx:if="{{type=='comment'}}" class='order-item-btn' bindtap='gotocomment'>去评论</text>
-      <!-- <image class='order-item-btn' src='./images/goto.png'></image> -->
+      <text class='order-item-tiem'>{{order.created_at}}</text>
+      <text wx:if="{{order.order_status==0}}" class='order-item-btn' bindtap='gotoconsume'>去领取</text>
+      <text wx:if="{{order.order_status==1&&order.comment_status==0}}" class='order-item-btn' bindtap='gotocomment'>去评论</text>
     </view>
   </view>
 </view>

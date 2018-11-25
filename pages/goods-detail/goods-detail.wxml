@@ -8,7 +8,7 @@
     </block>
   </swiper>
   <view class='goods-purchasing'>
-    84人正在抢购，只剩1个了
+    {{product_info.bargain_num}}人正在抢购，只剩1个了
   </view>
   <view class='goods-detail-info'>
     <text class='goods-detail-name'>{{product_info.name}}</text>
@@ -35,8 +35,8 @@
   </view>
   <view class='goods-detail-tag'>
     <text>有效期7天</text>
-    <text>无需预约</text>
-    <text>不支持退订</text>
+    <text>{{product_info.is_appointing==0?'无需':'需要'}}预约</text>
+    <text>{{product_info.is_unsubscribe==0?'不':''}}支持退订</text>
   </view>
   <view class='goods-detail-tips'>
     <view class='goods-detail-time'>
@@ -45,16 +45,11 @@
     </view>
     <view class='goods-detail-tip'>
       <text>温馨提示：因为该商品是活动产品，故不支持退换</text>
-      <text>1、因为该商品是活动产品，故不支持退换</text>
-      <text>1、因为该商品是活动产品，故不支持退换</text>
-      <text>1、因为该商品是活动产品，故不支持退换</text>
-      <text>1、因为该商品是活动产品，故不支持退换</text>
+      <rich-text nodes="{{product_info.desc}}" bindtap="tap"></rich-text>
     </view>
   </view>
   <view class='goods-detail-comment'>
     <text>用户评论</text>
-    <comment-cmp info="{{commentInfo}}"></comment-cmp>
-    <comment-cmp info="{{commentInfo}}"></comment-cmp>
     <comment-cmp info="{{commentInfo}}"></comment-cmp>
     <navigator url='' class='goods-detail-allcomment'>查看全部评论</navigator>
   </view>
@@ -72,5 +67,4 @@
       <text>立即抢购</text>
     </view>
   </view>
-  <!-- <van-submit-bar price="{{ 3050 }}" button-text="提交订单" bind:submit="onSubmit" /> -->
 </view>

@@ -50,7 +50,6 @@ class LoginModel extends Http {
                 "userInfo[nickName]": userInfolocal['nickName'],
                 "userInfo[gender]": userInfolocal['gender'],
                 "userInfo[province]": userInfolocal['province'],
-                "userInfo[province]": 'Mongolia',
                 "userInfo[city]": userInfolocal['city'],
                 "userInfo[country]": userInfolocal['country'],
                 "userInfo[avatarUrl]": userInfolocal['avatarUrl']

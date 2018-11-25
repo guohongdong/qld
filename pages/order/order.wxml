@@ -1,9 +1,7 @@
 <!--pages/order/order.wxml-->
 <view class='order-container'>
-  <order-item-cpm type="comment"></order-item-cpm>
-  <order-item-cpm type="comment"></order-item-cpm>
-  <order-item-cpm type="comment"></order-item-cpm>
-  <order-item-cpm type="comment"></order-item-cpm>
- 
-  <!-- <nodata-cpm></nodata-cpm> -->
+  <block wx:for="{{orderList}}">
+    <order-item-cpm order="{{item}}"></order-item-cpm>
+  </block>
+  <view class='no-order' wx:if="{{orderList.length==0}}">暂无订单</view>
 </view>

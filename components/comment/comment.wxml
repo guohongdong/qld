@@ -10,10 +10,10 @@
   </view>
   <view class='comment-cmp-bot'>
     <text>{{info.content}}</text>
-    <view wx:if="{{info.images.length>0}}">
+    <!-- <view wx:if="{{info.images.length>0}}">
       <block wx:for="{{info.images}}" wx:key="{{index}}">
         <image src='{{item}}'></image>
       </block>
-    </view>
+    </view> -->
   </view>
 </view>

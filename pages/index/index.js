@@ -38,6 +38,27 @@ Page({
    */
   onLoad: function(options) {
     let that = this;
+    let location = wx.getStorageSync('location')
+    let token = wx.getStorageSync('token')
+    this.setData({
+      token: token
+    })
+    let currentCity = wx.getStorageSync('currentCity')
+    if (location.latitude || location.latitude != this.data.latitude) {
+      console.log('本地读取', location.latitude, this.data.latitude)
+      this.setData({
+        currentCity: currentCity,
+        latitude: location.latitude,
+        longitude: location.longitude,
+        page: 1,
+        isloading: false,
+        goodsList: []
+      })
+      this._getProducts()
+    } else {
+      console.log('重新获取')
+      this._getLoctaion(this._getProducts)
+    }
     const scene = decodeURIComponent(options.scene)
     console.log(scene, 'scene', 'onLoad')
     if (scene != 'undefined') {
@@ -82,27 +103,8 @@ Page({
    */
   onShow: function() {
     console.log('onShow')
-    let location = wx.getStorageSync('location')
-    let token = wx.getStorageSync('token')
-    this.setData({
-      token: token
-    })
-    let currentCity = wx.getStorageSync('currentCity')
-    if (location.latitude || location.latitude != this.data.latitude) {
-      console.log('本地读取', location.latitude, this.data.latitude)
-      this.setData({
-        currentCity: currentCity,
-        latitude: location.latitude,
-        longitude: location.longitude,
-        page: 1,
-        isloading: false,
-        goodsList: []
-      })
-      this._getProducts()
-    } else {
-      console.log('重新获取')
-      this._getLoctaion(this._getProducts)
-    }
+
+
   },
 
   /**

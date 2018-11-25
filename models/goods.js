@@ -79,8 +79,7 @@ class GoodsModel extends Http {
   /* 
     砍价
    */
-  bargain(token, id, success) {
-    console.log(token)
+  bargain(token, id, success, error) {
     let params = {
       url: '/api/products/' + id + '/bargain',
       method: 'PUT',
@@ -88,7 +87,7 @@ class GoodsModel extends Http {
         token: token
       },
       success: success,
-
+      error: error
     }
     this.request(params)
   }
@@ -140,6 +139,60 @@ class GoodsModel extends Http {
   hasCollections(token, id, success) {
     let params = {
       url: '/api/shops/' + id + '/collected',
+      header: {
+        token: token
+      },
+      success: success,
+
+    }
+    this.request(params)
+  }
+  /* 
+   我的传播
+  */
+  bargainRecords(id, success) {
+    let params = {
+      url: '/api/products/' + id + '/bargain/records',
+      success: success,
+    }
+    this.request(params)
+  }
+  /* 
+   下单
+  */
+  createOrder(token, id, success) {
+    let params = {
+      url: '/api/orders/products/' + id,
+      method: 'POST',
+      header: {
+        token: token
+      },
+      success: success,
+
+    }
+    this.request(params)
+  }
+  /* 
+   订单列表
+  */
+  orderList(token, data, success) {
+    let params = {
+      url: '/api/orders',
+      header: {
+        token: token
+      },
+      data: data,
+      success: success,
+
+    }
+    this.request(params)
+  }
+  /* 
+   ；评论列表
+  */
+  commentList(token, id, success) {
+    let params = {
+      url: '/api/shops/' + id + '/comments',
       header: {
         token: token
       },
