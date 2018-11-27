@@ -43,11 +43,14 @@
       <image src='/assets/images/goods-detail/coordinates_fill.png' class='goods-detail-addressicon'></image>
       <text>{{shop_info.address}}</text>
     </view>
-    <image src='/assets/images/goods-detail/mobilephone_fill.png' class='goods-detail-phone'></image>
+    <image src='/assets/images/goods-detail/mobilephone_fill.png' class='goods-detail-phone' data-phone="{{shop_info.mobile}}" bindtap='callPhone'></image>
   </view>
   <view class='share-btn'>
     <button wx:if="{{isShowBargain}}" bindtap='onBargain'>帮朋友砍价</button>
     <button wx:else open-type="share" class='share'>分享给朋友</button>
+    <navigator class='onBargain' open-type="switchTab" url="/pages/index/index" hover-class="navigator-hover">
+      <button>去首页</button>
+    </navigator>
     <navigator class='goto' open-type="switchTab" url="/pages/index/index" hover-class="navigator-hover">去抢购 ></navigator>
   </view>
   <view class='share-user-content'>

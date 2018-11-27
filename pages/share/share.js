@@ -122,6 +122,11 @@ Page({
       })
     })
   },
+  callPhone(e) {
+    wx.makePhoneCall({
+      phoneNumber: e.target.dataset.phone
+    })
+  },
   // 获取店铺详情
   _getShop() {
     goodsModel.getShop(this.data.shopId, res => {
