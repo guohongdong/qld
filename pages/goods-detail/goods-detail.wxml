@@ -49,8 +49,12 @@
     </view>
   </view>
   <view class='goods-detail-comment'>
-    <text>用户评论</text>
-    <comment-cmp info="{{commentInfo}}"></comment-cmp>
+    <view class='goods-comment-title'>
+      <text>用户评论</text>
+    </view>
+    <block wx:for="{{commentList}}" wx:key="{{index}}">
+      <comment-cmp info="{{item}}"></comment-cmp>
+    </block>
     <navigator url='' class='goods-detail-allcomment'>查看全部评论</navigator>
   </view>
   <view class='goods-detail-submit'>

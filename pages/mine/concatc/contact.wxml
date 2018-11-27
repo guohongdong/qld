@@ -1,13 +1,13 @@
-<view class='contact-container'>
+<scroll-view scroll-y class='contact-container' bindscrolltolower='lower'>
   <block wx:for="{{list}}" wx:key="{{index}}">
-    <contact-cmp nikename="{{item.name}}" content="{{category=='message'?'申请成为抢乐多会员':''}}" img="{{item.img}}">
+    <contact-cmp nikename="{{item.nickname}}" content="{{category=='message'?'申请成为抢乐多会员':''}}" img="{{item.avatar_url}}">
       <block wx:if="{{category=='message'}}">
-        <block wx:if="{{item.isDispose}}">
-          <text class='contact-agree'>{{item.isAgree?"已同意":"已拒绝"}}</text>
+        <block wx:if="{{item.status!=0}}">
+          <text class='contact-agree'>{{item.status==1?"已同意":"已拒绝"}}</text>
         </block>
         <block wx:else>
-          <van-button type="primary" size="small" class='contact-btn'>同意</van-button>
-          <van-button type="danger" size="small">拒绝</van-button>
+          <van-button type="primary" size="small" class='contact-btn' data-id="{{item.id}}" data-status="1" bind:click='_changeMessage'>同意</van-button>
+          <van-button type="danger" size="small" data-id="{{item.id}}" data-status="4" bind:click='_changeMessage'>拒绝</van-button>
         </block>
       </block>
     </contact-cmp>
@@ -23,6 +23,8 @@
         暂无朋友
       </view>
     </block>
-
   </block>
-</view>
+  <view class='no-data' wx:if="{{list.length>0&&!loadMore}}">
+    <text>— 没有更多数据 —</text>
+  </view>
+</scroll-view>

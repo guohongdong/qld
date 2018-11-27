@@ -8,8 +8,8 @@
     </view>
     <view class='order-item-footer'>
       <text class='order-item-tiem'>{{order.created_at}}</text>
-      <text wx:if="{{order.order_status==0}}" class='order-item-btn' bindtap='gotoconsume'>去领取</text>
-      <text wx:if="{{order.order_status==1&&order.comment_status==0}}" class='order-item-btn' bindtap='gotocomment'>去评论</text>
+      <text wx:if="{{order.order_status==0}}" class='order-item-btn' bindtap='goToConsume'>去领取</text>
+      <text wx:if="{{order.order_status==1&&order.comment_status==0}}" class='order-item-btn' bindtap='goToComment'>去评论</text>
     </view>
   </view>
 </view>

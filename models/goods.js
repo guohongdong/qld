@@ -55,10 +55,13 @@ class GoodsModel extends Http {
   /* 
     获取轮播图
    */
-  getProductSwiper(data, success) {
+  getProductSwiper(token, data, success) {
 
     let params = {
       url: '/api/products',
+      header: {
+        'token': token
+      },
       data: data,
       success: success,
     }
@@ -188,7 +191,39 @@ class GoodsModel extends Http {
     this.request(params)
   }
   /* 
-   ；评论列表
+   订单领用
+  */
+  orderStatus(token, id, data, success) {
+    let params = {
+      url: '/api/orders/' + id + '/status',
+      method: 'PUT',
+      header: {
+        token: token
+      },
+      data: data,
+      success: success,
+
+    }
+    this.request(params)
+  }
+  /* 
+   创建评论
+  */
+  createComment(token, id, data, success) {
+    let params = {
+      url: '/api/orders/' + id + '/comments',
+      header: {
+        token: token
+      },
+      method: 'POST',
+      data: data,
+      success: success,
+
+    }
+    this.request(params)
+  }
+  /* 
+   评论列表
   */
   commentList(token, id, success) {
     let params = {

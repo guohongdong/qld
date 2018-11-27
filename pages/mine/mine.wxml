@@ -8,7 +8,7 @@
     <view class='mine-contain-user'>
       <image class="userAvatarUrl" src='{{userInfo.avatar_url}}'></image>
       <text>{{userInfo.nickname}}</text>
-      <image class="userScan" src='/assets/images/scan.png' bindtap='sCan'></image>
+      <!-- <image class="userScan" src='/assets/images/scan.png' bindtap='sCan'></image> -->
     </view>
   </block>
   <view class='mine-order'>

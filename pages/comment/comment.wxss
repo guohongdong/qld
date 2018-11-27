@@ -43,6 +43,7 @@ page {
   font-size: 30rpx;
   color: #333;
   flex: 1;
+  display: flex;
 }
 
 .report-cell-input image {
@@ -59,13 +60,13 @@ page {
 
 /*评价标题  */
 
-.container .evaluate_contant .evaluate_item .evaluate_title {
+.evaluate_title {
   display: inline-block;
 }
 
 /*评价盒子  */
 
-.container .evaluate_contant .evaluate_item .evaluate_box {
+.evaluate_box {
   position: absolute;
   left: 220rpx;
   width: 100%;
@@ -74,20 +75,15 @@ page {
 
 /*星星评价的每个图片  */
 
-.container .evaluate_contant .evaluate_item .evaluate_box .star-image {
-  position: absolute;
-  width: 40rpx;
-  height: 40rpx;
-  src: "../../images/no-star.png";
+.star-image {
+  vertical-align: middle;
 }
 
 /*星星的左边和右边区域<点击左边半个星星，点击右边整个星星>  */
 
-.container .evaluate_contant .evaluate_item .evaluate_box .star-image .item {
-  position: absolute;
-  top: 0rpx;
-  width: 20rpx;
-  height: 40rpx;
+.item { 
+  width: 60rpx;
+  height: 60rpx;
 }
 
 .submit {
@@ -98,5 +94,4 @@ page {
   line-height: 80rpx;
   margin-top: 40rpx;
   border: none;
-  margin-top: 40rpx;
 }

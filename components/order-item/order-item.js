@@ -18,15 +18,17 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    gotocomment() {
-      wx.navigateTo({
-        url: "/pages/comment/comment"
-      })
+    goToComment() {
+      this.triggerEvent('goToComment', {
+        id: this.properties.order.id,
+        shop_name: this.properties.order.shop_name,
+        shop_address: this.properties.order.shop_address,
+      }, {})
     },
-    gotoconsume() {
-      wx.navigateTo({
-        url: "/pages/goods-pay/goods-pay"
-      })
+    goToConsume() {
+      this.triggerEvent('goToConsume', {
+        id: this.properties.order.id
+      }, {})
     }
   }
 })

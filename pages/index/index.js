@@ -23,7 +23,7 @@ Page({
     current: 0,
     swiperList: [],
     goodsList: [],
-    currentCity: '浙江省杭州市',
+    currentCity: '',
     wxCanvas: null,
     shopTypeList: [],
     shop_type_id: 0,
@@ -37,35 +37,31 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    let that = this;
-    let location = wx.getStorageSync('location')
-    let token = wx.getStorageSync('token')
-    this.setData({
-      token: token
-    })
-    let currentCity = wx.getStorageSync('currentCity')
-    if (location.latitude || location.latitude != this.data.latitude) {
-      console.log('本地读取', location.latitude, this.data.latitude)
-      this.setData({
-        currentCity: currentCity,
-        latitude: location.latitude,
-        longitude: location.longitude,
-        page: 1,
-        isloading: false,
-        goodsList: []
-      })
-      this._getProducts()
-    } else {
-      console.log('重新获取')
-      this._getLoctaion(this._getProducts)
-    }
-    const scene = decodeURIComponent(options.scene)
+
+    const scene = 'undefined'
     console.log(scene, 'scene', 'onLoad')
     if (scene != 'undefined') {
-      mineModel.inviting(this.data.token, scene, res => {
-        console.log(res, '邀请')
+      wx.showModal({
+        title: '请先登录',
+        confirmText: '去登录',
+        success(res) {
+          if (res.confirm) {
+            wx.navigateTo({
+              url: '/pages/login/login'
+            })
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
       })
+      wx.setStorage({
+        key: 'scene',
+        data: scene,
+      })
+
     }
+    let that = this;
+    console.log('onLoad')
     wx.getLocation({
       type: 'wgs84',
       success: function(res) {
@@ -75,19 +71,20 @@ Page({
           latitude: latitude,
           longitude: longitude
         })
-        goodsModel.getProductSwiper({}, res => {
-          console.log(res, '轮播')
-          that.setData({
-            swiperList: res.data.data
-          })
+        wx.setStorage({
+          key: 'location',
+          data: {
+            latitude: latitude,
+            longitude: longitude
+          },
         })
+        that._getProducts();
+        that._getShopType();
+        that._getProductSwiper();
+        that._loctaion2name();
       },
     })
-    goodsModel.getShopType(res => {
-      this.setData({
-        shopTypeList: res.data.shop_type_list
-      })
-    })
+
     // this._getLoctaion(this._getProducts)
   },
 
@@ -103,8 +100,24 @@ Page({
    */
   onShow: function() {
     console.log('onShow')
+    let location = wx.getStorageSync('location')
+    let token = wx.getStorageSync('token')
+    let currentCity = wx.getStorageSync('currentCity')
 
-
+    if ((location.latitude && location.latitude != this.data.latitude) || (token != this.data.token)) {
+      this.setData({
+        token: token,
+        currentCity: currentCity,
+        latitude: location.latitude,
+        longitude: location.longitude,
+        page: 1,
+        isloading: false,
+        goodsList: []
+      })
+      this._getProducts();
+      this._getShopType();
+      this._getProductSwiper();
+    }
   },
 
   /**
@@ -187,8 +200,9 @@ Page({
     this._getProducts()
     console.log('加载更多')
   },
+  // 切换
   onChangeTab(event) {
-    console.log(event.detail)
+    console.log(event)
     this.setData({
       index: event.detail.index,
       goodsList: [],
@@ -203,6 +217,7 @@ Page({
       current: e.detail.current
     })
   },
+  // 重新获取定位
   refreshLocation() {
     this._getLoctaion(this._getProducts)
     wx.showToast({
@@ -211,11 +226,12 @@ Page({
       duration: 3000
     })
   },
+  // 获取商品列表
   _getProducts() {
     if (this.data.isloading) {
       return
     }
-    wx.showNavigationBarLoading();
+
     this.setData({
       isloading: true
     })
@@ -241,7 +257,6 @@ Page({
         page: page,
         isloading: false
       })
-      wx.hideNavigationBarLoading();
     })
   },
   // 砍价按钮
@@ -281,12 +296,64 @@ Page({
       url: "/pages/goods-detail/goods-detail?id=" + event.detail.id + "&shopId=" + event.detail.shopId
     })
   },
-  // 获取定位
-  _getLoctaion(callback) {
+  // 获取轮播图
+  _getProductSwiper() {
+    let params = {
+      lng: this.data.longitude,
+      lat: this.data.latitude
+    }
+    goodsModel.getProductSwiper(this.data.token, params, res => {
+      console.log(res, '轮播')
+      this.setData({
+        swiperList: res.data.data
+      })
+    })
+  },
+  // 获取商品分类
+  _getShopType() {
+    goodsModel.getShopType(res => {
+      if (res.message == 'ok') {
+        res.data.shop_type_list.unshift({
+          id: '',
+          name: "全部"
+        })
+        this.setData({
+          shopTypeList: res.data.shop_type_list
+        })
+      }
+    })
+  },
+  // 重新获取位置名称
+  _loctaion2name() {
     let that = this;
+    let latitude = this.data.latitude;
+    let longitude = this.data.longitude;
     qqmapsdk = new QQMapWX({
       key: 'NLRBZ-UTCWU-22RVQ-B6XQO-6IPO7-H7BSJ'
     });
+    qqmapsdk.reverseGeocoder({
+      location: {
+        latitude: latitude,
+        longitude: longitude
+      },
+      success: function(res) {
+        let currentCity = res.result.address
+        that.setData({
+          currentCity: currentCity
+        })
+        wx.setStorage({
+          key: 'currentCity',
+          data: currentCity,
+        })
+      },
+      fail: function(res) {
+        console.log(res);
+      }
+    });
+  },
+  // 重新获取位置名称
+  _getLoctaion(callback) {
+    let that = this;
     wx.getLocation({
       type: 'wgs84',
       success(res) {
@@ -296,7 +363,6 @@ Page({
           latitude: latitude,
           longitude: longitude
         })
-        callback()
         wx.setStorage({
           key: 'location',
           data: {
@@ -304,25 +370,8 @@ Page({
             longitude: longitude
           },
         })
-        qqmapsdk.reverseGeocoder({
-          location: {
-            latitude: latitude,
-            longitude: longitude
-          },
-          success: function(res) {
-            let currentCity = res.result.address
-            that.setData({
-              currentCity: currentCity
-            })
-            wx.setStorage({
-              key: 'currentCity',
-              data: currentCity,
-            })
-          },
-          fail: function(res) {
-            console.log(res);
-          }
-        });
+        callback()
+        that._loctaion2name()
       }
     })
   }

@@ -20,14 +20,14 @@ Page({
    */
   onLoad: function(options) {
 
-    console.log('onLoad')
+    console.log('onLoad', 'mine')
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-    console.log('onReady')
+    console.log('onReady', 'mine')
   },
 
   /**
@@ -38,9 +38,7 @@ Page({
     try {
       let token = wx.getStorageSync('token')
       let userInfo = wx.getStorageSync('userInfo')
-      if (token) {
-        console.log(token)
-        console.log(userInfo)
+      if (token && userInfo) {
         this.setData({
           isLogin: true,
           token: token,
@@ -57,14 +55,14 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function() {
-    console.log('onHide')
+    console.log('onHide', 'mine')
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function() {
-    console.log('onUnload')
+    console.log('onUnload', 'mine')
   },
 
   /**
@@ -96,7 +94,7 @@ Page({
     })
   },
   getUsers(token) {
-    console.log(token, '----------')
+
 
   }
 })

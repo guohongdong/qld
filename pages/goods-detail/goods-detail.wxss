@@ -236,3 +236,10 @@ swiper image {
   font-size: 38rpx;
   line-height: 100rpx;
 }
+
+.goods-comment-title {
+  padding: 20rpx 0;
+  margin: 0 30rpx;
+  font-size: 32rpx;
+  border-bottom: 1px solid #eee;
+}

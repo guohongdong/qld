@@ -1,6 +1,6 @@
 <!--components/goods/goods.wxml-->
 <view class='{{borderBottom?"border-bottom goods-cmp":"goods-cmp"}}' bindtap='onTapItem'>
-  <image src='{{goods.image[0]}}' class='goods-img'></image>
+  <image src='{{goods.image[0]}}' class='goods-img' wx:if="{{goods.image.length}}" ></image>
   <view class='goods-info'>
     <view class='goods-detail'>
       <text class='goods-title'>{{goods.name}}</text>

@@ -30,10 +30,10 @@ App({
   },
   globalData: {
     userInfo: null,
-    currentCity: "北京市",
+    currentCity: "",
     token: null,
     currentLocation: {
-      name:'浙江省杭州市',
+      name:'',
       latitude: null,
       longitude:null
     }

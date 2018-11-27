@@ -14,7 +14,7 @@ Page({
    */
   data: {
     cityList: [],
-    currentLocation: '浙江省杭州市'
+    currentLocation: ''
 
   },
 
@@ -50,11 +50,8 @@ Page({
     wx.getLocation({
       type: 'wgs84',
       success(res) {
-        console.log(app.globalData.currentLocation)
         const latitude = res.latitude
         const longitude = res.longitude
-        app.globalData.currentLocation.latitude = latitude
-        app.globalData.currentLocation.longitude = longitude
         qqmapsdk.reverseGeocoder({
           location: {
             latitude: latitude,
@@ -64,7 +61,6 @@ Page({
             that.setData({
               currentLocation: res.result.address
             })
-            console.log(res);
           },
           fail: function(res) {
             console.log(res);
@@ -109,9 +105,6 @@ Page({
 
   },
   selectCity(e) {
-    console.log(e.target.dataset.name)
-    console.log(e.target.dataset.latitude)
-    console.log(e.target.dataset.longitude)
     this.setData({
       currentLocation: e.target.dataset.name
     })
@@ -126,5 +119,10 @@ Page({
       key: 'currentCity',
       data: e.target.dataset.name
     })
+    setTimeout(() => {
+      wx.navigateBack({
+        delta: 1
+      })
+    }, 500)
   }
 })

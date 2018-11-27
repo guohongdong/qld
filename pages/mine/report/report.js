@@ -68,18 +68,55 @@ Page({
 
   onShareAppMessage: function(res) {},
   setrePort() {
-    // if (!this.data.shop_name) {
-
-    //   return;
-    // }
+    if (!this.data.shop_name) {
+      wx.showToast({
+        title: '请输入商家名',
+        icon: 'none'
+      })
+      return;
+    }
+    if (!this.data.shop_address) {
+      wx.showToast({
+        title: '请输入商家地址',
+        icon: 'none'
+      })
+      return;
+    }
+    if (!this.data.phone) {
+      wx.showToast({
+        title: '请输入手机号',
+        icon: 'none'
+      })
+      return;
+    }
+    if (!this.data.name) {
+      wx.showToast({
+        title: '请输入姓名',
+        icon: 'none'
+      })
+      return;
+    }
     let params = {
       shop_name: this.data.shop_name,
       shop_address: this.data.shop_address,
       phone: this.data.phone,
       name: this.data.name
     }
-    mineModel.report(params, data => {
-    //  if(){}
+    mineModel.report(params, res => {
+      if (res.message == 'ok') {
+        wx.showToast({
+          title: '提交成功',
+          icon: 'success',
+          duration: 2000,
+          mask: true,
+        })
+        setTimeout(() => {
+          wx.navigateBack({
+            delta: 1
+          })
+        }, 2000)
+
+      }
     })
   },
   bindKeyInput: function(e) {

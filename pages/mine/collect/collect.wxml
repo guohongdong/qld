@@ -1,16 +1,26 @@
-<view>
-  <scroll-view scroll-y class='scroll-view'>
-    <view class="touch-item {{item.isTouchMove ? 'touch-move-active' : ''}}" data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove" wx:for="{{collectList}}" wx:key="{{index}}">
-      <view class="content">
-        <view class='goods-detail-shop'>
-          <image class='goods-detail-logo' src='{{item.avatar}}'></image>
-          <view class='goods-detail-shopname'>
-            <text>{{item.shop_name}}</text>
-            <text class='address'>{{item.address}}</text>
-          </view>
+<scroll-view scroll-y class='scroll-view' bindscrolltolower='_getCollections'>
+  <view class="touch-item {{item.isTouchMove ? 'touch-move-active' : ''}}" data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove" wx:for="{{collectList}}" wx:key="{{index}}">
+    <view class="content">
+      <view class='goods-detail-shop'>
+        <image class='goods-detail-logo' src='{{item.avatar}}'></image>
+        <view class='goods-detail-shopname'>
+          <text>{{item.shop_name}}</text>
+          <start-cmp start="{{item.statistics.star_level}}">
+            <view class='start-comment'>{{item.statistics.comment_num}}条评论</view>
+          </start-cmp>
         </view>
       </view>
-      <view class="del" catchtap="del" data-index="{{index}}">删除</view>
+      <view class='goods-detail-address'>
+        <view>
+          <image src='/assets/images/goods-detail/coordinates_fill.png' class='goods-detail-addressicon'></image>
+          <text>{{item.address}}</text>
+        </view>
+        <image src='/assets/images/goods-detail/mobilephone_fill.png' class='goods-detail-phone' data-phone="{{item.mobile}}" bindtap='callPhone'></image>
+      </view>
     </view>
-  </scroll-view>
-</view>
+    <view class="del" catchtap="_delCollections" data-index="{{index}}" data-shopid="{{item.shop_id}}">删除</view>
+  </view>
+  <view class='no-data' wx:if="{{collectList.length>0&&!loadMore}}">
+    <text>— 没有更多数据 —</text>
+  </view>
+</scroll-view>

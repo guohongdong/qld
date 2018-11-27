@@ -9,8 +9,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    list: Array,
-    category: String
+    list: [],
+    category: '',
+    page: 1,
+    loadMore: true
   },
 
   /**
@@ -82,19 +84,68 @@ Page({
   onShareAppMessage: function() {
 
   },
+  lower() {
+    if (this.data.category == "friend") {
+      this._getFriends()
+    } else {
+      this._getMessages()
+    }
+  },
   _getFriends() {
-    mineModel.getFriends(this.data.token, res => {
-      console.log(res.data.friends.data)
-      this.setData({
-        list: res.data.friends.data
-      })
+    if (!this.data.loadMore) {
+      return;
+    }
+    mineModel.getFriends(this.data.token, this.data.page, res => {
+      if (res.message == 'ok') {
+        if (res.data.friends.data.length == 0) {
+          this.setData({
+            loadMore: false
+          })
+          return;
+        }
+        let list = this.data.list.concat(res.data.friends.data)
+        let page = this.data.page + 1;
+        this.setData({
+          list: list,
+          page: page
+        })
+      }
     })
   },
   _getMessages() {
-    mineModel.getMessages(this.data.token, res => {
+    if (!this.data.loadMore) {
+      return;
+    }
+    mineModel.getMessages(this.data.token, this.data.page, res => {
+      if (res.message == 'ok') {
+        if (res.data.messages.data.length == 0) {
+          this.setData({
+            loadMore: false
+          })
+          return;
+        }
+        let list = this.data.list.concat(res.data.messages.data)
+        let page = this.data.page + 1;
+        this.setData({
+          list: list,
+          page: page
+
+        })
+      }
+    })
+  },
+  _changeMessage(e) {
+    console.log(e.target.dataset.id, e.target.dataset.status)
+    let id = e.target.dataset.id;
+    let status = e.target.dataset.status;
+    mineModel.changeMessage(this.data.token, id, status, res => {
       console.log(res)
-      this.setData({
-        list: res.data.messages.data
+      wx.showToast({
+        title: '处理成功',
+        icon: 'success',
+        duration: 2000,
+        mask: true,
+
       })
     })
   }

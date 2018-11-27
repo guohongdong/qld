@@ -26,6 +26,7 @@
   height: 250rpx;
   margin-right: 30rpx;
   vertical-align: middle;
+  border: 1px solid #eee;
 }
 
 .goods-info {

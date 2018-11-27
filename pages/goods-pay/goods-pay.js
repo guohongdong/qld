@@ -1,10 +1,16 @@
 // pages/goods-pay/goods-pay.js
+import {
+  GoodsModel
+} from "../../models/goods.js"
+let goodsModel = new GoodsModel();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    id: '',
+    code: '',
     inputData: {
       input_value: "", //输入框的初始内容
       value_length: 0, //输入框密码位数
@@ -23,7 +29,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    console.log(options)
+    let token = wx.getStorageSync('token');
+    if (token) {
+      this.setData({
+        id: options.id,
+        token: token
+      })
+    }
   },
 
   /**
@@ -75,13 +88,11 @@ Page({
 
   },
   valueSix(e) {
-    if (e.detail === '1234') {
-      console.log(e);
-      wx.showToast({
-        title: '验证成功',
-        icon: 'success',
-        duration: 3000
+    if (e.detail === '6666') {
+      this.setData({
+        code: e.detail
       })
+      this._orderStatus()
     } else {
       wx.showToast({
         title: '密码错误',
@@ -89,7 +100,26 @@ Page({
         duration: 3000
       })
     }
+  },
+  _orderStatus() {
+    let data = {
+      code: this.data.code
+    }
+    goodsModel.orderStatus(this.data.token, this.data.id, data, res => {
+      console.log(res)
+      if (res.message == 'ok') {
+        wx.showToast({
+          title: '验证成功',
+          icon: 'success',
+          duration: 2000,
+        })
+        setTimeout(function() {
+          wx.navigateBack({
+            delta: 1
+          })
+        }, 2000)
+      }
 
-
+    })
   }
 })

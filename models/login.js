@@ -42,6 +42,7 @@ class LoginModel extends Http {
         if (res.authSetting['scope.userInfo']) {
           wx.getUserInfo({
             withCredentials: true,
+            lang:'zh_CN',
             success: function(res) {
               let userInfolocal = res.userInfo;
               console.log(userInfolocal)

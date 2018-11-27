@@ -1,24 +1,39 @@
 // pages/comment/comment.js
+import {
+  GoodsModel
+} from "../../models/goods.js"
+let goodsModel = new GoodsModel();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    evaluate_contant: ['评价条目一', '评价条目二', '评价条目三', ],
+    shopName: '',
+    address: '',
+    token: '',
+    id: '',
     stars: [0, 1, 2, 3, 4],
     normalSrc: '/assets/images/collection.png',
     selectedSrc: '/assets/images/collection_fill.png',
-    halfSrc: '/assets/images/collection.png',
     score: 0,
-    scores: [0, 0, 0]
+    content: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-  
+    let token = wx.getStorageSync('token');
+    if (token) {
+      this.setData({
+        token: token,
+        id: options.id,
+        shopName: options.shop_name,
+        address: options.shop_address
+      })
+    }
+
   },
 
   /**
@@ -69,33 +84,39 @@ Page({
   onShareAppMessage: function() {
 
   },
+  bindinput(e) {
+    console.log(e.detail.value)
+    this.setData({
+      content: e.detail.value
+    })
+  },
   submit_evaluate: function() {
-    console.log('评价得分' + this.data.scores)
+    let data = {
+      content: this.data.content,
+      star_level: this.data.score
+    }
+    goodsModel.createComment(this.data.token, this.data.id, data, res => {
+      console.log(res)
+      if (res.message == 'ok') {
+        wx.showToast({
+          title: '评论成功',
+          icon: 'success',
+          duration: 2000,
+        })
+        setTimeout(() => {
+          wx.navigateBack({
+            delta: 1
+          })
+        }, 2000)
+      }
+    })
   },
 
   //点击左边,半颗星
-  selectLeft: function(e) {
+  select: function(e) {
     var score = e.currentTarget.dataset.score
-    if (this.data.score == 0.5 && e.currentTarget.dataset.score == 0.5) {
-      score = 0;
-    }
-
-    this.data.scores[e.currentTarget.dataset.idx] = score,
-      this.setData({
-        scores: this.data.scores,
-        score: score
-      })
-
-  },
-
-  //点击右边,整颗星
-  selectRight: function(e) {
-    var score = e.currentTarget.dataset.score
-
-    this.data.scores[e.currentTarget.dataset.idx] = score,
-      this.setData({
-        scores: this.data.scores,
-        score: score
-      })
+    this.setData({
+      score: score
+    })
   }
 })

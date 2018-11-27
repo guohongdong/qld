@@ -8,6 +8,7 @@ class Http {
     this.baseResUrl = config.apiUrl
   }
   request(params) {
+    wx.showNavigationBarLoading();
     let that = this;
     let url = this.baseResUrl + params.url;
 
@@ -24,6 +25,7 @@ class Http {
       },
       method: params.method,
       success: function(res) {
+        wx.hideNavigationBarLoading();
         let code = res.statusCode.toString();
         let startChar = code.charAt(0);
         if (startChar == '2') {
@@ -33,7 +35,7 @@ class Http {
             url: "/pages/login/login"
           })
         } else {
-          wx.showToast({ 
+          wx.showToast({
             title: res.data.message,
             icon: 'none'
           })
@@ -41,6 +43,7 @@ class Http {
         }
       },
       fail: function(res) {
+        wx.hideNavigationBarLoading();
         params.fail && params.fail(res)
       }
     })

@@ -2,8 +2,10 @@
 import {
   LoginModel
 } from "../../models/login.js"
-
-let app = getApp()
+import {
+  MineModel
+} from "../../models/mine.js"
+let mineModel = new MineModel();
 let loginModel = new LoginModel();
 Page({
 
@@ -11,7 +13,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    token: ''
   },
 
   /**
@@ -70,50 +73,63 @@ Page({
 
   },
   login() {
-    wx.showLoading({
-      title: '加载中',
-    })
+    let that = this;
+    let scene = wx.getStorageSync('scene');
+
     // 获取 token
     loginModel.getToken((res) => {
-      // 全局设置token
-      console.log(res, 'getToken')
+
       let locToken = res.data.token
+      that.setData({
+        token: locToken
+      })
+
       wx.setStorage({
         key: 'token',
-        data: res.data.token,
-        success: function(res) {
-          console.log(res)
-        },
-
+        data: res.data.token
       })
-      app.globalData.token = locToken
+
       // 登录
       loginModel.login(locToken, res => {
-        console.log(res, 'login')
+
         if (res.message == "ok") {
           // 获取用户信息
           loginModel.getUsers(locToken, function(res) {
-            console.log(res, 'getUsers')
+
             if (res.message == 'ok') {
-              app.globalData.userInfo = res.data
+              console.log("接口返回的用户信息",res.data)
               wx.setStorage({
                 key: 'userInfo',
-                data: res.data,
-                success: function(res) {
-                  console.log(res)
-                },
-
+                data: res.data
               })
-              wx.showToast({
-                title: '成功',
-                icon: 'success',
-                duration: 2000,
-                success(res) {
-                  wx.navigateBack({
-                    delta: 1
+              console.log('inviting')
+              if (scene && res.data.id > 20 && res.data.invite_id == 0) {
+                mineModel.inviting(this.data.token, scene, res => {
+                  console.log(res, '邀请成功')
+                  wx.showToast({
+                    title: '邀请成功',
+                    icon: 'success',
+                    duration: 2000,
                   })
-                }
-              })
+                  setTimeout(() => {
+                    wx.navigateBack({
+                      delta: 1,
+                    })
+                  }, 2000)
+                })
+              } else {
+                wx.showToast({
+                  title: '成功',
+                  icon: 'success',
+                  duration: 2000,
+                })
+                setTimeout(() => {
+                  wx.navigateBack({
+                    delta: 1,
+                  })
+                }, 2000)
+              }
+
             }
           })
         }

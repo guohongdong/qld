@@ -1,9 +1,12 @@
 // pages/mine/collect/collect.js
-let goodsData = require('../../../data/data.js')
+import {
+  GoodsModel
+} from "../../../models/goods.js"
 import {
   MineModel
 } from '../../../models/mine.js'
 
+let goodsModel = new GoodsModel();
 let mineModel = new MineModel();
 Page({
 
@@ -11,15 +14,15 @@ Page({
    * 页面的初始数据
    */
   data: {
+    page: 1,
     token: '',
     userInfo: {
-      id: 1
+      id: '',
     },
     collectList: [],
-    start: [1, 1, 1, 1, 0],
-    items: [],
     startX: 0, //开始坐标
-    startY: 0
+    startY: 0,
+    loadMore: true
   },
 
   /**
@@ -35,15 +38,6 @@ Page({
       })
       this._getCollections()
     }
-    for (var i = 0; i < 10; i++) {
-      this.data.items.push({
-        content: i + " 向左滑动,向左滑动删除哦,向左滑动删除哦",
-        isTouchMove: false //默认全隐藏删除
-      })
-    }
-    this.setData({
-      items: this.data.items
-    })
   },
   //手指触摸动作开始 记录起点X坐标
   touchstart: function(e) {
@@ -63,7 +57,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-  
+
   },
 
   /**
@@ -77,7 +71,7 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function() {
-   
+
   },
 
   /**
@@ -106,6 +100,11 @@ Page({
    */
   onShareAppMessage: function() {
 
+  },
+  callPhone(e) {
+    wx.makePhoneCall({
+      phoneNumber: e.target.dataset.phone
+    })
   },
   touchmove: function(e) {
     var that = this,
@@ -150,19 +149,44 @@ Page({
     return 360 * Math.atan(_Y / _X) / (2 * Math.PI);
   },
   //删除事件
-  del: function(e) {
+  _delCollections: function(e) {
     this.data.collectList.splice(e.currentTarget.dataset.index, 1)
     this.setData({
       collectList: this.data.collectList
     })
+    goodsModel.delCollections(this.data.token, e.target.dataset.shopid, res => {
+      if (res.message == 'ok') {
+        wx.showToast({
+          title: '取消收藏',
+          icon: 'success',
+          duration: 2000
+        })
+      }
+    })
   },
   _getCollections() {
+
+    if (!this.data.loadMore) {
+      return;
+    }
     let token = this.data.token;
     let userId = this.data.userInfo.id;
-    mineModel.getCollections(token, userId, res => {
-      this.setData({
-        collectList: res.data.shop_collection.data
-      })
+
+    mineModel.getCollections(token, userId, this.data.page, res => {
+      if (res.message == 'ok') {
+        if (res.data.shop_collection.data.length == 0) {
+          this.setData({
+            loadMore: false
+          })
+          return;
+        }
+        let list = this.data.collectList.concat(res.data.shop_collection.data)
+        let page = this.data.page + 1;
+        this.setData({
+          collectList: list,
+          page: page
+        })
+      }
     })
   }
 })

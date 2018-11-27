@@ -15,7 +15,6 @@ Component({
   },
   attached: function() {
     let arr = this.convertToStarsArray(this.properties.start)
-    console.log(arr)
     this.setData({
       startArr: arr
     })

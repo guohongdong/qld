@@ -5,8 +5,8 @@
       <image class='refresh' src='/assets/images/refresh.png' bindtap='refreshLocation'></image>
       <navigator url='/pages/index/business/business'>当前位置: {{currentCity}}</navigator>
     </view>
-    <van-tabs active="{{ active }}" bind:change="onChangeTab">
-      <van-tab wx:for="{{shopTypeList}}" title="{{item.name}}" id='' wx:key="index">
+    <van-tabs active="{{ active }}" bind:click="onChangeTab">
+      <van-tab wx:for="{{shopTypeList}}" title="{{item.name}}" data-shop='{{item.id}}' wx:key="index">
       </van-tab>
     </van-tabs>
     <block wx:if="{{index==0}}">

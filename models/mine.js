@@ -34,11 +34,14 @@ class MineModel extends Http {
   /* 
     获取朋友列表
    */
-  getFriends(token, success) {
+  getFriends(token, page, success) {
     let params = {
       url: '/api/friends',
       header: {
         'token': token
+      },
+      data: {
+        page: page
       },
       success: success
     }
@@ -47,11 +50,14 @@ class MineModel extends Http {
   /* 
     获取消息列表
    */
-  getMessages(token, success) {
+  getMessages(token, page, success) {
     let params = {
       url: '/api/inviting-messages',
       header: {
         'token': token
+      },
+      data: {
+        page: page
       },
       success: success
     }
@@ -71,15 +77,32 @@ class MineModel extends Http {
     }
     this.request(params)
   }
+  /* 
+    邀请消息处理
+   */
+  changeMessage(token, id, status, success) {
+    let params = {
+      url: '/api/inviting-messages/' + id + '/status/' + status,
+      method: 'PUT',
+      header: {
+        'token': token
+      },
+      success: success
+    }
+    this.request(params)
+  }
 
   /* 
    获取收藏列表
   */
-  getCollections(token, id, success) {
+  getCollections(token, id, page, success) {
     let params = {
       url: '/api/user/collections',
       header: {
         token: token
+      },
+      data: {
+        page: page
       },
       success: success,
 

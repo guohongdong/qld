@@ -36,6 +36,7 @@ Page({
       comment_num: 0,
       star_level: 0
     },
+    commentList: [],
     imgUrls: [
       'https://image.kuaiqiangche.com/data/attachment/2017-12-28/1514436238英朗.jpg?imageView2/2/w/526/interlace/1',
       'https://image.kuaiqiangche.com/data/attachment/2018-07-25/5b57deefea32d.jpg?imageView2/2/w/526/interlace/1',
@@ -48,11 +49,7 @@ Page({
       time: '2018/09/16 21:09',
       content: 'sdlf吉林省吉林市十多个时光飞逝根深蒂固sdlf吉林省吉林市十多个时光飞逝根深蒂固',
       img: '//iconfont.alicdn.com/t/1493123647101.png@100h_100w.jpg',
-      images: [
-        "//iconfont.alicdn.com/t/1493123647101.png@100h_100w.jpg",
-        "//iconfont.alicdn.com/t/1493123647101.png@100h_100w.jpg",
-        "//iconfont.alicdn.com/t/1493123647101.png@100h_100w.jpg"
-      ],
+
       start: [1, 1, 1, 0, 0]
     },
     collect: false,
@@ -223,8 +220,11 @@ Page({
     })
   },
   _commentList() {
-    goodsModel.commentList(this.data.token, this.data.id, res => {
+    goodsModel.commentList(this.data.token, this.data.shopId, res => {
       console.log(res)
+      this.setData({
+        commentList: res.data.comments.data
+      })
     })
   }
 })
