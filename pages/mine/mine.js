@@ -20,15 +20,12 @@ Page({
    */
   onLoad: function(options) {
 
-    console.log('onLoad', 'mine')
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
-    console.log('onReady', 'mine')
-  },
+  onReady: function() {},
 
   /**
    * 生命周期函数--监听页面显示
@@ -54,16 +51,12 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
-    console.log('onHide', 'mine')
-  },
+  onHide: function() {},
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
-    console.log('onUnload', 'mine')
-  },
+  onUnload: function() {},
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
@@ -83,18 +76,6 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function() {
-
-  },
-  sCan() {
-    wx.scanCode({
-      onlyFromCamera: true,
-      success(res) {
-        console.log(res)
-      }
-    })
-  },
-  getUsers(token) {
-
 
   }
 })

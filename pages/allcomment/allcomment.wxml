@@ -1,0 +1,10 @@
+<!--pages/allcomment/allcomment.wxml-->
+<scroll-view scroll-y class='order-container' bindscrolltolower='_commentList'>
+  <block wx:for="{{commentList}}" wx:key="{{index}}">
+     <comment-cmp info="{{item}}"></comment-cmp>
+  </block>
+
+  <view class='no-data' wx:if="{{commentList.length>0&&!loadMore}}">
+    <text>— 没有更多数据 —</text>
+  </view>
+</scroll-view>

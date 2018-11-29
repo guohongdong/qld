@@ -1,5 +1,4 @@
 // pages/share/share.js
-let goodsData = require('../../data/data.js')
 import {
   GoodsModel
 } from "../../models/goods.js"
@@ -18,28 +17,18 @@ Page({
       name: '',
       image: [],
       market_price: '',
-      last_price: '',
-      bargain_num: '',
-      desc: "",
-      is_appointing: '',
-      is_unsubscribe: '',
-      shop_id: ''
+      last_price: ''
     },
     shop_info: {
       id: '',
       shop_name: "",
       avatar: "",
       address: "",
-      mobile: "",
-      exchange_time: "",
-      exchange_span: 1
+      mobile: ""
     },
-    statistics: {
-      comment_num: 0,
-      star_level: 5
-    },
+    comment_num: 0,
+    star_level: [0, 0, 0, 0, 0],
     recordsList: [],
-    goodsList: goodsData.goodsList[0],
   },
 
   /**
@@ -48,16 +37,10 @@ Page({
   onLoad: function(options) {
     let id = options.id
     let shopId = options.shopId
-    let token = wx.getStorageSync('token')
     this.setData({
       id: id,
-      shopId: shopId,
-      token: token
+      shopId: shopId
     })
-
-    this._getProductDetail();
-    this._getShop()
-    this._bargainRecords()
   },
 
   /**
@@ -71,7 +54,15 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    let token = wx.getStorageSync('token')
+    if (token) {
+      this.setData({
+        token: token
+      })
+    }
+    this._getProductDetail();
+    this._getShop()
+    this._bargainRecords()
   },
 
   /**
@@ -110,7 +101,7 @@ Page({
       // 来自页面内转发按钮
       return {
         title: this.data.product_info.name,
-        path: '/pages/share/share?id=' + this.data.id,
+        path: '/pages/share/share?id=' + this.data.id + '&shopId=' + this.data.shopId,
         imageUrl: this.data.product_info.image[0]
       }
     }
@@ -130,9 +121,11 @@ Page({
   // 获取店铺详情
   _getShop() {
     goodsModel.getShop(this.data.shopId, res => {
+      console.log(res.data.statistics.star_level)
       this.setData({
         shop_info: res.data.shop_info,
-        statistics: res.data.statistics
+        star_level: this.convertToStarsArray(res.data.statistics.star_level),
+        comment_num: res.data.statistics.comment_num
       })
     })
   },
@@ -148,9 +141,12 @@ Page({
 
     goodsModel.bargain(this.data.token, this.data.id, res => {
       if (res.message == 'ok') {
-        console.log(res)
+        this._getProductDetail();
+        this._bargainRecords()
+        this.setData({
+          isShowBargain: false
+        })
       } else {
-        console.log(res)
         wx.showToast({
           title: res.message,
         })
@@ -159,7 +155,18 @@ Page({
       this.setData({
         isShowBargain: false
       })
-      console.log(error)
     })
+  },
+  convertToStarsArray(stars) {
+    var num = stars.toString().substring(0, 1);
+    var array = [];
+    for (var i = 1; i <= 5; i++) {
+      if (i <= num) {
+        array.push(1);
+      } else {
+        array.push(0);
+      }
+    }
+    return array;
   }
 })

@@ -1,10 +1,10 @@
 <!--pages/order/order.wxml-->
 <scroll-view scroll-y class='order-container' bindscrolltolower='_orderList'>
   <block wx:for="{{orderList}}" wx:key="{{index}}">
-    <order-item-cpm order="{{item}}" bind:goToComment="goToComment" bind:goToConsume="goToConsume"></order-item-cpm>
+    <order-item-cpm order="{{item}}" bind:goToComment="goToComment" bind:goToConsume="goToConsume" data-productid="{{item.product_id}}" data-shopid="{{item.shop_id}}" bindtap='bindtap'></order-item-cpm>
   </block>
   <view class='no-order' wx:if="{{orderList.length==0}}">暂无订单</view>
   <view class='no-data' wx:if="{{orderList.length>0&&!loadMore}}">
-    <text>— 没有更多数据 —</text>
+    <text bindtap=''>— 没有更多数据 —</text>
   </view>
 </scroll-view>

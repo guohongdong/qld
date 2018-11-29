@@ -66,14 +66,15 @@ class MineModel extends Http {
   /* 
     扫码邀请
    */
-  inviting(token, id, success) {
+  inviting(token, id, success,error) {
     let params = {
       url: '/api/inviting-messages/invite_member_id/' + id,
       method: 'POST',
       header: {
         'token': token
       },
-      success: success
+      success: success,
+      error: error
     }
     this.request(params)
   }

@@ -14,13 +14,14 @@
     "pages/order/order",
     "pages/agreement/agreement",
     "pages/mine/qrcode/qrcode",
-    "pages/order-unclaimed/order-unclaimed"
+    "pages/allcomment/allcomment"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "抢乐多",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "black",    
+    "backgroundColor":"#e4e4e4"
   },
   "tabBar": {
     "borderStyle": "black",

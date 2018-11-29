@@ -173,6 +173,7 @@ Page({
     let userId = this.data.userInfo.id;
 
     mineModel.getCollections(token, userId, this.data.page, res => {
+      let that = this;
       if (res.message == 'ok') {
         if (res.data.shop_collection.data.length == 0) {
           this.setData({
@@ -181,6 +182,9 @@ Page({
           return;
         }
         let list = this.data.collectList.concat(res.data.shop_collection.data)
+        list.forEach(function(item) {
+          item.statistics.star_level = that.convertToStarsArray(item.statistics.star_level)
+        })
         let page = this.data.page + 1;
         this.setData({
           collectList: list,
@@ -188,5 +192,17 @@ Page({
         })
       }
     })
+  },
+  convertToStarsArray(stars) {
+    var num = stars.toString().substring(0, 1);
+    var array = [];
+    for (var i = 1; i <= 5; i++) {
+      if (i <= num) {
+        array.push(1);
+      } else {
+        array.push(0);
+      }
+    }
+    return array;
   }
 })

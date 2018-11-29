@@ -1,12 +1,12 @@
 <!--components/goods/goods.wxml-->
 <view class='{{borderBottom?"border-bottom goods-cmp":"goods-cmp"}}' bindtap='onTapItem'>
-  <image src='{{goods.image[0]}}' class='goods-img' wx:if="{{goods.image.length}}" ></image>
+  <image src='{{goods.image[0]}}' class='goods-img' wx:if="{{goods.image.length}}"></image>
   <view class='goods-info'>
     <view class='goods-detail'>
       <text class='goods-title'>{{goods.name}}</text>
       <view class='goods-location'>
         <text class='goods-address'>{{goods.address}}</text>
-        <text class='goods-distance'>{{goods.distance}}米</text>
+        <text class='goods-distance'>{{goods.distance}}</text>
       </view>
       <view class='goods-look'>
         <view class='goods-look-item'>
@@ -27,7 +27,7 @@
       <view>
         <button wx:if="{{status==1}}" class='goods-price-btn' catchtap='bargain'>砍价</button>
         <text wx:if="{{status==0}}" catchtap="nodata" class='goods-price-btn goods-price-no'>卖光了</text>
-        <button wx:if="{{status==6}}" open-type="share" catchtap="share" data-imageUrl="{{goods.image[0]}}" data-id="{{goods.id}}" data-name="{{goods.name}}" class='goods-price-btn goods-price-again'>再砍</button>
+        <button wx:if="{{status==6}}" open-type="share" catchtap="share" data-imageUrl="{{goods.image[0]}}" data-id="{{goods.id}}" data-name="{{goods.name}}" data-shopid="{{goods.shop_id}}" class='goods-price-btn goods-price-again'>再砍</button>
       </view>
     </view>
   </view>

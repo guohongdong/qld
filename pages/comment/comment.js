@@ -85,7 +85,6 @@ Page({
 
   },
   bindinput(e) {
-    console.log(e.detail.value)
     this.setData({
       content: e.detail.value
     })
@@ -96,7 +95,6 @@ Page({
       star_level: this.data.score
     }
     goodsModel.createComment(this.data.token, this.data.id, data, res => {
-      console.log(res)
       if (res.message == 'ok') {
         wx.showToast({
           title: '评论成功',
@@ -104,8 +102,8 @@ Page({
           duration: 2000,
         })
         setTimeout(() => {
-          wx.navigateBack({
-            delta: 1
+          wx.navigateTo({
+            url: '/pages/order/order?type=all',
           })
         }, 2000)
       }

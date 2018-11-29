@@ -1,6 +1,6 @@
 <!--pages/index/business/business.wxml-->
 <view class='bus-container'>
-  <view class='bus-curr'>当前位置: {{currentLocation}}</view>
+  <view class='bus-curr'>当前位置: {{currentCity}}</view>
   <view class='bus-select'>
     <block wx:if="{{cityList.length}}">
       <text wx:for="{{cityList}}" wx:key="index" bindtap='selectCity' data-name="{{item.name}}" data-latitude="{{item.point[0].lat}}" data-longitude="{{item.point[0].lng}}">{{item.name}}</text>

@@ -1,9 +1,0 @@
-/* pages/order-unclaimed/order-unclaimed.wxss */
-page {
-  height: 100%;
-  background: #fff;
-}
-
-.order-container {
-  padding: 20rpx 0;
-}

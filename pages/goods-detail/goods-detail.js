@@ -32,26 +32,10 @@ Page({
       exchange_time: "",
       exchange_span: 1
     },
-    statistics: {
-      comment_num: 0,
-      star_level: 0
-    },
+    comment_num: 0,
+    star_level: [0, 0, 0, 0, 0],
     commentList: [],
-    imgUrls: [
-      'https://image.kuaiqiangche.com/data/attachment/2017-12-28/1514436238英朗.jpg?imageView2/2/w/526/interlace/1',
-      'https://image.kuaiqiangche.com/data/attachment/2018-07-25/5b57deefea32d.jpg?imageView2/2/w/526/interlace/1',
-      'https://image.kuaiqiangche.com/data/attachment/2018-09-11/5b973230bead7.jpg?imageView2/2/w/526/interlace/1',
-    ],
     start: [1, 1, 1, 1, 0],
-    // 
-    commentInfo: {
-      name: '记录历史刘看山',
-      time: '2018/09/16 21:09',
-      content: 'sdlf吉林省吉林市十多个时光飞逝根深蒂固sdlf吉林省吉林市十多个时光飞逝根深蒂固',
-      img: '//iconfont.alicdn.com/t/1493123647101.png@100h_100w.jpg',
-
-      start: [1, 1, 1, 0, 0]
-    },
     collect: false,
     collected: '/assets/images/collection_fill.png',
     notCollect: '/assets/images/collection.png'
@@ -61,17 +45,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    console.log(options.id)
     this.setData({
       id: options.id,
       shopId: options.shopId
     })
-    let token = wx.getStorageSync('token')
-    if (token) {
-      this.setData({
-        token: token
-      })
-    }
   },
 
   /**
@@ -85,9 +62,15 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
+    let token = wx.getStorageSync('token')
+    if (token) {
+      this.setData({
+        token: token
+      })
+      this._hasCollections();
+    }
     this._getProductDetail();
     this._getShop();
-    this._hasCollections();
     this._pageView();
     this._commentList();
 
@@ -134,15 +117,13 @@ Page({
       success: function(res) {
         if (res.confirm) {
           that._createOrder()
-        } else if (res.cancel) {
-          console.log('用户点击取消')
-        }
+        } else if (res.cancel) {}
       }
     })
   },
-  onCollect() {
-    this.setData({
-      collect: !this.data.collect
+  callPhone(e) {
+    wx.makePhoneCall({
+      phoneNumber: e.target.dataset.phone
     })
   },
   // 获取商品详情
@@ -156,23 +137,20 @@ Page({
   // 获取店铺详情
   _getShop() {
     goodsModel.getShop(this.data.shopId, res => {
-      console.log(res, '商家信息')
       this.setData({
         shop_info: res.data.shop_info,
-        statistics: res.data.statistics
+        star_level: this.convertToStarsArray(res.data.statistics.star_level),
+        comment_num: res.data.statistics.comment_num
       })
     })
   },
   // 更新浏览量
   _pageView() {
-    goodsModel.pageView(this.data.id, res => {
-      console.log(res)
-    })
+    goodsModel.pageView(this.data.id, res => {})
   },
   // 检测收藏
   _hasCollections() {
     goodsModel.hasCollections(this.data.token, this.data.shopId, res => {
-      console.log(res)
       this.setData({
         collect: res.data.if_collected
       })
@@ -181,7 +159,6 @@ Page({
   // 取消收藏
   _delCollections() {
     goodsModel.delCollections(this.data.token, this.data.shopId, res => {
-      console.log(res)
       if (res.message == 'ok') {
         wx.showToast({
           title: '取消收藏',
@@ -197,7 +174,6 @@ Page({
   // 收藏
   _setCollections() {
     goodsModel.setCollections(this.data.token, this.data.shopId, res => {
-      console.log(res)
       if (res.message == 'ok') {
         wx.showToast({
           title: '收藏成功',
@@ -217,14 +193,28 @@ Page({
         icon: 'success',
         duration: 2000
       })
+      wx.navigateTo({
+        url: '/pages/order/order?type=0'
+      })
     })
   },
   _commentList() {
     goodsModel.commentList(this.data.token, this.data.shopId, res => {
-      console.log(res)
       this.setData({
         commentList: res.data.comments.data
       })
     })
+  },
+  convertToStarsArray(stars) {
+    var num = stars.toString().substring(0, 1);
+    var array = [];
+    for (var i = 1; i <= 5; i++) {
+      if (i <= num) {
+        array.push(1);
+      } else {
+        array.push(0);
+      }
+    }
+    return array;
   }
 })

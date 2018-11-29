@@ -19,14 +19,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    let title = '';
     this.setData({
       type: options.type
     })
-    let token = wx.getStorageSync('token')
-    this.setData({
-      token: token
+    if (options.type == 0) {
+      title = '未领用订单'
+    } else if (options.type == 1) {
+      title = '待评论订单'
+    } else {
+      title = '全部订单'
+    }
+    wx.setNavigationBarTitle({
+      title: title
     })
-    this._orderList()
   },
 
   /**
@@ -40,7 +46,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    let token = wx.getStorageSync('token')
+    if (token) {
+      this.setData({
+        token: token
+      })
+      this._orderList()
+    }
   },
 
   /**
@@ -77,14 +89,17 @@ Page({
   onShareAppMessage: function() {
 
   },
+  bindtap(event) {
+    wx.navigateTo({
+      url: "/pages/goods-detail/goods-detail?id=" + event.currentTarget.dataset.productid + "&shopId=" + event.currentTarget.dataset.shopid
+    })
+  },
   goToComment(e) {
-    console.log(e.detail)
     wx.navigateTo({
       url: "/pages/comment/comment?id=" + e.detail.id + '&shop_address=' + e.detail.shop_address + '&shop_name=' + e.detail.shop_name
     })
   },
   goToConsume(e) {
-    console.log(e.detail)
     wx.navigateTo({
       url: "/pages/goods-pay/goods-pay?id=" + e.detail.id
     })

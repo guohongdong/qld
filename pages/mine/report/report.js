@@ -2,7 +2,6 @@
 import {
   MineModel
 } from "../../../models/mine.js"
-import Toast from '../../../miniprogram_npm/vant-weapp/toast/index'
 
 let mineModel = new MineModel();
 Page({

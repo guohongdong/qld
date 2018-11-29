@@ -19,21 +19,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    console.log(options.category)
-    let token = wx.getStorageSync('token');
-    if (token) {
-      this.setData({
-        token: token,
-      })
-    }
     this.setData({
       category: options.category
     })
-    if (options.category == "friend") {
-      this._getFriends()
-    } else {
-      this._getMessages()
-    }
   },
 
   /**
@@ -47,7 +35,18 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
+    let token = wx.getStorageSync('token');
+    if (token) {
+      this.setData({
+        token: token,
+      })
 
+      if (this.data.category == "friend") {
+        this._getFriends()
+      } else {
+        this._getMessages()
+      }
+    }
   },
 
   /**
@@ -135,11 +134,9 @@ Page({
     })
   },
   _changeMessage(e) {
-    console.log(e.target.dataset.id, e.target.dataset.status)
     let id = e.target.dataset.id;
     let status = e.target.dataset.status;
     mineModel.changeMessage(this.data.token, id, status, res => {
-      console.log(res)
       wx.showToast({
         title: '处理成功',
         icon: 'success',

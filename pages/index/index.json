@@ -1,10 +1,10 @@
 {
   "usingComponents": {
-    "nav-cmp": "/components/nav/nav",
     "goods-cmp": "/components/goods/goods",
     "van-button": "/miniprogram_npm/vant-weapp/button/index",
     "van-tab": "/miniprogram_npm/vant-weapp/tab/index",
     "van-tabs": "/miniprogram_npm/vant-weapp/tabs/index",
     "van-search": "/miniprogram_npm/vant-weapp/search/index"
-  }
+  },
+  "enablePullDownRefresh": true
 }

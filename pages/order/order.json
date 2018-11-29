@@ -2,7 +2,6 @@
  "usingComponents": {
     "van-tab": "/miniprogram_npm/vant-weapp/tab/index",
     "van-tabs": "/miniprogram_npm/vant-weapp/tabs/index",
-    "nodata-cpm": "/components/nodata/nodata",
     "order-item-cpm": "/components/order-item/order-item"
 
   }

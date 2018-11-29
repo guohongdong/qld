@@ -1,7 +1,6 @@
 {
   "navigationBarTitleText": "商品详情",
   "usingComponents": {
-    "tel-cmp": "/components/tel/tel",
     "start-cmp": "/components/start/start",
     "comment-cmp": "/components/comment/comment",
     "van-submit-bar": "/miniprogram_npm/vant-weapp/submit-bar/index"

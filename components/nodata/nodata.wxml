@@ -1,5 +1,0 @@
-<!--components/nodata/nodata.wxml-->
-<view class='nodata-cmp'>
-  <image src='/assets/images/document.png'></image>
-  <text>暂无订单</text>
-</view>

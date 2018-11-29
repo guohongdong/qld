@@ -29,7 +29,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    console.log(options)
     let token = wx.getStorageSync('token');
     if (token) {
       this.setData({
@@ -106,7 +105,6 @@ Page({
       code: this.data.code
     }
     goodsModel.orderStatus(this.data.token, this.data.id, data, res => {
-      console.log(res)
       if (res.message == 'ok') {
         wx.showToast({
           title: '验证成功',
@@ -114,8 +112,8 @@ Page({
           duration: 2000,
         })
         setTimeout(function() {
-          wx.navigateBack({
-            delta: 1
+          wx.navigateTo({
+            url: '/pages/order/order?type=1'
           })
         }, 2000)
       }

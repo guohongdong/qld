@@ -8,7 +8,7 @@
     </block>
   </swiper>
   <view class='goods-purchasing'>
-    {{product_info.bargain_num}}人正在抢购，只剩1个了
+    {{product_info.bargain_num}}人正在抢购...
   </view>
   <view class='goods-detail-info'>
     <text class='goods-detail-name'>{{product_info.name}}</text>
@@ -21,8 +21,8 @@
     <image class='goods-detail-logo' src='{{shop_info.avatar}}'></image>
     <view class='goods-detail-shopname'>
       <text>{{shop_info.shop_name}}</text>
-      <start-cmp :start="{{statistics.star_level}}">
-        <view class='start-comment'>{{statistics.comment_num}}条评论</view>
+      <start-cmp start="{{star_level}}">
+        <view class='start-comment'>{{comment_num}}条评论</view>
       </start-cmp>
     </view>
   </view>
@@ -31,7 +31,7 @@
       <image src='/assets/images/goods-detail/coordinates_fill.png' class='goods-detail-addressicon'></image>
       <text>{{shop_info.address}}</text>
     </view>
-    <image src='/assets/images/goods-detail/mobilephone_fill.png' class='goods-detail-phone'></image>
+    <image src='/assets/images/goods-detail/mobilephone_fill.png' class='goods-detail-phone' data-phone="{{shop_info.mobile}}" bindtap='callPhone'></image>
   </view>
   <view class='goods-detail-tag'>
     <text>有效期7天</text>
@@ -40,8 +40,8 @@
   </view>
   <view class='goods-detail-tips'>
     <view class='goods-detail-time'>
-      <text>兑换时间：9:00-21:00</text>
-      <text>每人每七天每店铺兑换1次</text>
+      <text>兑换时间：{{shop_info.exchange_time}}</text>
+      <text>每人每{{shop_info.exchange_span}}天每店铺兑换1次</text>
     </view>
     <view class='goods-detail-tip'>
       <text>温馨提示：因为该商品是活动产品，故不支持退换</text>
@@ -52,10 +52,18 @@
     <view class='goods-comment-title'>
       <text>用户评论</text>
     </view>
-    <block wx:for="{{commentList}}" wx:key="{{index}}">
-      <comment-cmp info="{{item}}"></comment-cmp>
+    <block wx:if="{{commentList.length>0}}">
+      <block wx:for="{{commentList}}" wx:key="{{index}}">
+        <comment-cmp info="{{item}}" start=""></comment-cmp>
+      </block>
+      <navigator url='{{"/pages/allcomment/allcomment?shopId="+ shop_info.id}}' class='goods-detail-allcomment'>查看全部评论</navigator>
     </block>
-    <navigator url='' class='goods-detail-allcomment'>查看全部评论</navigator>
+    <block wx:else>
+      <view class='nocomment'>
+        <text>暂无评论</text>
+      </view>
+    </block>
+
   </view>
   <view class='goods-detail-submit'>
     <navigator class='goods-detail-submit-item' open-type="switchTab" url='/pages/index/index'>

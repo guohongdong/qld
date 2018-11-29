@@ -1,9 +1,7 @@
-// pages/index/business/business.js
+// pages/allcomment/allcomment.js
 import {
   GoodsModel
-} from '../../../models/goods.js'
-var QQMapWX = require('../../../utils/qqmap-wx-jssdk.min.js');
-
+} from "../../models/goods.js"
 let goodsModel = new GoodsModel();
 Page({
 
@@ -11,16 +9,19 @@ Page({
    * 页面的初始数据
    */
   data: {
-    cityList: [],
-    currentLocation: ''
-
+    page: 1,
+    shopId: '',
+    loadMore: true,
+    commentList: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    this.setData({
+      shopId: options.shopId
+    })
   },
 
   /**
@@ -34,17 +35,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    let currentCity = wx.getStorageSync('currentCity')
+    let token = wx.getStorageSync('token')
     this.setData({
-      currentCity: currentCity
+      token: token
     })
-    goodsModel.getShopAreas(res => {
-      if (res.message == 'ok') {
-        this.setData({
-          cityList: res.data.shop_area_list
-        })
-      }
-    })
+    this._commentList()
   },
 
   /**
@@ -81,25 +76,27 @@ Page({
   onShareAppMessage: function() {
 
   },
-  selectCity(e) {
-    this.setData({
-      currentCity: e.target.dataset.name
-    })
-    wx.setStorage({
-      key: 'location',
-      data: {
-        latitude: e.target.dataset.latitude,
-        longitude: e.target.dataset.longitude
+  _commentList() {
+    if (!this.data.loadMore) {
+      return;
+    }
+
+    goodsModel.commentList(this.data.token, this.data.shopId, res => {
+      if (res.message == 'ok') {
+        if (res.data.comments.data.length == 0) {
+          this.setData({
+            loadMore: false
+          })
+          return;
+        }
+
+        let list = this.data.commentList.concat(res.data.comments.data)
+        let page = this.data.page + 1;
+        this.setData({
+          commentList: list,
+          page: page
+        })
       }
     })
-    wx.setStorage({
-      key: 'currentCity',
-      data: e.target.dataset.name
-    })
-    setTimeout(() => {
-      wx.navigateBack({
-        delta: 1
-      })
-    }, 500)
   }
 })

@@ -45,7 +45,6 @@ class LoginModel extends Http {
             lang:'zh_CN',
             success: function(res) {
               let userInfolocal = res.userInfo;
-              console.log(userInfolocal)
               params.data = {
                 "token": token,
                 "userInfo[nickName]": userInfolocal['nickName'],

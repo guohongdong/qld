@@ -6,14 +6,9 @@
       <text>{{info.user_name}}</text>
       <text>{{info.created_at}}</text>
     </view>
-    <start-cmp start="{{info.star_level}}" class="comment-cmp-start"></start-cmp>
+    <start-cmp start="{{start}}" class="comment-cmp-start"></start-cmp>
   </view>
   <view class='comment-cmp-bot'>
-    <text>{{info.content}}</text>
-    <!-- <view wx:if="{{info.images.length>0}}">
-      <block wx:for="{{info.images}}" wx:key="{{index}}">
-        <image src='{{item}}'></image>
-      </block>
-    </view> -->
+    {{info.content}}
   </view>
 </view>

@@ -97,20 +97,23 @@ Page({
           loginModel.getUsers(locToken, function(res) {
 
             if (res.message == 'ok') {
-              console.log("接口返回的用户信息",res.data)
               wx.setStorage({
                 key: 'userInfo',
                 data: res.data
               })
-              console.log('inviting')
-              if (scene && res.data.id > 20 && res.data.invite_id == 0) {
+              if (scene && res.data.invite_id == 0) {
                 mineModel.inviting(this.data.token, scene, res => {
-                  console.log(res, '邀请成功')
                   wx.showToast({
                     title: '邀请成功',
                     icon: 'success',
                     duration: 2000,
                   })
+                  setTimeout(() => {
+                    wx.navigateBack({
+                      delta: 1,
+                    })
+                  }, 2000)
+                }, err => {
                   setTimeout(() => {
                     wx.navigateBack({
                       delta: 1,

@@ -48,21 +48,9 @@
 
 .comment-cmp-bot {
   padding: 20rpx 0 0 70rpx;
-  display: flex;
-  flex-direction: column;
-}
-
-.comment-cmp-bot text {
-  color: #666;
+   color: #666;
   font-size: 26rpx;
   line-height: 32rpx;
-  margin-bottom: 15rpx;
-}
-.comment-cmp-bot image {
-  width: 180rpx;
-  height: 180rpx;
-  margin-right: 15rpx;
-  margin-bottom: 15rpx;
-  vertical-align: middle;
-  
+   margin-bottom: 15rpx;
+   overflow: hidden
 }

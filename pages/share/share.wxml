@@ -33,8 +33,8 @@
     <image class='goods-detail-logo' src='{{ shop_info.avatar}}'></image>
     <view class='goods-detail-shopname'>
       <text>{{ shop_info.shop_name}}</text>
-      <start-cmp start="{{statistics.star_level}}">
-        <view class='start-comment'>{{statistics.comment_num}} 条评论</view>
+      <start-cmp start="{{star_level}}">
+        <view class='start-comment'>{{comment_num}} 条评论</view>
       </start-cmp>
     </view>
   </view>
@@ -51,7 +51,7 @@
     <navigator class='onBargain' open-type="switchTab" url="/pages/index/index" hover-class="navigator-hover">
       <button>去首页</button>
     </navigator>
-    <navigator class='goto' open-type="switchTab" url="/pages/index/index" hover-class="navigator-hover">去抢购 ></navigator>
+    <navigator class='goto' url="{{'/pages/goods-detail/goods-detail'+'?id='+id+'&shopId='+shopId}}" hover-class="navigator-hover">去抢购 ></navigator>
   </view>
   <view class='share-user-content'>
     <text class='share-user-title'>今天传播我的({{recordsList.length}}人)</text>
