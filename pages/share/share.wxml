@@ -1,25 +1,10 @@
 <!--pages/share/share.wxml-->
-<!--components/goods/goods.wxml-->
 <view>
   <view class='border-bottom goods-cmp' bindtap='onTap'>
     <image src='{{product_info.image[0]}}' class='goods-img'></image>
     <view class='goods-info'>
       <view class='goods-detail'>
         <text class='goods-title'>{{product_info.name}}</text>
-        <!-- <view class='goods-location'>
-          <text class='goods-address'>{{product_info.name}}</text>
-          <text class='goods-distance'>{{product_info.name}}米</text>
-        </view> -->
-        <!-- <view class='goods-look'>
-          <view class='goods-look-item'>
-            <image src='./images/browse.png' class='goods-look-icon'></image>
-            <text>{{}}</text>
-          </view>
-          <view class='goods-look-item'>
-            <image src='./images/createtask.png' class='goods-look-icon'></image>
-            <text>99999</text>
-          </view>
-        </view> -->
       </view>
       <view class='goods-price'>
         <view>

@@ -2,8 +2,8 @@
 import {
   GoodsModel
 } from '../../../models/goods.js'
-var QQMapWX = require('../../../utils/qqmap-wx-jssdk.min.js');
-
+let QQMapWX = require('../../../utils/qqmap-wx-jssdk.min.js');
+let qqmapsdk;
 let goodsModel = new GoodsModel();
 Page({
 
@@ -12,15 +12,53 @@ Page({
    */
   data: {
     cityList: [],
-    currentLocation: ''
-
+    currentLocation: '',
+    latitude: '',
+    longitude: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    let that = this;
+    wx.getLocation({
+      type: 'wgs84',
+      success: function(res) {
 
+        const latitude = res.latitude;
+        const longitude = res.longitude;
+        qqmapsdk = new QQMapWX({
+          key: 'NLRBZ-UTCWU-22RVQ-B6XQO-6IPO7-H7BSJ'
+        });
+        qqmapsdk.reverseGeocoder({
+          location: {
+            latitude: latitude,
+            longitude: longitude
+          },
+          coord_type: 1,
+          success: function(res) {
+            let currentCity = res.result.address
+            that.setData({
+              currentCity: currentCity,
+              latitude: latitude,
+              longitude: longitude
+            })
+            wx.setStorage({
+              key: 'currentCity',
+              data: currentCity,
+            })
+          }
+        });
+        wx.setStorage({
+          key: 'location',
+          data: {
+            latitude: latitude,
+            longitude: longitude
+          },
+        })
+      }
+    })
   },
 
   /**
@@ -34,10 +72,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    let currentCity = wx.getStorageSync('currentCity')
-    this.setData({
-      currentCity: currentCity
-    })
+    // let currentCity = wx.getStorageSync('currentCity')
+    // this.setData({
+    //   currentCity: currentCity
+    // })
     goodsModel.getShopAreas(res => {
       if (res.message == 'ok') {
         this.setData({

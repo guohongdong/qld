@@ -38,14 +38,35 @@
     <text>{{product_info.is_appointing==0?'无需':'需要'}}预约</text>
     <text>{{product_info.is_unsubscribe==0?'不':''}}支持退订</text>
   </view>
+  <view class='goods-detail-menu'>
+    <view class='goods-detail-title' style='text-align:center'>
+      <text>内容</text>
+    </view>
+    <view class='goods-detail-menu-con'>
+      <view class='goods-detail-menu-top' style="height:{{height}};">
+        <rich-text nodes="{{product_info.desc}}"></rich-text>
+      </view>
+      <text bindtap='changeHeight' class='goods-detail-menu-btn' wx:if="{{height=='150rpx'}}">查看更多 ↓</text>
+      <text bindtap='changeHeight' class='goods-detail-menu-btn' wx:else>收起 ↑</text>
+    </view>
+  </view>
   <view class='goods-detail-tips'>
+    <view class='goods-detail-title'>
+      <text>特别提示</text>
+    </view>
     <view class='goods-detail-time'>
-      <text>兑换时间：{{shop_info.exchange_time}}</text>
-      <text>每人每{{shop_info.exchange_span}}天每店铺兑换1次</text>
+      <text class='goods-detail-li'>兑换时间：{{shop_info.exchange_time}}</text>
+      <text class='goods-detail-li'>每人每{{shop_info.exchange_span}}天每店铺兑换1次</text>
     </view>
     <view class='goods-detail-tip'>
-      <text>温馨提示：因为该商品是活动产品，故不支持退换</text>
-      <rich-text nodes="{{product_info.desc}}" bindtap="tap"></rich-text>
+      <text class='goods-detail-li'>温馨提示：因为该商品是活动产品，故不支持退换</text>
+      <text class='goods-detail-li'>1.为避免给您和商家造成不必要的麻烦，请抢购前详细阅读领用规则。</text>
+      <text class='goods-detail-li'>2.抢购成功后，您需要在7日之内领用抢购的商品，过期作废，累积三张作废票，系统将自动封号三个月。</text>
+      <text class='goods-detail-li'>3.该券仅限本人手机使用，转发无效。</text>
+      <text class='goods-detail-li'>4.图片由商家提供，仅供参考；实际商品均以实物为准，如有不符，请于商家协商解决。</text>
+      <text class='goods-detail-li'>5.不与商家其他优惠活动同享。</text>
+      <text class='goods-detail-li'>6.请提前出示抢乐多订单，否则商家有权要求以正常价格买单。</text>
+      <text class='goods-detail-li'>7.一次同时只能使用一张优惠券。</text>
     </view>
   </view>
   <view class='goods-detail-comment'>

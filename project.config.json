@@ -51,7 +51,7 @@
 					"id": 1,
 					"name": "分享页面",
 					"pathName": "pages/share/share",
-					"query": "id=37&shopId=41",
+					"query": "id=51&shopId=73",
 					"scene": "1047"
 				}
 			]

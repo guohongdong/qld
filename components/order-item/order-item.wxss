@@ -36,11 +36,25 @@
 }
 
 .order-item-address {
-  font-size: 28rpx;
+  font-size: 24rpx;
   color: #666;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+
+.goods-price-current {
+  color: #f44;
+  font-size: 14px;
+  font-weight: 700;
+  margin-right: 10rpx;
+  line-height: 26rpx;
+}
+
+.goods-price-history {
+  font-size: 12px;
+  line-height: 18rpx;
+  text-decoration: line-through;
 }
 
 .order-item-footer {

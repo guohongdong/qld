@@ -7,8 +7,8 @@ import {
 import NumberAnimate from '../../utils/NumberAnimate.js'
 let goodsModel = new GoodsModel();
 let mineModel = new MineModel();
-var QQMapWX = require('../../utils/qqmap-wx-jssdk.min.js');
-var qqmapsdk;
+let QQMapWX = require('../../utils/qqmap-wx-jssdk.min.js');
+let qqmapsdk;
 let app = getApp();
 Page({
 
@@ -22,7 +22,7 @@ Page({
     current: 0,
     swiperList: [],
     goodsList: [],
-    currentCity: '',
+    currentCity: '定位失败',
     shopTypeList: [],
     shop_type_id: '',
     latitude: '',
@@ -62,14 +62,29 @@ Page({
       success: function(res) {
         const latitude = res.latitude;
         const longitude = res.longitude;
-        wx.setStorage({
-          key: 'location',
-          data: {
+        qqmapsdk = new QQMapWX({
+          key: 'NLRBZ-UTCWU-22RVQ-B6XQO-6IPO7-H7BSJ'
+        });
+        qqmapsdk.reverseGeocoder({
+          location: {
             latitude: latitude,
             longitude: longitude
           },
+          coord_type: 1,
+          success: function(res) {
+            let currentCity = res.result.address
+            that.setData({
+              currentCity: currentCity
+            })
+            wx.setStorageSync('currentCity', currentCity)
+          },
+          fail: function(res) {}
+        });
+        wx.setStorageSync('location', {
+          latitude: latitude,
+          longitude: longitude
+
         })
-        that._loctaion2name(latitude, longitude);
       },
     })
 
@@ -90,7 +105,6 @@ Page({
     let location = wx.getStorageSync('location')
     let token = wx.getStorageSync('token')
     let currentCity = wx.getStorageSync('currentCity')
-    console.log(currentCity)
     if (currentCity) {
       that.setData({
         currentCity: currentCity,
@@ -257,7 +271,7 @@ Page({
         }
         let goodsList = this.data.goodsList.concat(res.data.data)
         goodsList.forEach(item => {
-          item.distance = item.distance > 1000 ? (item.distance / 1000).toFixed(2) + 'km' : (item.distance) + 'm'
+          item.distance = item.distance > 1000 ? (item.distance / 1000).toFixed(2) + 'km' : (item.distance).toFixed(2) + 'm'
         })
         let page = this.data.page + 1
         this.setData({
@@ -290,7 +304,8 @@ Page({
       setTimeout(() => {
 
         let n1 = new NumberAnimate({
-          from: res.data.last_price, //开始时的数字
+          from: res.data.last_price + res.data.bargain_price, //开始时的数字
+          to: res.data.last_price,
           speed: 1000, // 总时间
           refreshTime: 50, //  刷新一次的时间
           decimals: 2, //小数点后的位数
@@ -325,9 +340,14 @@ Page({
       lng: this.data.longitude,
       lat: this.data.latitude
     }
+
     goodsModel.getProductSwiper(this.data.token, params, res => {
+      let swiperList = res.data.data
+      swiperList.forEach(item => {
+        item.distance = item.distance > 1000 ? (item.distance / 1000).toFixed(2) + 'km' : (item.distance).toFixed(2) + 'm'
+      })
       this.setData({
-        swiperList: res.data.data
+        swiperList: swiperList
       })
     })
   },

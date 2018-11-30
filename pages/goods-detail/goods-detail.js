@@ -12,6 +12,7 @@ Page({
     id: '',
     shopId: '',
     token: '',
+    height: '150rpx',
     product_info: {
       name: '',
       image: [],
@@ -109,6 +110,17 @@ Page({
    */
   onShareAppMessage: function() {
 
+  },
+  changeHeight() {
+    if (this.data.height == 'auto') {
+      this.setData({
+        height: '150rpx'
+      })
+    } else {
+      this.setData({
+        height: 'auto'
+      })
+    }
   },
   showModal() {
     let that = this

@@ -29,7 +29,7 @@
     <van-cell title="我的收藏" icon="like-o" is-link url="/pages/mine/collect/collect" />
     <van-cell title="消息通知" icon="chat" is-link arrow-direction="down" url="/pages/mine/concatc/contact?category=message" />
     <van-cell title="我的朋友" icon="contact" is-link arrow-direction="down" url="/pages/mine/concatc/contact?category=friend" />
-    <van-cell wx:if="{{userInfo.invite_id<=20}}" title="我的二维码" icon="qr" is-link url="{{isLogin?'/pages/mine/qrcode/qrcode':'/pages/login/login'}}" />
+    <van-cell title="我的二维码" icon="qr" is-link url="{{isLogin?'/pages/mine/qrcode/qrcode':'/pages/login/login'}}" />
   </van-cell-group>
   <van-cell-group style="margin-top:40rpx;">
     <van-cell title="用户须知" is-link url="/pages/agreement/agreement" />
