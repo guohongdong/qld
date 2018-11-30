@@ -26,7 +26,7 @@
       </view>
       <view>
         <button wx:if="{{status==1}}" class='goods-price-btn' catchtap='bargain'>砍价</button>
-        <text wx:if="{{status==0}}" catchtap="nodata" class='goods-price-btn goods-price-no'>卖光了</text>
+        <text wx:if="{{status==0}}" catchtap="nodata" class='goods-price-btn goods-price-no'>抢完了</text>
         <button wx:if="{{status==6}}" open-type="share" catchtap="share" data-imageUrl="{{goods.image[0]}}" data-id="{{goods.id}}" data-name="{{goods.name}}" data-shopid="{{goods.shop_id}}" class='goods-price-btn goods-price-again'>再砍</button>
       </view>
     </view>

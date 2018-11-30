@@ -271,7 +271,7 @@ Page({
         }
         let goodsList = this.data.goodsList.concat(res.data.data)
         goodsList.forEach(item => {
-          item.distance = item.distance > 1000 ? (item.distance / 1000).toFixed(2) + 'km' : (item.distance).toFixed(2) + 'm'
+          item.distance = item.distance > 1000 ? (item.distance / 1000).toFixed(2) + 'km' : (item.distance*1).toFixed(2) + 'm'
         })
         let page = this.data.page + 1
         this.setData({
@@ -344,7 +344,7 @@ Page({
     goodsModel.getProductSwiper(this.data.token, params, res => {
       let swiperList = res.data.data
       swiperList.forEach(item => {
-        item.distance = item.distance > 1000 ? (item.distance / 1000).toFixed(2) + 'km' : (item.distance).toFixed(2) + 'm'
+        item.distance = item.distance > 1000 ? (item.distance / 1000).toFixed(2) + 'km' : (item.distance*1).toFixed(2) + 'm'
       })
       this.setData({
         swiperList: swiperList

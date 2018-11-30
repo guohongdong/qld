@@ -15,7 +15,7 @@ class NumberAnimate {
       onComplete: function() {} // 完成时回调函数
     }
     this.opt = Object.assign(def, opt); //assign传入配置参数
-    this.tempValue = this.opt.from; //累加变量值
+    this.tempValue = opt.from; //累加变量值
     this.loopCount = 0; //循环次数计数
     this.loops = Math.ceil(this.opt.speed / this.opt.refreshTime); //数字累加次数
     this.increment = ((this.opt.from - this.opt.to) / this.loops); //每次累加的值
@@ -31,7 +31,7 @@ class NumberAnimate {
   updateTimer() {
 
     this.loopCount++;
-    this.tempValue = this.formatFloat(this.tempValue, this.increment).toFixed(this.opt.decimals);
+    this.tempValue = this.formatFloat(this.tempValue, this.increment).toFixed(2);
     if (this.loopCount >= this.loops) {
       clearInterval(this.interval);
       this.tempValue = this.opt.to;
