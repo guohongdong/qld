@@ -134,16 +134,23 @@ Page({
     })
   },
   _changeMessage(e) {
+    let that = this;
     let id = e.target.dataset.id;
     let status = e.target.dataset.status;
     mineModel.changeMessage(this.data.token, id, status, res => {
+
       wx.showToast({
         title: '处理成功',
         icon: 'success',
         duration: 2000,
         mask: true,
-
       })
+      that.setData({
+        list: [],
+        page: 1,
+        loadMore: true
+      })
+      that._getMessages()
     })
   }
 })

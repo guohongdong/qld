@@ -32,6 +32,22 @@ class MineModel extends Http {
     this.request(params)
   }
   /* 
+    获取 小程序码
+   */
+  getQRCode(data, success) {
+    let params = {
+      url: '/api/user/invite_QRCode',
+      method:'POST',
+      data: data,
+      header: {
+        'content-type': 'application/json;charset=utf-8'
+      },
+      responseType: 'arraybuffer',      
+      success: success
+    }
+    this.request(params)
+  }
+  /* 
     获取朋友列表
    */
   getFriends(token, page, success) {
@@ -66,7 +82,7 @@ class MineModel extends Http {
   /* 
     扫码邀请
    */
-  inviting(token, id, success,error) {
+  inviting(token, id, success, error) {
     let params = {
       url: '/api/inviting-messages/invite_member_id/' + id,
       method: 'POST',

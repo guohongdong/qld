@@ -27,7 +27,7 @@ Page({
         userInfo: userInfo
       })
     }
-    this._getAccessToken(this.getWXACodeUnlimit);
+    // this._getAccessToken(this.getWXACodeUnlimit);
   },
 
   /**
@@ -41,7 +41,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    this._getQRCode()
   },
 
   /**
@@ -78,6 +78,18 @@ Page({
   onShareAppMessage: function() {
 
   },
+  _getQRCode() {
+    let that=this
+    let data = {
+      scene: this.data.userInfo.id,
+      width: 280,
+    }
+    mineModel.getQRCode(data,res=>{
+      that.setData({
+        qrcode: wx.arrayBufferToBase64(res)
+      })
+    })
+  },
   _getAccessToken(callback) {
     mineModel.getAccessToken(res => {
       let access_token = res.data.access_token;
@@ -93,11 +105,12 @@ Page({
         scene: scene
       },
       method: 'POST',
-      responseType: 'arraybuffer',
+     
       header: {
         'content-type': 'application/json;charset=utf-8'
       },
       success: function(res) {
+       
         that.setData({
           qrcode: wx.arrayBufferToBase64(res.data)
         })

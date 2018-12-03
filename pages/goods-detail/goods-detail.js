@@ -158,9 +158,23 @@ Page({
   // 获取商品详情
   _getProductDetail() {
     goodsModel.getProductDetail(this.data.id, res => {
-      this.setData({
-        product_info: res.data.product_info
-      })
+      if (res.data.product_info.name) {
+        this.setData({
+          product_info: res.data.product_info
+        })
+      } else {
+        wx.showToast({
+          title: '该活动已结束',
+          icon: 'none',
+          duration: 1500,
+          mask: true,
+        })
+       setTimeout(()=>{
+         wx.navigateBack({
+           delta: 1,
+         })
+       },1500)
+      }
     })
   },
   // 获取店铺详情

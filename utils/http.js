@@ -24,6 +24,7 @@ class Http {
 
       },
       method: params.method,
+      responseType: params.responseType ? params.responseType : 'text',
       success: function(res) {
         wx.hideNavigationBarLoading();
         let code = res.statusCode.toString();
