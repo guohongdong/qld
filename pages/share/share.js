@@ -12,7 +12,7 @@ Page({
     id: '',
     shopId: '',
     token: '',
-    isShowBargain: true,
+    isShowBargain: false,
     product_info: {
       name: '',
       image: [],
@@ -27,7 +27,7 @@ Page({
       mobile: ""
     },
     comment_num: 0,
-    star_level: [0, 0, 0, 0, 0],
+    star_level: [1, 1, 1, 1, 1],
     recordsList: [],
   },
 
@@ -63,6 +63,7 @@ Page({
     this._getProductDetail();
     this._getShop()
     this._bargainRecords()
+    this._hasBargain()
   },
 
   /**
@@ -106,6 +107,18 @@ Page({
       }
     }
   },
+  openLocation(e) {
+    wx.openLocation({
+      latitude: parseFloat(e.currentTarget.dataset.latitude),
+      longitude: parseFloat(e.currentTarget.dataset.longitude),
+      scale: 18,
+      name: e.currentTarget.dataset.shopname,
+      address: e.currentTarget.dataset.address,
+      success: function(res) {},
+      fail: function(res) {},
+      complete: function(res) {},
+    })
+  },
   _getProductDetail() {
     goodsModel.getProductDetail(this.data.id, res => {
       this.setData({
@@ -124,7 +137,7 @@ Page({
       console.log(res.data.statistics.star_level)
       this.setData({
         shop_info: res.data.shop_info,
-        star_level: this.convertToStarsArray(res.data.statistics.star_level),
+        star_level: this.convertToStarsArray(res.data.statistics.star_level == 0 ? 5 : res.data.statistics.star_level),
         comment_num: res.data.statistics.comment_num
       })
     })
@@ -138,13 +151,18 @@ Page({
     })
   },
   onBargain() {
-
     goodsModel.bargain(this.data.token, this.data.id, res => {
       if (res.message == 'ok') {
+        wx.showToast({
+          title: "成功砍掉" + res.data.bargain_price,
+          icon: 'none',
+          duration: 1000,
+          mask: true,
+        })
         this._getProductDetail();
         this._bargainRecords()
         this.setData({
-          isShowBargain: false
+          isShowBargain: true
         })
       } else {
         wx.showToast({
@@ -153,7 +171,15 @@ Page({
       }
     }, error => {
       this.setData({
-        isShowBargain: false
+        isShowBargain: true
+      })
+    })
+  },
+  _hasBargain() {
+    goodsModel.hasBargain(this.data.token, this.data.id, res => {
+      console.log(res)
+      this.setData({
+        isShowBargain: res.data.if_bargained
       })
     })
   },

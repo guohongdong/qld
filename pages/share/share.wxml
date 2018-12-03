@@ -8,8 +8,8 @@
       </view>
       <view class='goods-price'>
         <view>
-          <text class='goods-price-current'>¥ {{product_info.last_price}}</text>
-          <text class='goods-price-history'>¥ {{product_info.market_price}}</text>
+          <text class='goods-price-current'>¥{{product_info.last_price}}</text>
+          <text class='goods-price-history'>¥{{product_info.market_price}}</text>
         </view>
       </view>
     </view>
@@ -24,14 +24,15 @@
     </view>
   </view>
   <view class='goods-detail-address'>
-    <view>
+    <view data-shopname="{{shop_info.shop_name}}" data-address="{{shop_info.address}}" data-latitude="{{shop_info.point[0].lat}}" data-longitude ="{{shop_info.point[0].lng}}" bindtap='openLocation'>
       <image src='/assets/images/goods-detail/coordinates_fill.png' class='goods-detail-addressicon'></image>
       <text>{{shop_info.address}}</text>
     </view>
     <image src='/assets/images/goods-detail/mobilephone_fill.png' class='goods-detail-phone' data-phone="{{shop_info.mobile}}" bindtap='callPhone'></image>
   </view>
   <view class='share-btn'>
-    <button wx:if="{{isShowBargain}}" bindtap='onBargain'>帮朋友砍价</button>
+    <button wx:if="{{product_info.status==0}}" class='share' id='bg'>已经抢完啦</button>
+    <button wx:elif="{{!isShowBargain}}" bindtap='onBargain'>帮朋友砍价</button>
     <button wx:else open-type="share" class='share'>分享给朋友</button>
     <navigator class='onBargain' open-type="switchTab" url="/pages/index/index" hover-class="navigator-hover">
       <button>去首页</button>

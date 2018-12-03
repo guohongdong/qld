@@ -87,7 +87,6 @@ Page({
         })
       },
     })
-
   },
 
   /**
@@ -270,9 +269,6 @@ Page({
           return;
         }
         let goodsList = this.data.goodsList.concat(res.data.data)
-        goodsList.forEach(item => {
-          item.distance = item.distance > 1000 ? (item.distance / 1000).toFixed(2) + 'km' : (item.distance*1).toFixed(2) + 'm'
-        })
         let page = this.data.page + 1
         this.setData({
           goodsList: goodsList,
@@ -304,8 +300,7 @@ Page({
       setTimeout(() => {
 
         let n1 = new NumberAnimate({
-          from: res.data.last_price + res.data.bargain_price, //开始时的数字
-          to: res.data.last_price,
+          from: res.data.last_price, //开始时的数字
           speed: 1000, // 总时间
           refreshTime: 50, //  刷新一次的时间
           decimals: 2, //小数点后的位数
@@ -338,14 +333,12 @@ Page({
   _getProductSwiper() {
     let params = {
       lng: this.data.longitude,
-      lat: this.data.latitude
+      lat: this.data.latitude,
+      is_recommend: 1
     }
 
     goodsModel.getProductSwiper(this.data.token, params, res => {
       let swiperList = res.data.data
-      swiperList.forEach(item => {
-        item.distance = item.distance > 1000 ? (item.distance / 1000).toFixed(2) + 'km' : (item.distance*1).toFixed(2) + 'm'
-      })
       this.setData({
         swiperList: swiperList
       })

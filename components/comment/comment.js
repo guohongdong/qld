@@ -11,7 +11,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-    start: [0, 0, 0, 0, 0]
+    start: [1, 1, 1, 1, 1]
   },
   attached: function() {
     // 在组件实例进入页面节点树时执行

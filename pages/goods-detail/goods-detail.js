@@ -34,7 +34,7 @@ Page({
       exchange_span: 1
     },
     comment_num: 0,
-    star_level: [0, 0, 0, 0, 0],
+    star_level: [1, 1, 1, 1, 1],
     commentList: [],
     start: [1, 1, 1, 1, 0],
     collect: false,
@@ -109,7 +109,24 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function() {
-
+    let that = this
+    return {
+      title: that.data.product_info.name,
+      path: '/pages/share/share?id=' + that.data.id + '&shopId=' + that.data.shopId,
+      imageUrl: that.data.product_info.image[0]
+    }
+  },
+  openLocation(e) {
+    wx.openLocation({
+      latitude: parseFloat(e.currentTarget.dataset.latitude),
+      longitude: parseFloat(e.currentTarget.dataset.longitude),
+      scale: 18,
+      name: e.currentTarget.dataset.shopname,
+      address: e.currentTarget.dataset.address,
+      success: function(res) {},
+      fail: function(res) {},
+      complete: function(res) {},
+    })
   },
   changeHeight() {
     if (this.data.height == 'auto') {
@@ -151,7 +168,7 @@ Page({
     goodsModel.getShop(this.data.shopId, res => {
       this.setData({
         shop_info: res.data.shop_info,
-        star_level: this.convertToStarsArray(res.data.statistics.star_level),
+        star_level: this.convertToStarsArray(res.data.statistics.star_level == 0 ? 5 : res.data.statistics.star_level),
         comment_num: res.data.statistics.comment_num
       })
     })

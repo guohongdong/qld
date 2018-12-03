@@ -9,11 +9,11 @@
       <van-tab wx:for="{{shopTypeList}}" title="{{item.name}}" data-shop='{{item.id}}' wx:key="index">
       </van-tab>
     </van-tabs>
+    <van-search value="{{ value }}" show-action placeholder="请输入搜索关键词" bind:cancel="onCancel" bind:clear="onClear" bind:change="onChange" bind:search="onSearch">
+    </van-search>
   </view>
   <view class='main-con'>
     <block wx:if="{{index==0}}">
-      <van-search value="{{ value }}" show-action placeholder="请输入搜索关键词" bind:cancel="onCancel" bind:clear="onClear" bind:change="onChange" bind:search="onSearch">
-      </van-search>
       <view class='swiper'>
         <swiper duration="200" autoplay interval="4000" circular previous-margin="15px" next-margin="15px" bindchange="currentChange">
           <swiper-item wx:for="{{swiperList}}" wx:key="{{item.id}}">

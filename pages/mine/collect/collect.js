@@ -101,6 +101,18 @@ Page({
   onShareAppMessage: function() {
 
   },
+  openLocation(e) {
+    wx.openLocation({
+      latitude: parseFloat(e.currentTarget.dataset.latitude),
+      longitude: parseFloat(e.currentTarget.dataset.longitude),
+      scale: 18,
+      name: e.currentTarget.dataset.shopname,
+      address: e.currentTarget.dataset.address,
+      success: function(res) {},
+      fail: function(res) {},
+      complete: function(res) {},
+    })
+  },
   callPhone(e) {
     wx.makePhoneCall({
       phoneNumber: e.target.dataset.phone
@@ -154,7 +166,7 @@ Page({
     this.setData({
       collectList: this.data.collectList
     })
-    goodsModel.delCollections(this.data.token, e.target.dataset.shopid, res => {
+    goodsModel.delCollections(this.data.token, e.target.dataset.id, res => {
       if (res.message == 'ok') {
         wx.showToast({
           title: '取消收藏',
@@ -183,7 +195,7 @@ Page({
         }
         let list = this.data.collectList.concat(res.data.shop_collection.data)
         list.forEach(function(item) {
-          item.statistics.star_level = that.convertToStarsArray(item.statistics.star_level)
+          item.statistics.star_level = that.convertToStarsArray(item.statistics.star_level == 0 ? 5 : item.statistics.star_level)
         })
         let page = this.data.page + 1;
         this.setData({

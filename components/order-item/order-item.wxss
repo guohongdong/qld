@@ -70,8 +70,25 @@
 }
 
 .order-item-btn {
-  /* width: 120rpx;
-  height: 50rpx */
   font-size: 32rpx;
   color: #f44;
+  animation: color 2s infinite;
+}
+
+@keyframes color {
+  0% {
+    color: #f44;
+  }
+
+  33% {
+    color: green;
+  }
+
+  66% {
+    color: blue;
+  }
+
+  100% {
+    color: #f44;
+  }
 }

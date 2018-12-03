@@ -11,14 +11,14 @@
         </view>
       </view>
       <view class='goods-detail-address'>
-        <view>
+        <view data-shopname="{{item.shop_name}}" data-address="{{item.address}}" data-latitude="{{item.point[0].lat}}" data-longitude ="{{item.point[0].lng}}" bindtap='openLocation'>
           <image src='/assets/images/goods-detail/coordinates_fill.png' class='goods-detail-addressicon'></image>
           <text>{{item.address}}</text>
         </view>
         <image src='/assets/images/goods-detail/mobilephone_fill.png' class='goods-detail-phone' data-phone="{{item.mobile}}" bindtap='callPhone'></image>
       </view>
     </view>
-    <view class="del" catchtap="_delCollections" data-index="{{index}}" data-shopid="{{item.shop_id}}">删除</view>
+    <view class="del" catchtap="_delCollections" data-index="{{index}}" data-id="{{item.id}}">删除</view>
   </view>
   <view class='no-data' wx:if="{{collectList.length>0&&!loadMore}}">
     <text>— 没有更多数据 —</text>

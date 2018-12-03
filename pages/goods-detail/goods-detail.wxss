@@ -175,11 +175,12 @@ swiper image {
   overflow: hidden;
   margin-bottom: 10rpx;
 }
-.goods-detail-menu-btn{
+
+.goods-detail-menu-btn {
   padding: 10rpx;
-  
   text-align: center;
 }
+
 .goods-detail-time {
   display: flex;
   flex-direction: column;
@@ -190,10 +191,10 @@ swiper image {
   flex-direction: column;
   margin-top: 20rpx;
 }
-.goods-detail-li{
-  line-height:36rpx;
+
+.goods-detail-li {
+  line-height: 36rpx;
   font-size: 28rpx;
-  
 }
 
 .start-comment {
@@ -254,6 +255,15 @@ swiper image {
 
 .goods-detail-btn {
   background: #f44;
+  flex: 1;
+  color: #fff;
+  text-align: center;
+  font-size: 38rpx;
+  line-height: 100rpx;
+}
+
+.goods-detail-btn-no {
+  background: rgb(199, 199, 199);
   flex: 1;
   color: #fff;
   text-align: center;

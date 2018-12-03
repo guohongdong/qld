@@ -6,7 +6,7 @@
       <text class='goods-title'>{{goods.name}}</text>
       <view class='goods-location'>
         <text class='goods-address'>{{goods.address}}</text>
-        <text class='goods-distance'>{{goods.distance}}</text>
+        <text class='goods-distance'>{{distance}}</text>
       </view>
       <view class='goods-look'>
         <view class='goods-look-item'>

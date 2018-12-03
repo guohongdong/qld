@@ -13,13 +13,19 @@ Component({
    * 组件的初始数据
    */
   data: {
-    status: Number
+    status: Number,
+    distance: String
   },
   attached: function() {
     // 在组件实例进入页面节点树时执行
     let status = this.properties.goods.status
+    let distance = this.properties.goods.distance > 1000 ? (this.properties.goods.distance / 1000).toFixed(2) + 'km' : (this.properties.goods.distance * 1).toFixed(2) + 'm'
+
+
+
     this.setData({
-      status: status
+      status: status,
+      distance: distance
     })
   },
   onReady: function() {},

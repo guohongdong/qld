@@ -95,6 +95,20 @@ class GoodsModel extends Http {
     this.request(params)
   }
   /* 
+    检测砍价
+   */
+  hasBargain(token, id, success, error) {
+    let params = {
+      url: '/api/products/' + id + '/bargained',
+      header: {
+        token: token
+      },
+      success: success,
+      error: error
+    }
+    this.request(params)
+  }
+  /* 
     更新浏览量
    */
   pageView(id, success) {

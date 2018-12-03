@@ -10,12 +10,12 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 144rpx;
+  height: 232rpx;
   z-index: 99;
 }
 
 .main-con {
-  margin-top: 156rpx;
+  margin-top: 246rpx;
 }
 
 .swiper {
