@@ -241,7 +241,7 @@ class GoodsModel extends Http {
   */
   commentList(token, id, success) {
     let params = {
-      url: '/api/shops/' + id + '/comments',
+      url: '/api/products/' + id + '/comments',
       header: {
         token: token
       },

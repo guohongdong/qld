@@ -242,7 +242,7 @@ Page({
     })
   },
   _commentList() {
-    goodsModel.commentList(this.data.token, this.data.shopId, res => {
+    goodsModel.commentList(this.data.token, this.data.id, res => {
       this.setData({
         commentList: res.data.comments.data
       })

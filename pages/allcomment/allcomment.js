@@ -10,7 +10,7 @@ Page({
    */
   data: {
     page: 1,
-    shopId: '',
+    id: '',
     loadMore: true,
     commentList: []
   },
@@ -20,7 +20,7 @@ Page({
    */
   onLoad: function(options) {
     this.setData({
-      shopId: options.shopId
+      id: options.id
     })
   },
 
@@ -81,7 +81,7 @@ Page({
       return;
     }
 
-    goodsModel.commentList(this.data.token, this.data.shopId, res => {
+    goodsModel.commentList(this.data.token, this.data.id, res => {
       if (res.message == 'ok') {
         if (res.data.comments.data.length == 0) {
           this.setData({

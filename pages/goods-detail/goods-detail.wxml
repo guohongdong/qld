@@ -27,7 +27,7 @@
     </view>
   </view>
   <view class='goods-detail-address'>
-    <view data-shopname="{{shop_info.shop_name}}" data-address="{{shop_info.address}}" data-latitude="{{shop_info.point[0].lat}}" data-longitude ="{{shop_info.point[0].lng}}" bindtap='openLocation'>
+    <view data-shopname="{{shop_info.shop_name}}" data-address="{{shop_info.address}}" data-latitude="{{shop_info.point[0].lat}}" data-longitude="{{shop_info.point[0].lng}}" bindtap='openLocation'>
       <image src='/assets/images/goods-detail/coordinates_fill.png' class='goods-detail-addressicon'></image>
       <text>{{shop_info.address}}</text>
     </view>
@@ -77,7 +77,7 @@
       <block wx:for="{{commentList}}" wx:key="{{index}}">
         <comment-cmp info="{{item}}" start=""></comment-cmp>
       </block>
-      <navigator url='{{"/pages/allcomment/allcomment?shopId="+ shop_info.id}}' class='goods-detail-allcomment'>查看全部评论</navigator>
+      <navigator url='{{"/pages/allcomment/allcomment?id="+ id}}' class='goods-detail-allcomment'>查看全部评论</navigator>
     </block>
     <block wx:else>
       <view class='nocomment'>
@@ -99,7 +99,7 @@
     <view wx:if="{{product_info.status===1}}" class='goods-detail-btn' bindtap='showModal'>
       <text>立即抢购</text>
     </view>
-     <view wx:else class='goods-detail-btn-no'>
+    <view wx:else class='goods-detail-btn-no'>
       <text>已经抢完啦</text>
     </view>
   </view>

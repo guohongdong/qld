@@ -85,7 +85,7 @@ Page({
           longitude: longitude
 
         })
-      },
+      }
     })
   },
 
@@ -126,7 +126,40 @@ Page({
           that._getShopType();
           that._getProductSwiper();
         }
-      }
+      },
+      fail: function(res) {
+        console.log(res, 'fail')
+        wx.showModal({
+          title: '',
+          content: '定位服务未开启',
+          showCancel: true,
+          cancelText: '取消',
+          cancelColor: '',
+          confirmText: '去开启',
+          confirmColor: '',
+          success: function(res) {
+            if (res.confirm) {
+              wx.openSetting({
+                success(res) {
+                  console.log(res.authSetting)
+                  // res.authSetting = {
+                  //   "scope.userInfo": true,
+                  //   "scope.userLocation": true
+                  // }
+                }
+              })
+            } else if (res.cancel) {
+
+            }
+
+          },
+          fail: function(res) {},
+          complete: function(res) {},
+        })
+      },
+      complete: function(res) {
+        console.log(res, 'complete')
+      },
     })
   },
 
