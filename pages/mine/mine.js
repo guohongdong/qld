@@ -36,11 +36,25 @@ Page({
       let token = wx.getStorageSync('token')
       let userInfo = wx.getStorageSync('userInfo')
       if (token && userInfo) {
-        this.setData({
-          isLogin: true,
-          token: token,
-          userInfo: userInfo
-        })
+        if (userInfo.invite_id == 0) {
+          loginModel.getUsers(token, res => {
+            this.setData({
+              isLogin: true,
+              token: token,
+              userInfo: res.data
+            })
+            wx.setStorage({
+              key: 'userInfo',
+              data: res.data
+            })
+          })
+        } else {
+          this.setData({
+            isLogin: true,
+            token: token,
+            userInfo: userInfo
+          })
+        }
       }
     } catch (e) {
       console.log(e)

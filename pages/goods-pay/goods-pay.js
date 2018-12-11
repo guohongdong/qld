@@ -112,7 +112,7 @@ Page({
           duration: 2000,
         })
         setTimeout(function() {
-          wx.navigateTo({
+          wx.redirectTo({
             url: '/pages/order/order?type=1'
           })
         }, 2000)

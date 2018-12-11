@@ -37,6 +37,7 @@ Page({
    */
   onLoad: function(options) {
 
+
     const scene = decodeURIComponent(options.scene);
     if (scene != 'undefined') {
       wx.showModal({
@@ -58,7 +59,7 @@ Page({
     }
     let that = this;
     wx.getLocation({
-      type: 'wgs84',
+      type: 'gcj02',
       success: function(res) {
         const latitude = res.latitude;
         const longitude = res.longitude;
@@ -70,7 +71,6 @@ Page({
             latitude: latitude,
             longitude: longitude
           },
-          coord_type: 1,
           success: function(res) {
             let currentCity = res.result.address
             that.setData({
@@ -110,7 +110,7 @@ Page({
       })
     }
     wx.getLocation({
-      type: 'wgs84',
+      type: 'gcj02',
       success: function(res) {
         if ((location.latitude != that.data.latitude) || (token != that.data.token)) {
           that.setData({
@@ -128,7 +128,6 @@ Page({
         }
       },
       fail: function(res) {
-        console.log(res, 'fail')
         wx.showModal({
           title: '',
           content: '定位服务未开启',
@@ -140,13 +139,7 @@ Page({
           success: function(res) {
             if (res.confirm) {
               wx.openSetting({
-                success(res) {
-                  console.log(res.authSetting)
-                  // res.authSetting = {
-                  //   "scope.userInfo": true,
-                  //   "scope.userLocation": true
-                  // }
-                }
+                success(res) {}
               })
             } else if (res.cancel) {
 
@@ -156,10 +149,7 @@ Page({
           fail: function(res) {},
           complete: function(res) {},
         })
-      },
-      complete: function(res) {
-        console.log(res, 'complete')
-      },
+      }
     })
   },
 
@@ -198,7 +188,7 @@ Page({
         isloading: false,
         loadMore: true,
       })
-      this._getProducts()
+      this._getLoctaion(this._getProducts)
     }, 1000)
   },
 
@@ -403,7 +393,6 @@ Page({
         latitude: latitude,
         longitude: longitude
       },
-      coord_type: 1,
       success: function(res) {
         let currentCity = res.result.address
         that.setData({
@@ -420,9 +409,8 @@ Page({
   // 重新获取位置
   _getLoctaion(callback) {
     let that = this;
-    let location = wx.getStorageSync('location')
     wx.getLocation({
-      type: 'wgs84',
+      type: 'gcj02',
       success(res) {
         const latitude = res.latitude
         const longitude = res.longitude
@@ -444,7 +432,7 @@ Page({
           },
         })
         wx.showToast({
-          title: '重新定位',
+          title: '刷新成功',
           icon: 'success',
           duration: 3000
         })

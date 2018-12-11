@@ -81,6 +81,7 @@ swiper image {
   height: 70rpx;
   vertical-align: middle;
   border-radius: 50%;
+  border: 1px rgb(201, 201, 201) solid;
 }
 
 .goods-detail-shopname {
@@ -107,6 +108,8 @@ swiper image {
 .goods-detail-address view {
   display: flex;
   align-items: center;
+  padding: 10rpx 0;
+  flex: 1;
 }
 
 .goods-detail-address::before {

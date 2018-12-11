@@ -23,7 +23,7 @@ Page({
   onLoad: function(options) {
     let that = this;
     wx.getLocation({
-      type: 'wgs84',
+      type: 'gcj02',
       success: function(res) {
 
         const latitude = res.latitude;
@@ -36,7 +36,6 @@ Page({
             latitude: latitude,
             longitude: longitude
           },
-          coord_type: 1,
           success: function(res) {
             let currentCity = res.result.address
             that.setData({

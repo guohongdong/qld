@@ -102,7 +102,7 @@ Page({
           duration: 2000,
         })
         setTimeout(() => {
-          wx.navigateTo({
+          wx.reLaunch({
             url: '/pages/order/order?type=all',
           })
         }, 2000)

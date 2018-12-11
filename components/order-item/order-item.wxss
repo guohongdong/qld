@@ -74,7 +74,7 @@
   height: 28rpx;
   font-size: 32rpx;
   color: #f44;
-  animation: color 2s infinite;
+  padding: 8rpx;
 }
 
 @keyframes color {
