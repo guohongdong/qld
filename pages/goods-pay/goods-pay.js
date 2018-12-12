@@ -87,19 +87,12 @@ Page({
 
   },
   valueSix(e) {
-    if (e.detail === '6666') {
-      this.setData({
-        code: e.detail
-      })
-      this._orderStatus()
-    } else {
-      wx.showToast({
-        title: '密码错误',
-        icon: 'none',
-        duration: 3000
-      })
-    }
+    this.setData({
+      code: e.detail
+    })
+    this._orderStatus()
   },
+  
   _orderStatus() {
     let data = {
       code: this.data.code
@@ -116,6 +109,12 @@ Page({
             url: '/pages/order/order?type=1'
           })
         }, 2000)
+      } else {
+        wx.showToast({
+          title: res.message,
+          icon: 'none',
+          duration: 2000,
+        })
       }
 
     })

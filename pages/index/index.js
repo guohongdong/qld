@@ -189,6 +189,7 @@ Page({
         loadMore: true,
       })
       this._getLoctaion(this._getProducts)
+      this._getProductSwiper();
     }, 1000)
   },
 
