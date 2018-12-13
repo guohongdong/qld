@@ -109,8 +109,7 @@ Page({
       header: {
         'content-type': 'application/json;charset=utf-8'
       },
-      success: function(res) {
-       
+      success: function(res) {       
         that.setData({
           qrcode: wx.arrayBufferToBase64(res.data)
         })
@@ -119,5 +118,4 @@ Page({
       complete: function(res) {},
     })
   }
-
 })

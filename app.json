@@ -1,10 +1,10 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/mine/mine",
     "pages/goods-detail/goods-detail",
     "pages/index/business/business",
     "pages/share/share",
-    "pages/mine/mine",
     "pages/mine/concatc/contact",
     "pages/comment/comment",
     "pages/mine/collect/collect",

@@ -2,7 +2,11 @@
 import {
   LoginModel
 } from "../../models/login.js"
+import {
+  GoodsModel
+} from "../../models/goods.js"
 let app = getApp();
+let goodsModel = new GoodsModel();
 let loginModel = new LoginModel();
 Page({
 
@@ -12,7 +16,9 @@ Page({
   data: {
     isLogin: false,
     token: "",
-    userInfo: {}
+    userInfo: {},
+    hasComment: false,
+    hasUsed: false
   },
 
   /**
@@ -55,6 +61,8 @@ Page({
             userInfo: userInfo
           })
         }
+        this._orderList();
+        this._orderList1();
       }
     } catch (e) {
       console.log(e)
@@ -91,5 +99,31 @@ Page({
    */
   onShareAppMessage: function() {
 
+  },
+  _orderList() {
+    goodsModel.orderList(this.data.token, {
+      type: 0
+    }, res => {
+      if (res.message == 'ok') {
+        if (res.data.orders.data.length > 0) {
+          this.setData({
+            hasUsed: true
+          })
+        }
+      }
+    })
+  },
+  _orderList1() {
+    goodsModel.orderList(this.data.token, {
+      type: 1
+    }, res => {
+      if (res.message == 'ok') {
+        if (res.data.orders.data.length > 0) {
+          this.setData({
+            hasComment: true
+          })
+        }
+      }
+    })
   }
 })

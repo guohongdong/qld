@@ -123,5 +123,5 @@ Page({
     this.setData({
       [key]: e.detail.value
     })
-  },
+  }
 })

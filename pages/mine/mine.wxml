@@ -12,11 +12,13 @@
   </block>
   <view class='mine-order'>
     <navigator class='mine-order-item' url="/pages/order/order?type=0">
+      <view wx:if="{{hasUsed}}" class='message'></view>
       <image src='/assets/images/time.png'>
       </image>
       <text>未领取</text>
     </navigator>
     <navigator class='mine-order-item' url="/pages/order/order?type=1">
+     <view wx:if="{{hasComment}}" class='message'></view>
       <image src='/assets/images/brush.png'></image>
       <text>待评论</text>
     </navigator>

@@ -95,12 +95,12 @@ Page({
     })
   },
   goToComment(e) {
-    wx.navigateTo({
+    wx.redirectTo({
       url: "/pages/comment/comment?id=" + e.detail.id + '&shop_address=' + e.detail.shop_address + '&shop_name=' + e.detail.shop_name
     })
   },
   goToConsume(e) {
-    wx.navigateTo({
+    wx.redirectTo({
       url: "/pages/goods-pay/goods-pay?id=" + e.detail.id
     })
   },
