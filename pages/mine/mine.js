@@ -101,6 +101,9 @@ Page({
 
   },
   _orderList() {
+    if (!this.data.token){
+      return;
+    }
     goodsModel.orderList(this.data.token, {
       type: 0
     }, res => {
@@ -114,6 +117,9 @@ Page({
     })
   },
   _orderList1() {
+    if (!this.data.token) {
+      return;
+    }
     goodsModel.orderList(this.data.token, {
       type: 1
     }, res => {
