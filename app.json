@@ -14,14 +14,15 @@
     "pages/order/order",
     "pages/agreement/agreement",
     "pages/mine/qrcode/qrcode",
-    "pages/allcomment/allcomment"
+    "pages/allcomment/allcomment",
+    "pages/mine/shops/shops"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "抢乐多",
-    "navigationBarTextStyle": "black",    
-    "backgroundColor":"#e4e4e4"
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#e4e4e4"
   },
   "tabBar": {
     "borderStyle": "black",
@@ -42,5 +43,10 @@
         "text": "我的"
       }
     ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于为您推荐附近美食"
+    }
   }
 }

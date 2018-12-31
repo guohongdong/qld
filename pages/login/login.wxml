@@ -4,5 +4,5 @@
     <image src='/assets/images/user.jpg'></image>
     <text>抢乐多</text>
   </view>
-  <van-button type="primary " bindtap='login' size='large' wx:if="{{canIUse}}" open-type="getUserInfo">使用微信登录</van-button>
+  <van-button type="primary " bind:getuserinfo='login' size='large' wx:if="{{canIUse}}" open-type="getUserInfo">使用微信登录</van-button>
 </view>

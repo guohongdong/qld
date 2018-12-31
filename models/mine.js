@@ -22,6 +22,21 @@ class MineModel extends Http {
     this.request(params)
   }
   /* 
+    商家入驻
+   */
+  register(data, success) {
+    let params = {
+      url: '/api/shop_register',
+      method: 'POST',
+      data: data,
+      header: {
+        'content-type': 'application/json;charset=utf-8'
+      },
+      success: success
+    }
+    this.request(params)
+  }
+  /* 
     获取 access_token
    */
   getAccessToken(success) {
