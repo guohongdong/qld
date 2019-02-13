@@ -1,7 +1,9 @@
 <!--pages/share/share.wxml-->
 <view>
-  <view class='border-bottom goods-cmp' bindtap='onTap'>
+  <view class='border-bottom goods-cmp'>
+  <navigator class='goto' url="{{'/pages/goods-detail/goods-detail'+'?id='+id+'&shopId='+shopId}}">
     <image src='{{product_info.image[0]}}' class='goods-img'></image>
+  </navigator>
     <view class='goods-info'>
       <view class='goods-detail'>
         <text class='goods-title'>{{product_info.name}}</text>

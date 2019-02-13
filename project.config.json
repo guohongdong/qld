@@ -38,7 +38,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 2,
 			"list": [
 				{
 					"id": 0,
@@ -51,8 +51,15 @@
 					"id": 1,
 					"name": "分享页面",
 					"pathName": "pages/share/share",
-					"query": "id=82&shopId=78",
-					"scene": "1047"
+					"query": "id=133&shopId=103",
+					"scene": 1047
+				},
+				{
+					"id": -1,
+					"name": "分享",
+					"pathName": "pages/goods-pay/goods-pay",
+					"query": "id=306",
+					"scene": null
 				}
 			]
 		}

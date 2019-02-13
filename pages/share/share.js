@@ -156,7 +156,7 @@ Page({
         wx.showToast({
           title: "成功砍掉" + res.data.bargain_price,
           icon: 'none',
-          duration: 1000,
+          duration: 3000,
           mask: true,
         })
         this._getProductDetail();

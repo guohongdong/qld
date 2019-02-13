@@ -47,7 +47,7 @@
 }
 
 .goods-title {
-  font-size: 14px;
+  font-size: 28rpx;
   font-weight: 700;
   height: 34rpx;
   line-height: 34rpx;
@@ -61,8 +61,8 @@
 .goods-location {
   display: flex;
   justify-content: space-between;
-  font-size: 12px;
-  margin-bottom: 20px;
+  font-size: 24rpx;
+  margin-bottom: 40rpx;
 }
 
 .goods-address {
@@ -81,7 +81,7 @@
 
 .goods-look {
   display: flex;
-  font-size: 10px;
+  font-size: 20rpx;
 }
 
 .goods-look-icon {
@@ -103,14 +103,14 @@
 
 .goods-price-current {
   color: #f44;
-  font-size: 14px;
+  font-size: 28rpx;
   font-weight: 700;
   margin-right: 10rpx;
   line-height: 26rpx;
 }
 
 .goods-price-history {
-  font-size: 12px;
+  font-size: 24rpx;
   line-height: 18rpx;
   text-decoration: line-through;
 }
@@ -122,7 +122,7 @@
   color: #fff;
   background: #f44;
   text-align: center;
-  font-size: 14px;
+  font-size: 28rpx;
   line-height: 60rpx;
   border-radius: 30rpx;
   background: linear-gradient(90deg, #f44, #ff5d5d);

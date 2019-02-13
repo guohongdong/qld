@@ -11,8 +11,8 @@
     <view class='order-item-footer'>
       <text class='order-item-tiem'> <text class='goods-price-current'>¥{{order.product_last_price}}</text>
       <text class='goods-price-history'>¥{{order.product_market_price}}</text></text>
-      <image wx:if="{{order.order_status==0}}" class='order-item-btn' src='./images/goToConsume.gif' catchtap='goToConsume'>去领取</image>
-      <image wx:if="{{order.order_status==1&&order.comment_status==0}}" src='./images/goto.gif' class='order-item-btn' catchtap='goToComment'>去评论</image>
+      <image wx:if="{{order.order_status==0}}" class='order-item-btn' src='./images/goToConsume.gif' catchtap='goToConsume'></image>
+      <image wx:if="{{order.order_status==1&&order.comment_status==0}}" src='./images/goto.gif' class='order-item-btn' catchtap='goToComment'></image>
     </view>
   </view>
 </view>

@@ -35,6 +35,10 @@ Page({
         id: options.id,
         token: token
       })
+    } else {
+      wx.navigateTo({
+        url: "/pages/login/login"
+      })
     }
   },
 

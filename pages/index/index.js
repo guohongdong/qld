@@ -243,18 +243,24 @@ Page({
   },
   onCancel() {},
   onClear() {},
-  // 切换
+  // 切换分类
   onChangeTab(event) {
     let shop_type_id = this.data.shopTypeList[event.detail.index].id
+    if (this.data.shop_type_id == shop_type_id){
+      return;
+    }
     this.setData({
       index: event.detail.index,
       goodsList: [],
       shop_type_id: shop_type_id,
       page: 1,
       isloading: false,
-      loadMore: true
+      loadMore: true,
+      current: 0,
+      swiperList:[]
     })
     this._getProducts();
+    this._getProductSwiper();
   },
   currentChange(e) {
     this.setData({
@@ -358,6 +364,7 @@ Page({
     let params = {
       lng: this.data.longitude,
       lat: this.data.latitude,
+      shop_type_id: this.data.shop_type_id,
       is_recommend: 1
     }
 
@@ -368,14 +375,10 @@ Page({
       })
     })
   },
-  // 获取商品分类
+  // 获取商品分类数组
   _getShopType() {
     goodsModel.getShopType(res => {
       if (res.message == 'ok') {
-        res.data.shop_type_list.unshift({
-          id: '',
-          name: "全部"
-        })
         this.setData({
           shopTypeList: res.data.shop_type_list
         })

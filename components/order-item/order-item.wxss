@@ -41,18 +41,20 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  margin-top:6rpx;
+  
 }
 
 .goods-price-current {
   color: #f44;
-  font-size: 14px;
+  font-size: 28rpx;
   font-weight: 700;
   margin-right: 10rpx;
   line-height: 26rpx;
 }
 
 .goods-price-history {
-  font-size: 12px;
+  font-size: 24rpx;
   line-height: 18rpx;
   text-decoration: line-through;
 }
@@ -74,7 +76,7 @@
   height: 28rpx;
   font-size: 32rpx;
   color: #f44;
-  padding: 8rpx;
+  padding: 20rpx;
 }
 
 @keyframes color {

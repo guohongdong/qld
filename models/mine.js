@@ -52,12 +52,12 @@ class MineModel extends Http {
   getQRCode(data, success) {
     let params = {
       url: '/api/user/invite_QRCode',
-      method:'POST',
+      method: 'POST',
       data: data,
       header: {
         'content-type': 'application/json;charset=utf-8'
       },
-      responseType: 'arraybuffer',      
+      responseType: 'arraybuffer',
       success: success
     }
     this.request(params)

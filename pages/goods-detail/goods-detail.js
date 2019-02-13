@@ -142,10 +142,17 @@ Page({
   showModal() {
     let that = this
     wx.showModal({
-      title: "确认下单吗？",
+      title: "抢完后必须在7天内使用完该券，不然会影响您的信誉哦",
       success: function(res) {
         if (res.confirm) {
-          that._createOrder()
+          wx.showModal({
+            title: "确定需要抢购吗",
+            success: function(res) {
+              if (res.confirm) {
+                that._createOrder()
+              } else if (res.cancel) {}
+            }
+          })
         } else if (res.cancel) {}
       }
     })

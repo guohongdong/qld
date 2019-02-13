@@ -7,6 +7,9 @@ page {
 .contact-container {
   height: 1210rpx;
 }
+.contact-container.active {
+  height: 1090rpx;
+}
 
 .contact-agree {
   font-size: 28rpx;
@@ -32,4 +35,17 @@ page {
   display: flex;
   justify-content: center;
   padding: 20px 0;
+}
+
+.allpass-content{
+  border-top: 1px #ddd solid;
+  padding-top: 20rpx;
+  background: #fff;
+}
+
+.allpass{
+  margin: 0 40rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 36rpx;
 }
