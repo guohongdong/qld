@@ -11,6 +11,8 @@ Page({
   data: {
     id: '',
     code: '',
+    token: '',
+    tokenTemp: '',
     inputData: {
       input_value: "", //输入框的初始内容
       value_length: 0, //输入框密码位数
@@ -29,6 +31,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    if (options.shopId) {
+      this.setData({
+        tokenTemp: options.shopId,
+      })
+    }
     let token = wx.getStorageSync('token');
     if (token) {
       this.setData({
@@ -88,7 +95,10 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function() {
-
+    let that = this
+    return {
+      path: '/pages/goods-pay/goods-pay?id=' + that.data.id + '&shopId=' + that.data.token,
+    }
   },
   valueSix(e) {
     this.setData({
@@ -96,12 +106,13 @@ Page({
     })
     this._orderStatus()
   },
-  
+
   _orderStatus() {
     let data = {
       code: this.data.code
     }
-    goodsModel.orderStatus(this.data.token, this.data.id, data, res => {
+    let token = this.data.tokenTemp ? this.data.tokenTemp : this.data.token;
+    goodsModel.orderStatus(token, this.data.id, data, res => {
       if (res.message == 'ok') {
         wx.showToast({
           title: '验证成功',

@@ -24,7 +24,7 @@ Page({
     goodsList: [],
     currentCity: '定位失败',
     shopTypeList: [],
-    shop_type_id: '',
+    shop_type_id: 4,
     latitude: '',
     longitude: '',
     page: 1,
@@ -122,8 +122,8 @@ Page({
             loadMore: true,
             goodsList: []
           })
-          that._getProducts();
           that._getShopType();
+          that._getProducts();
           that._getProductSwiper();
         }
       },
@@ -280,6 +280,7 @@ Page({
     this.setData({
       isloading: true
     })
+
     let params = {
       lng: this.data.longitude,
       lat: this.data.latitude,
@@ -328,7 +329,6 @@ Page({
         });
       }
       setTimeout(() => {
-
         let n1 = new NumberAnimate({
           from: res.data.last_price, //开始时的数字
           speed: 1000, // 总时间

@@ -123,6 +123,20 @@ class MineModel extends Http {
     }
     this.request(params)
   }
+  /* 
+    邀请消息处理全部
+   */
+  changeAllMessage(token, ids, status, success) {
+    let params = {
+      url: '/api/batch-inviting-messages/' + ids + '/status/' + status,
+      method: 'PUT',
+      header: {
+        'token': token
+      },
+      success: success
+    }
+    this.request(params)
+  }
 
   /* 
    获取收藏列表

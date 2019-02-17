@@ -152,5 +152,32 @@ Page({
       })
       that._getMessages()
     })
+  },
+  allpass() {
+    let that = this;
+    let ids = [];
+    let status = 1;
+    this.data.list.forEach(item => {
+      if (item.status == 0) {
+        ids.push(item.id)
+      }
+    });
+    if(!ids.length){
+      return;
+    }
+    mineModel.changeAllMessage(this.data.token, ids.join(","), status, res => {
+      wx.showToast({
+        title: '处理成功',
+        icon: 'success',
+        duration: 2000,
+        mask: true,
+      })
+      that.setData({
+        list: [],
+        page: 1,
+        loadMore: true
+      })
+      that._getMessages()
+    })
   }
 })

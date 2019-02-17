@@ -31,7 +31,7 @@
   </scroll-view>
   <block wx:if="{{category=='message'}}">
     <view class='allpass-content'>
-      <button type="primary" class="allpass">全部通过</button>
+      <button type="primary" class="allpass" bindtap='allpass'>全部通过</button>
     </view>
   </block>
 </view>
