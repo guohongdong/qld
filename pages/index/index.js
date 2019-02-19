@@ -24,7 +24,7 @@ Page({
     goodsList: [],
     currentCity: '定位失败',
     shopTypeList: [],
-    shop_type_id: 4,
+    shop_type_id: 0,
     latitude: '',
     longitude: '',
     page: 1,
@@ -123,8 +123,6 @@ Page({
             goodsList: []
           })
           that._getShopType();
-          that._getProducts();
-          that._getProductSwiper();
         }
       },
       fail: function(res) {
@@ -246,18 +244,18 @@ Page({
   // 切换分类
   onChangeTab(event) {
     let shop_type_id = this.data.shopTypeList[event.detail.index].id
-    if (this.data.shop_type_id == shop_type_id){
+    if (this.data.shop_type_id == shop_type_id) {
       return;
     }
     this.setData({
       index: event.detail.index,
-      goodsList: [],
       shop_type_id: shop_type_id,
       page: 1,
       isloading: false,
       loadMore: true,
-      currentTemp:0,
-      swiperList:[]
+      currentTemp: 0,
+      goodsList: [],
+      swiperList: []
     })
     this._getProducts();
     this._getProductSwiper();
@@ -377,11 +375,15 @@ Page({
   },
   // 获取商品分类数组
   _getShopType() {
+    let that = this;
     goodsModel.getShopType(res => {
       if (res.message == 'ok') {
         this.setData({
-          shopTypeList: res.data.shop_type_list
+          shopTypeList: res.data.shop_type_list,
+          shop_type_id: res.data.shop_type_list[0].id
         })
+        that._getProducts();
+        that._getProductSwiper();
       }
     })
   },
