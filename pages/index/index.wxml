@@ -22,7 +22,7 @@
             <goods-cmp data-index="{{index}}" data-type="swiper" bind:onTapItem="onTapItem" bind:onBargain="onBargain" goods="{{item}}"></goods-cmp>
           </swiper-item>
         </swiper>
-        <view class='index-index'>{{current+1}}/{{swiperList.length}}</view>
+        <view class='index-index'>{{currentTemp+1}}/{{swiperList.length}}</view>
       </view>
     </block>
     <view style='margin-top:20rpx;'>

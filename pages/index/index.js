@@ -19,7 +19,7 @@ Page({
     token: '',
     active: 0,
     value: '',
-    current: 0,
+    currentTemp: 0,
     swiperList: [],
     goodsList: [],
     currentCity: '定位失败',
@@ -260,7 +260,7 @@ Page({
   },
   currentChange(e) {
     this.setData({
-      current: e.detail.current
+      currentTemp: e.detail.current
     })
   },
   // 重新获取定位
