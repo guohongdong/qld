@@ -1,21 +1,23 @@
-<!--index.wxml-->
+<!-- index.wxml -->
 <view class="container">
   <view class='fixed-con'>
     <view class='loc'>
       <image class='refresh' src='/assets/images/refresh.png' bindtap='refreshLocation'></image>
-      <navigator url='/pages/index/business/business' class='navigator'>当前位置: {{currentCity}}</navigator>
+      <navigator url='/pages/index/business/business' class='navigator'>
+        当前位置: {{currentCity}}
+      </navigator>
     </view>
-    <van-tabs active="{{ active }}" bind:click="onChangeTab">
-      <van-tab wx:for="{{shopTypeList}}" title="{{item.name}}" data-shop='{{item.id}}' wx:key="index">
-      </van-tab>
-    </van-tabs>
-    <van-search value="{{ value }}" show-action placeholder="请输入搜索关键词" bind:cancel="onCancel" bind:clear="onClear" bind:change="onChange" bind:search="onSearch">
-    </van-search>
+    <block wx:if="{{shopTypeList.length}}">
+      <van-tabs animated active="{{ active }}" bind:click="onChangeTab">
+        <van-tab wx:for="{{shopTypeList}}" title="{{item.name}}" data-shop='{{item.id}}' wx:key="index"></van-tab>
+      </van-tabs>
+    </block>
+    <van-search value="{{ value }}" show-action placeholder="请输入搜索关键词" bind:cancel="onCancel" bind:clear="onClear" bind:change="onChange" bind:search="onSearch"></van-search>
   </view>
   <view class='main-con'>
     <block wx:if="{{swiperList.length}}">
       <view class='swiper'>
-        <swiper duration="200" autoplay interval="4000" circular previous-margin="15px" next-margin="15px" bindchange="currentChange" current="{{ current }}">
+        <swiper duration="200" autoplay interval="4000" circular bindchange="currentChange" current="{{ current }}">
           <swiper-item wx:for="{{swiperList}}" wx:key="{{item.id}}">
             <goods-cmp data-index="{{index}}" data-type="swiper" bind:onTapItem="onTapItem" bind:onBargain="onBargain" goods="{{item}}"></goods-cmp>
           </swiper-item>
@@ -25,7 +27,9 @@
     </block>
     <view style='margin-top:20rpx;'>
       <text class='recommend'>——  热门推荐  ——</text>
+      <block wx:if="goodsList.length">     
       <goods-cmp wx:for="{{goodsList}}" wx:key="{{item.id}}" data-index="{{index}}" bind:onTapItem="onTapItem" bind:onBargain="onBargain" goods="{{item}}" borderBottom="{{(goodsList.length-1)==index?'':'true'}}"></goods-cmp>
+       </block>
     </view>
     <view class='no-data2' wx:if="{{goodsList.length==0}}">
       <text>暂无商品</text>
